@@ -1,0 +1,3 @@
+-All props passed through are solely for styling purposes. 
+-None of these files are to contain functionality
+-Some Atoms are reusable while some aren't as they were only used in a single molecule.
