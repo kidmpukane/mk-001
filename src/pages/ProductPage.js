@@ -4,7 +4,7 @@ import { ProductImages } from '../components/atoms/Images'
 import { CategoryCard } from '../components/molecules/categoryCard'
 import {  ProductPageTop  } from '../components/molecules/productPageTop'
 
-const ProductPage = () => {
+const ProductPage = ({ item, navigation }) => {
   return (
     <View>
       <View 

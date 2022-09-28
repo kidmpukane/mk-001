@@ -32,6 +32,5 @@ function MyTabs() {
       />
     </Tab.Navigator>
   );
-}
-
-export {  MyTabs  }
+};
+export default MyTabs;
