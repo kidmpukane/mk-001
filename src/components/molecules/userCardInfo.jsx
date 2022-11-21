@@ -6,35 +6,43 @@ import React from 'react'
 import { Texts, Headings } from '../atoms/headings'
 import { Images } from '../atoms/Images'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import userProfileData from '../../assets/data/userProfileData';
 
 const UserCardInfo = () => {
   return (
-    <View
-      style={cardStyles.cardImage}>
-    <Images/>
     
-    <View 
-      style={cardStyles.cardText}>
-        <Texts 
-      texts="@test001clothing"
-      style={{
-        fontWeight:"bold",
-        fontSize: 10,
-        color: "#D9D9D9"
-        }}/>
-        <Text
-      style={cardStyles.title}>
-    <Icon name="map-pin"/>
-    Bikini Bottom
-    </Text>
-    <Headings
-      texts="test001.c l o t h i n g."/>
-
-    
-
-    </View>
-
-    </View>
+<View>
+  {userProfileData.map((userInfo) =>
+        <View
+          key={userInfo.id}
+          style={
+            cardStyles.cardImage}>
+          <Images
+            source={{uri: userInfo.content.imageProfilePicture}}/>
+      
+            <View 
+              style={
+                cardStyles.cardText}>
+          
+            <Headings
+              texts={userInfo.content.userName}
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                color: "#D9D9D9"
+              }}/>
+  
+            <Texts 
+              texts={userInfo.content.userNameId}
+              style={{
+                paddingTop: 5,
+                fontSize: 15,
+                color: "#D9D9D9"
+             }}/>
+  
+      </View>
+      </View>)}
+</View>
   )
 }
 

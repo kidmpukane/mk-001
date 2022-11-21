@@ -11,7 +11,7 @@ const Images = (props) => {
       <View>
         <Image 
             style={[styles.profilePicLogo, props.style]}
-            source={{uri: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/ba5f3684678265.5d64ef4b94724.png'}}/>
+            source={props.source}/>
       </View>
     )
   }

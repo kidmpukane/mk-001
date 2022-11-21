@@ -29,12 +29,11 @@ const OurStoryTop = (props) => {
           <CustomButton
             title="more info"
             style={{
-              width: "100%",
-              height: 40,
-              paddingVertical: 12,
+
+
               alignItems: 'center',
-              borderRadius: 50,
-              padding: 6
+              borderRadius: 25,
+
             
               }}/>
       </View>

@@ -8,6 +8,7 @@ const StoreGallery = () => {
     <View
         style={{ 
             flex: 1,
+            backgroundColor: "#292929"
              }}>
 
       <ScrollView

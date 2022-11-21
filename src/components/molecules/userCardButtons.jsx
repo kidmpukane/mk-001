@@ -6,24 +6,27 @@ import { atomicStyles } from '../atoms/atomicStyles';
 const UserCardButtons = () => {
   return (
     <View style={{
-        flex: 0.5,
+
         justifyContent: "space-evenly",
         flexDirection: "row",
-        paddingLeft: 5,
+
     }}>
 
       <View>
         <CustomButton 
           style={{
+            height: 40,
             width: 120,
+            
 //--------------------Buttons aren't even in size!!!------------------------
         }}/>
       </View>
 
       <View>
         <CustomButton2 
-          title="similar stores"
+          title="other stores"
           style={{
+            height: 40,
             width: 150,
 
         }}

@@ -8,8 +8,9 @@ const SocialMediaLinks = () => {
       <View style={{
         flex: 1, 
         flexDirection: "row",
-        justifyContent: "space-evenly",
-        alignItems: 'center', 
+        justifyContent: "space-between",
+        padding: 10,
+
         
       }}>
         <View><SecondaryLinkButton label="facebook"/></View>

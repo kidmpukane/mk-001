@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { Texts } from '../atoms/headings'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import reviewData from '../../assets/data/reviewData';
 
 
 
@@ -15,7 +16,19 @@ const StarsCounter = () => {
     alignItems: "center"
       }}>
 
-    <View><Texts texts="5.0" style={{color: "#D9D9D9", fontWeight: "bold"}}/></View>    
+    <View>
+{reviewData.map((counter)  =>
+
+        <Texts 
+
+          key={counter.id}
+          texts={counter.rating} 
+          style={{
+          color: "#D9D9D9", 
+          fontWeight: "bold"}}/>
+
+  )}
+    </View>    
     
     <View style={{
        

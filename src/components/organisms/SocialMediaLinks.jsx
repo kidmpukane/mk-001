@@ -4,19 +4,13 @@ import { SocialMediaLinks } from '../molecules/socialMediaLinks'
 
 const SocialMediaLinkBar = () => {
   return (
-    <View style={{
-        flex: 1, 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        
-        
-      }}>
+    <View>
     <View
     style={{
-      padding: 10,
+
       flexDirection: "row",
       backgroundColor:"#3D3D3D",
-      borderRadius: 25,
+      borderRadius: 50,
     }}>
     <SocialMediaLinks/>
     </View>

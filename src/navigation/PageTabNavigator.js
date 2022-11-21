@@ -8,12 +8,14 @@ import Home from "../pages/HomeScreen";
 import LibraryScreen from "../pages/LibraryScreen";
 import SearchScreen from "../pages/SearchScreen";
 import ProfileScreen from "../pages/ProfileScreen";
+import {StoreGallery} from "../pages/StoreGallery";
 
 //Screen names
 const homeName = "Home";
 const libraryName = "Library";
 const profileName = "Profile";
 const searchName = "Search";
+const storeGallery = "Store"
 
 const Tab = createBottomTabNavigator();
 
@@ -56,10 +58,10 @@ const PageTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name={searchName}
-        component={SearchScreen}
+        name={storeGallery}
+        component={StoreGallery}
         options={{
-          tabBarLabel: "Search",
+          tabBarLabel: "Store-Gallery",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="magnify" color={color} size={26} />
           ),

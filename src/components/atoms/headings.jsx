@@ -9,6 +9,7 @@ const Headings = (props) => {
     return (
       <View>
         <Text
+        numberOfLines={props.numberOfLines}
         style={[styles.text,props.style]}>{props.texts}</Text>
       </View>
     )
@@ -20,6 +21,7 @@ const Texts = (props) => {
       return (
         <View>
           <Text 
+          numberOfLines={props.numberOfLines}
           style={props.style}>{props.texts}</Text>
         </View>
       )

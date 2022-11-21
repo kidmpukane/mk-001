@@ -1,41 +1,76 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, } from 'react-native'
 import { Texts } from '../atoms/headings'
 import React from 'react'
+import { Images } from '../atoms/Images'
 import { ReviewCardTop } from '../molecules/reviewCardTop'
+import reviewData from '../../assets/data/reviewData'
+
 
 const ReviewCard = () => {
   return (
-    <View style={{
-        flex: 1, 
-        alignItems: "flex-start", 
-        justifyContent: "space-between",
-        marginLeft: 10,
-        
-        
-      }}>
-      <View
-        style={{
-     
-          padding: 10,
-          width: "25%",
-          backgroundColor:"#3D3D3D",
-          borderRadius: 25,
+    <ScrollView horizontal style={reviewData.scrollView}>
+
+    {reviewData.map((userInfo) =>     
+    <View
+      key={userInfo.id}
+      style={{  
+        height: "100%",
+        width: 300,
+        textAlign: "center",
+        marginHorizontal: 4,
+        borderRadius: 35,
+        backgroundColor:"#3D3D3D",
+        padding: 20
+          
         }}>
-      <ReviewCardTop/>
-      <Texts
+
+      <View 
+        key={userInfo.id}
+        style={{ 
+            flex: 1,
+            flexDirection: "row",
+            alignItems: 'center',  
+            
+            }}>
+      <Images 
+        source={{uri: userInfo.image}}
         style={{
-          color: "#D9D9D9",
-          fontSize: 12,
-          fontWeight: "bold",
-          padding: 20,
+          height: 70,
+          width: 70,
+          borderRadius: 100
+            }}/>
+  
+    <Texts
+      texts={userInfo.user}
+      style={{
+        fontWeight:"bold",
+        fontSize: 12,
+        color: "#D9D9D9",
+        padding: 5
+        }}/>
+    </View>
+
+    <Texts
+      numberOfLines={8}
+      style={{
+        color: "#D9D9D9",
+        fontSize: 12,
+        padding: 20,
   
         }}
-        texts=" Lorem ipsum dolor sit amet. Sed veniam voluptas 33 sequi voluptatem est distinctio magni! 
-                Ut asperiores quia eum amet aliquid ut ullam amet. 
-                Est omnis maxime sed enim velit est voluptas assumenda ut voluptate molestiae!"/>
-      </View>
-      </View>
+
+        texts={userInfo.comment}
+        />
+    </View>)}
+
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  scrollView: {
+    padding: 20,
+  },
+}) 
 
 export { ReviewCard }

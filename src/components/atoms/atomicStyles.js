@@ -47,7 +47,13 @@ const atomicStyles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 12,
-        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        justifyContent: "center",
+        color: '#F5F5F5',
+      },
+    buttonText2: {
+        fontSize: 12,
         fontWeight: 'bold',
         letterSpacing: 0.25,
         justifyContent: "center",
