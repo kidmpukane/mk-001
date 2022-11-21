@@ -89,17 +89,19 @@ function ProfileScreen({ route }) {
             />
           </View>
 
-          <View>
+          <View
+            style={styles.copyWrightLaws2Container}>
             <Texts
-              style={styles.storeName}
+              style={styles.copyWrightLaws2}
               texts={userInfo.content.userNameId}
             />
-          </View>
+
 
             <Texts
-              style={styles.copyWrightLaws}
+              style={styles.copyWrightLaws2}
               texts={userInfo.content.copyRight}
             />
+          </View>
         </ScrollView>
       ))}
     </View>
@@ -157,8 +159,19 @@ const styles = StyleSheet.create({
   copyWrightLaws: {
     color: "#D9D9D9",
     fontSize: 12,
-    fontWeight: "bold",
     padding: 40,
+  },
+  copyWrightLaws2Container: {
+    justifyContent: "center",
+    alignContent: "center",
+
+  },
+  copyWrightLaws2: {
+    justifyContent: "center",
+    alignContent: "center",
+    color: "#D9D9D9",
+    fontSize: 12,
+    padding: 10,
   },
   storeName: {
     color: "#D9D9D9",

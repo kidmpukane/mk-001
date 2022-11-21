@@ -11,6 +11,7 @@ import {
   Dimensions,
 } from "react-native";
 import theme from "../assets/themes/theme";
+import { CustomButton3 } from "../components/atoms/buttons";
 import imageGallery from "../assets/data/imageGallery";
 
 const UploadScreen = ({ navigation }) => {
@@ -42,7 +43,7 @@ const UploadScreen = ({ navigation }) => {
           keyboardType="numeric"
         />
  
-        <Button title="Post" style={styles.button} />
+        <CustomButton3 title="Post" style={styles.button} />
         <Text style={styles.heading}>Select Images</Text>
         <View style={styles.galleryContainer}>
           {imageGallery.map((item) => (
@@ -62,17 +63,20 @@ const styles = StyleSheet.create({
   layout: {
     flex: 1,
     padding: 8,
+    backgroundColor: "#292929"
   },
   title: {
     margin: 24,
     fontSize: 25,
     fontWeight: "bold",
+     color: "#D9D9D9"
   },
   heading: {
     margin: 24,
     fontSize: 15,
     fontWeight: "bold",
     textAlign: "center",
+    color: "#D9D9D9"
   },
   input: {
     padding: 8,

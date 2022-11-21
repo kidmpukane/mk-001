@@ -27,7 +27,9 @@ const Home = () => {
       <ScrollView>
         <CreatePost />
         {/*<Avatars />*/}
-        <Heading>Categories</Heading>
+        <Heading
+          style={styles.heading}
+          >Categories</Heading>
         <Categories  />
         <Uploads  />
       </ScrollView>
@@ -39,6 +41,7 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     display: "flex",
+    backgroundColor: "#292929",
   },
   title: {
     fontSize: 25,
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     padding: 2,
     paddingHorizontal: 15,
-    color: "#08060B",
+    color: "#D9D9D9",
   },
 }); 
 

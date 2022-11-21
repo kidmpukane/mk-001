@@ -44,6 +44,24 @@ const PageTabNavigator = () => {
       />
 
       <Tab.Screen
+        name={profileName}
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+
+{/*
+
+
+      <Tab.Screen
         name={libraryName}
         component={LibraryScreen}
         options={{
@@ -68,18 +86,6 @@ const PageTabNavigator = () => {
         }}
       />
 
-      <Tab.Screen
-        name={profileName}
-        component={ProfileScreen}
-        options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-};
+*/}
 
 export { PageTabNavigator };
