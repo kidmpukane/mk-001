@@ -1,113 +1,250 @@
-import React, { useState } from "react";
-import {
-  Text,
-  TextInput,
-  StyleSheet,
-  ImageBackground,
-  Image,
-  View,
-  Button,
-  ScrollView,
-  Dimensions,
-} from "react-native";
+import * as React from "react";
+import { View, StyleSheet, ScrollView, TextInput } from "react-native";
+import { Headings, Texts } from "../components/atoms/headings";
+import { Formik, useFormik } from "formik";
+import * as ImagePicker from "expo-image-picker";
+import { CustomButton2 } from "../components/atoms/buttons";
 import theme from "../assets/themes/theme";
-import { CustomButton3 } from "../components/atoms/buttons";
-import imageGallery from "../assets/data/imageGallery";
 
-const UploadScreen = ({ navigation }) => {
-  const [text, onChangeText] = useState("");
-  const [number, onChangeNumber] = useState(null);
 
-  return (
-    <ScrollView style={styles.layout}>
-      <View>
-        <ImageBackground
-          style={styles.imageBackground}
-          source={{
-            uri: "https://images.unsplash.com/photo-1503595855261-9418f48a991a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-          }}
-        />
-        <TextInput
-          multiline={true}
-          numberOfLines={4}
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-          placeholder="Write a description......"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="Set the price......"
-          keyboardType="numeric"
-        />
- 
-        <CustomButton3 title="Post" style={styles.button} />
-        <Text style={styles.heading}>Select Images</Text>
-        <View style={styles.galleryContainer}>
-          {imageGallery.map((item) => (
-            <Image
-              key={item.id}
-              style={styles.galleryImage}
-              source={{ uri: item.gallery }}
-            />
-          ))}
+
+export const UploadScreen = (props) => (
+  <ScrollView style={styles.layout}>
+    <Formik
+      
+
+      initialValues={{
+        category: "",
+        category_tag: "",
+        description: "",
+        price: "",
+        discount_price: "",
+        colour: "",
+        images: "",
+      }}
+      onSubmit={
+        (values) => console.log(values)
+      }
+    >
+      {({ 
+        
+        handleChange, 
+        handleBlur, 
+        handleSubmit, 
+        values }) => (
+
+        <View>
+
+          <Headings style={styles.title} texts="Select Image" />
+
+          <Texts
+            style={styles.body}
+            texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
+          />
+
+          <CustomButton2
+            title="Select Image"
+            onPress={
+
+              async () => {
+
+                try {
+                  let result = await ImagePicker.launchImageLibraryAsync({
+                    mediaTypes: ImagePicker.MediaTypeOptions.All,
+                    allowsEditing: false,
+                    allowsMultipleSelection: true,
+                    aspect: [4, 3],
+                    quality: 1,
+                  });
+            
+                  let data = {
+                    type: result.type,
+                    uri: result.uri,
+                  }
+                  
+            
+                  console.log(data);
+            
+                  //console.log(result);
+                  setImage(result.uri);
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+
+            }
+            style={styles.customButton}
+          />
+
+          <Headings style={styles.title} texts="Fill In Information" />
+
+          <Texts
+            style={styles.body}
+            texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Category"
+            placeholderTextColor="white"
+            type="text"
+            onChange={handleChange("category")}
+            value={values.category}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Category Tag"
+            placeholderTextColor="white"
+            type="text"
+            onChange={handleChange("category_tag")}
+            value={values.category_tag}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Description"
+            placeholderTextColor="white"
+            type="text"
+            onChange={handleChange("description")}
+            value={values.description}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Title"
+            placeholderTextColor="white"
+            type="text"
+            onChange={handleChange("title")}
+            value={values.title}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Price"
+            placeholderTextColor="white"
+            type="number"
+            onChange={handleChange("price")}
+            value={values.price}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Discount Price"
+            placeholderTextColor="white"
+            type="text"
+            onChange={handleChange("discount_Price")}
+            value={values.discount_Price}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Colour"
+            placeholderTextColor="white"
+            type="text"
+            onChange={handleChange("colour")}
+            value={values.colour}
+          />
+
+          <CustomButton2
+            title="Submit Form"
+            onPress={handleSubmit}
+            style={styles.customSubmitButton}
+          />
+
+          <Texts
+            style={styles.body}
+            texts="Select the images you wish to upload one at a time."
+          />
         </View>
-      </View>
-    </ScrollView>
-  );
-};
+      )}
+    </Formik>
+  </ScrollView>
+);
 
 const styles = StyleSheet.create({
   layout: {
-    flex: 1,
-    padding: 8,
-    backgroundColor: "#292929"
+    backgroundColor: "#292929",
+  },
+  customButton: {
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
+  customSubmitButton: {
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
+  coverImage: {
+    marginTop: 30,
+    width: "100%",
+    height: 350,
+    resizeMode: "cover",
+    overflow: "hidden",
+    marginBottom: 10,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+    borderRadius: 50,
+    justifyContent: "center",
   },
   title: {
     margin: 24,
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "bold",
-     color: "#D9D9D9"
+    color: "#D9D9D9",
   },
-  heading: {
+  body: {
     margin: 24,
-    fontSize: 15,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "#D9D9D9"
-  },
-  input: {
-    padding: 8,
-  },
-  button: {
-    padding: 8,
-  },
-  imageBackground: {
-    resizeMode: "cover",
-    overflow: "hidden",
-    height: theme.imageHeight.xl,
-    marginBottom: theme.spacing.xs,
-    marginHorizontal: theme.spacing.sm,
-    paddingHorizontal: theme.spacing.s,
-    borderRadius: theme.borderRadius.m,
-    justifyContent: "center",
+    fontSize: 12,
+    color: "#D9D9D9",
   },
   galleryContainer: {
     flex: 1,
+    width: "80%",
     flexDirection: "row",
     flexWrap: "wrap",
     padding: 2,
     marginBottom: theme.spacing.m,
   },
   galleryImage: {
-    height: theme.imageHeight.l,
-    width: theme.imageHeight.l,
+    height: 50,
+    width: 50,
     margin: 2,
-    width: Dimensions.get("window").width / 4 - 9,
     alignItems: "center",
+  },
+  input: {
+    backgroundColor: "#292929",
+    borderWidth: 3,
+    borderColor: "#777575",
+    borderRadius: 150,
+
+    marginHorizontal: 6,
+    paddingHorizontal: 25,
+    margin: 10,
+    padding: 12,
+    color: "white",
+    fontSize: 15,
+  },
+  errorText: {
+    fontSize: 12.5,
+    color: "orange",
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#1B2631",
   },
 });
 
-export { UploadScreen };

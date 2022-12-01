@@ -85,15 +85,8 @@ const CustomButton2 = (props) => {
         style={atomicStyles.buttonContainer}>
     <TouchableOpacity 
  
-        onPress={() => {console.log("Other Stores");}} 
-        style={{
-          padding: 12,
-          width: 150,
-          alignItems: "center",
-          backgroundColor: "#D9D9D9",
-          borderRadius: 20,
-
-        }} 
+        onPress={props.onPress} 
+        style={props.style} 
        >
     <Text 
         style={{
@@ -120,7 +113,7 @@ const CustomButton3 = (props) => {
         style={atomicStyles.buttonContainer}>
     <TouchableOpacity 
  
-        onPress={() => {console.log("Similar Stores");}} 
+        onPress={props.onPress} 
         style={{
           padding: 10,
           alignItems: "center",

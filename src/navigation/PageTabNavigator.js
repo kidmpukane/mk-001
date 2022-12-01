@@ -53,6 +53,32 @@ const PageTabNavigator = () => {
           ),
         }}
       />
+            <Tab.Screen
+        name={libraryName}
+        component={LibraryScreen}
+        options={{
+          tabBarLabel: "Library",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="folder-open-outline"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
+
+  <Tab.Screen
+        name={storeGallery}
+        component={StoreGallery}
+        options={{
+          tabBarLabel: "Store-Gallery",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="magnify" color={color} size={26} />
+          ),
+        }}
+      />
+
     </Tab.Navigator>
   );
 };

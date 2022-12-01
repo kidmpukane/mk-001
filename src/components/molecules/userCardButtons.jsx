@@ -28,6 +28,11 @@ const UserCardButtons = () => {
           style={{
             height: 40,
             width: 150,
+            padding: 12,
+            width: 150,
+            alignItems: "center",
+            backgroundColor: "#D9D9D9",
+            borderRadius: 20,
 
         }}
 />

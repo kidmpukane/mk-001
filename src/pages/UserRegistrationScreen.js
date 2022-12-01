@@ -199,5 +199,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#1B2631',
+  },
+  input: {
+    width: 350,
+    height: 55,
+    backgroundColor: '#1B2631',
+    borderColor: 'grey',
+    borderRadius: 50,
+    borderWidth: 1,
+    margin: 10,
+    padding: 8,
+    color: 'white',
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: '500',
+    justifyContent: 'space-between'
+  },
+    errorText: {
+    fontSize: 12.5,
+    color: 'orange',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#1B2631',
   }
 })

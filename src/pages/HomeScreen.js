@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import buttonArray from "../assets/data/buttonArray";
-import {CreatePost} from "../pages/CreatePost";
+// import {CreatePost} from "../pages/CreatePost";
 //import Avatars from "../pages/Home/Avatars";
 import Categories from "./Categories";
 import theme from "../assets/themes/theme";
@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <CreatePost />
+        {/* <CreatePost /> */}
         {/*<Avatars />*/}
         <Heading
           style={styles.heading}
