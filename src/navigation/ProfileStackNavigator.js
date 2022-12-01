@@ -1,8 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
+
 //Screens
 import UploadScreen from "../pages/UploadPost";
+import { StorePage } from "../pages/StorePage";
 
 const Stack = createStackNavigator();
 
@@ -13,6 +15,7 @@ const ProfileStackNavigator = () => {
       {/*<Stack.Screen name='SignIn' component={SignInScreen} />
       {/*<Stack.Screen name='SignUp' component={SignUpScreen} />*/}
       <Stack.Screen name="UploadPost" component={UploadScreen} />
+      <Stack.Screen name="StorePage" component={StorePage} />
     </Stack.Navigator>
     </NavigationContainer>
   );

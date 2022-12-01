@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import { CategoryCard } from '../molecules/categoryCard'
 import { Headings } from '../atoms/headings'
@@ -6,109 +6,49 @@ import { Headings } from '../atoms/headings'
 const HorizontalScroll = () => {
   return (
     <View
-      style={{
-        flex: 1,
-        width: "100%"
-      }}>
+      style={styles.container}>
       <View
-        style={{
-          padding: 20,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          
-        }}>
+        style={styles.subContainer}>
       <Headings
         texts="Watches"
-        style={{
-          fontSize: 20
-        }}/>
+        style={styles.heading}/>
       <Headings
         texts="See All"/>
       </View>
+
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-          
+ 
           <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
+            style={styles.categoryCardSubContainer}>
           <CategoryCard/>
           </View>
-
+ 
           <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
+            style={styles.categoryCardSubContainer}>
           <CategoryCard/>
           </View>
-
+ 
           <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
+            style={styles.categoryCardSubContainer}>
           <CategoryCard/>
           </View>
-
+ 
           <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
+            style={styles.categoryCardSubContainer}>
           <CategoryCard/>
           </View>
-          
+ 
           <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
+            style={styles.categoryCardSubContainer}>
           <CategoryCard/>
           </View>
-
+ 
           <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
+            style={styles.categoryCardSubContainer}>
           <CategoryCard/>
           </View>
-
-          <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
-          <CategoryCard/>
-          </View>
-
-          <View
-            style={{
-              width: "10%",
-              flex: 1,
-              height: 250
-              
-            }}>
-          <CategoryCard/>
-          </View>
-
 
       </ScrollView>
 
@@ -116,6 +56,27 @@ const HorizontalScroll = () => {
   )
 }
 
-//
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%"
+  },
+  subContainer: {
+    padding: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  heading: {
+    fontSize: 20,
+
+  },
+  categoryCardSubContainer: {
+    width: "10%",
+    flex: 1,
+    height: 250
+  },
+
+});
+
 
 export {  HorizontalScroll  }

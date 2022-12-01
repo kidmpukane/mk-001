@@ -26,22 +26,15 @@ const UserCardInfo = () => {
           
             <Headings
               texts={userInfo.content.userName}
-              style={{
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#D9D9D9"
-              }}/>
+              style={cardStyles.heading}/>
   
             <Texts 
               texts={userInfo.content.userNameId}
-              style={{
-                paddingTop: 5,
-                fontSize: 15,
-                color: "#D9D9D9"
-             }}/>
+              style={cardStyles.textStyles}/>
   
       </View>
-      </View>)}
+      </View>
+      )}
 </View>
   )
 }
@@ -57,6 +50,18 @@ const cardStyles = StyleSheet.create({
   },
   title: {
     lineHeight: 30,
+    color: "#D9D9D9"
+
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#D9D9D9"
+
+  },
+  textStyles: {
+    paddingTop: 5,
+    fontSize: 15,
     color: "#D9D9D9"
 
   },

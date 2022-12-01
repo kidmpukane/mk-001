@@ -7,7 +7,10 @@ import {
   Button,
   StyleSheet,
 } from "react-native";
+
+//Navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 
 //Components
 import CreatePost from "./CreatePost";
@@ -29,6 +32,9 @@ import userProfileData from "../assets/data/userProfileData";
 const Stack = createNativeStackNavigator();
 
 function ProfileScreen({ route }) {
+
+  const navigation = useNavigation(); 
+
   return (
     <View>
       {userProfileData.map((userInfo) => (
@@ -53,9 +59,7 @@ function ProfileScreen({ route }) {
             <CustomButton3
               style={styles.customButton}
               title="Start Shopping"
-              onPress={() => {
-                console.log("Yes!!!");
-              }}/>
+              onPress={() => navigation.navigate("StorePage")}/>
           </View>
 
           <View

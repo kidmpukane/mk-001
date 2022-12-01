@@ -1,36 +1,45 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { Texts } from '../atoms/headings'
+import { View}  from 'react-native';
+import { StyleSheet } from 'react-native-web';
+import React from 'react';
+import { Texts } from '../atoms/headings';
 
 const PriceInfo = () => {
   return (
     <View       
-    style={{
-    
-    justifyContent: 'center',
-    marginHorizontal: 16,
-      }}>
+    style={styles.container}>
 
     <View>
     <Texts 
       texts="South African Collage Painting" 
-      style={{
-        color: "#D9D9D9", 
-        fontWeight: "bold", 
-        fontSize: 20}}/>
+      style={styles.textStyles}/>
     </View>    
 
-    <View style={{ }}>
+    <View>
     <Texts 
       texts="$120.30" 
-      style={{
-        color: "#D9D9D9", 
-        fontWeight: "normal", 
-        fontSize: 15}}/>
+      style={styles.textStyles2}/>
   
 </View>
 </View>
   )
-}
+};
+
+const styles = StyleSheet.create({
+  container:{
+    justifyContent: 'center',
+    marginHorizontal: 16,
+  },
+  textStyles:{
+    color: "#D9D9D9", 
+    fontWeight: "bold", 
+    fontSize: 20
+  },
+  textStyles2:{
+
+    color: "#D9D9D9", 
+    fontWeight: "normal", 
+    fontSize: 15
+  }
+})
 
 export {  PriceInfo  } 

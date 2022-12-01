@@ -4,38 +4,23 @@ import {
   View, 
   Text,
   StyleSheet } from 'react-native'
-import { Texts, Headings } from '../atoms/headings'
+import { Headings } from '../atoms/headings'
 
 
 const OurStoryTop = (props) => {
   return (
     <View 
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 30,
-      }}>
+      style={styles.container}>
       <View>
       <Headings
         texts="Our Story..."
-        style={{
-            fontSize: 40,
-            width: "70%"
-          }}/>
+        style={styles.heading}/>
       </View>
 
       <View>
           <CustomButton
             title="more info"
-            style={{
-
-
-              alignItems: 'center',
-              borderRadius: 25,
-
-            
-              }}/>
+            style={props.customButton}/>
       </View>
 
     </View>
@@ -44,11 +29,22 @@ const OurStoryTop = (props) => {
   )
 }
 
-/*{
+const styles = StyleSheet.create({
+  container:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 30,
+  },
+  heading:{
+    fontSize: 40,
+    width: "70%"
+  },
+  customButton:{
+    alignItems: 'center',
+    borderRadius: 25,
+  }
+})
 
-
-
-
-}*/
 
 export {  OurStoryTop  }

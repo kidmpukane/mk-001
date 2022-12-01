@@ -1,37 +1,48 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
 import { Texts } from '../atoms/headings'
-//Fiz the counter in items
+import { StyleSheet } from 'react-native-web'
 
 const CategoryInfo = (props) => {
   return (
     <View       
-    style={{
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
-      }}>
+    style={styles.container}>
 
     <View>
     <Texts 
-      texts="Furniture" 
-      style={{
-        color: "#000000", 
-        fontWeight: "bold", 
-        fontSize: 30}}/>
+      texts={props.headingTexts} 
+      style={styles.heading}/>
     </View>    
 
-    <View style={{ }}>
+    <View style={styles.subHeadingContainer}>
     <Texts 
-      texts="666 items" 
-      style={{
-        color: "#000000", 
-        fontWeight: "bold", 
-        fontSize: 15}}/>
+      texts={props.subTexts} 
+      style={styles.subHeading}/>
   
 </View>
 </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 16,
+  },
+  heading: {
+    color: "#000000", 
+    fontWeight: "bold", 
+    fontSize: 40
+  },
+  subHeadingContainer: {
+    marginVertical: -16,
+  },
+  subHeading: {
+    color: "#000000", 
+    fontWeight: "light", 
+    fontSize: 25
+  },
+});
 
 export {  CategoryInfo  }

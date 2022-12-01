@@ -5,6 +5,7 @@ import { PageTabNavigator } from "./src/navigation/PageTabNavigator";
 import { UploadScreen } from "./src/pages/UploadPost";
 import { ProductPage } from "./src/pages/ProductPage";
 import ProfileScreen from "./src/pages/ProfileScreen";
+import { StorePage } from "./src/pages/StorePage";
 //import  SignUpScreen  from "./src/pages/SignUp";
 //import  SignInScreen  from "./src/pages/SignIn";
 //import { LogIn } from './src/pages/LogInScreen.js';
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="SignUp" component={SignUpScreen} />*/}
         <Stack.Screen name="Main" component={PageTabNavigator} />
         <Stack.Screen name="UploadPost" component={UploadScreen} />
+        <Stack.Screen name="StorePage" component={StorePage} />
         <Stack.Screen name="ProductPage" component={ProductPage} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>

@@ -10,22 +10,10 @@ const UserInfoOrganism = (props) => {
 
     return (
       <View
-        style={{
-          flex: 1,
-        }}>
+        style={styles.container}>
 
       <View
-        style={{
-          textAlign: "center",
-          paddingTop: 15,
-          paddingBottom: 15,
-          marginTop: 280,
-          marginHorizontal: 4,
-          paddingHorizontal: 4,
-          borderRadius: 35,
-          backgroundColor:"#3D3D3D",
-
-       }}>
+        style={styles.subContainer}>
 
       <View 
         style={{ 
@@ -35,10 +23,7 @@ const UserInfoOrganism = (props) => {
       </View>
 
       <View 
-        style={{ 
-
-          paddingTop: 15,
-          }}>
+        style={styles.userCardContainer}>
         <UserCardButtons/>
       </View>
 
@@ -95,5 +80,28 @@ const UserInfoOrganism = (props) => {
 
 }*/
 
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+  },
+  
+  subContainer:{
+    textAlign: "center",
+    paddingTop: 15,
+    paddingBottom: 15,
+    marginTop: 280,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+    borderRadius: 35,
+    backgroundColor:"#3D3D3D",
+
+ },
+ 
+  userCardContainer:{ 
+    paddingTop: 15,
+    
+  },
+
+})
 
 export { UserInfoOrganism }

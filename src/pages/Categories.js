@@ -20,7 +20,6 @@ const Categories = ({ item, index }) => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-
     borderRadius: 45,
     height: 65,
     width: 125,
