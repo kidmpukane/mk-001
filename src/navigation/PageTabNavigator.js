@@ -8,14 +8,14 @@ import Home from "../pages/HomeScreen";
 import LibraryScreen from "../pages/LibraryScreen";
 import SearchScreen from "../pages/SearchScreen";
 import ProfileScreen from "../pages/ProfileScreen";
-import {StoreGallery} from "../pages/StoreGallery";
+import { StoreGallery } from "../pages/StoreGallery";
 
 //Screen names
 const homeName = "Home";
 const libraryName = "Library";
 const profileName = "Profile";
 const searchName = "Search";
-const storeGallery = "Store"
+const storeGallery = "Store";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,6 +44,21 @@ const PageTabNavigator = () => {
       />
 
       <Tab.Screen
+        name={libraryName}
+        component={LibraryScreen}
+        options={{
+          tabBarLabel: "Library",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="folder-open-outline"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
         name={profileName}
         component={ProfileScreen}
         options={{
@@ -53,38 +68,12 @@ const PageTabNavigator = () => {
           ),
         }}
       />
-            <Tab.Screen
-        name={libraryName}
-        component={LibraryScreen}
-        options={{
-          tabBarLabel: "Library",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="folder-open-outline"
-              color={color}
-              size={26}
-            />
-          ),
-        }}
-      />
-
-  <Tab.Screen
-        name={storeGallery}
-        component={StoreGallery}
-        options={{
-          tabBarLabel: "Store-Gallery",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="magnify" color={color} size={26} />
-          ),
-        }}
-      />
-
     </Tab.Navigator>
   );
 };
 
-
-{/*
+{
+  /*
 
 
       <Tab.Screen
@@ -112,6 +101,7 @@ const PageTabNavigator = () => {
         }}
       />
 
-*/}
+*/
+}
 
 export { PageTabNavigator };

@@ -26,7 +26,7 @@ const Uploads = ({ item }) => {
           <TouchableOpacity
             style={styles.contentContainer}
             title="ProductPage"
-            onPress={() => navigation.navigate("ProductPage", {
+            onPress={() => navigation.navigate("ProductViewScreen", {
               profile: item
             })}
           >

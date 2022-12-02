@@ -59,7 +59,7 @@ function ProfileScreen({ route }) {
             <CustomButton3
               style={styles.customButton}
               title="Start Shopping"
-              onPress={() => navigation.navigate("StorePage")}/>
+              onPress={() => navigation.navigate("StoreDivider")}/>
           </View>
 
           <View

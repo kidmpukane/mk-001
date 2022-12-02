@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, ScrollView  } from 'react-native';
+import { StyleSheet, View, ScrollView  } from 'react-native';
 import {  StorePageTop  } from '../components/organisms/StorePageTop'
 import { StoreDividerBottom } from '../components/organisms/StoreDividerBottom';
 
@@ -8,24 +8,17 @@ import { StoreDividerBottom } from '../components/organisms/StoreDividerBottom';
 function StoreDivider () {
   
   return(
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
     <ScrollView 
       nestedScrollEnabled={true}
-      style={{
-        flexGrow: 1,
-
-      }}>
+      style={styles.scrollViewContainer}>
     
     
     <View>
       <StorePageTop/>
     </View>
     <View
-      style={{
-        flex: 1,
-        height: 600
-
-      }}>
+      style={styles.subContainer}>
       <StoreDividerBottom/>
     </View>
 
@@ -33,5 +26,21 @@ function StoreDivider () {
     </View>
   )
 };
+
+const styles = StyleSheet.create({
+
+  container:{
+    flex: 1,
+    backgroundColor: "#292929",
+  },
+  scrollViewContainer:{
+    flexGrow: 1,
+  },
+  subContainer:{
+    flex: 1,
+    height: 600
+
+  }
+});
 
 export { StoreDivider }

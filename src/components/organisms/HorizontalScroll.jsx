@@ -1,11 +1,22 @@
-import { View, StyleSheet, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { CategoryCard } from '../molecules/categoryCard'
+
+//Atoms
 import { Headings } from '../atoms/headings'
 
+//Molecules
+import { CategoryCard } from '../molecules/categoryCard'
+
+//Navigation
+import { useNavigation } from '@react-navigation/native'
+
 const HorizontalScroll = () => {
+
+  const navigation = useNavigation();
+
   return (
-    <View
+    <TouchableOpacity
+      onPress={() =>  {navigation.navigate("ProductPage")}}
       style={styles.container}>
       <View
         style={styles.subContainer}>
@@ -52,7 +63,7 @@ const HorizontalScroll = () => {
 
       </ScrollView>
 
-    </View>
+    </TouchableOpacity>
   )
 }
 

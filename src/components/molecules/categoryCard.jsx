@@ -1,11 +1,17 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { ProductImages } from '../atoms/Images'
 import { Headings, Texts } from '../atoms/headings'
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
 const CategoryCard = (props) => {
+
+  const navigation = useNavigation();
+
   return (
-    <View   
+    
+    <TouchableOpacity
+      onPress={() =>  {navigation.navigate("ProductViewScreen")}}   
       style={styles.container}>
       <View 
       style={styles.subContainer}>
@@ -28,7 +34,7 @@ const CategoryCard = (props) => {
       texts="$4750.90"
       style={[styles.textStyles,props.style]}/>
     </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

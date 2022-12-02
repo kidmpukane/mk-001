@@ -10,9 +10,9 @@ function MyTabs() {
       initialRouteName="WomenPage"
       style={{paddingTop: 20}}
       Options={{
-        tabBarActiveTintColor: 'grey',
+        tabBarActiveTintColor: '#292929',
         tabBarLabelStyle: { fontSize: 12 },
-        tabBarStyle: { backgroundColor: 'white' },
+        tabBarStyle: { backgroundColor: "#292929" },
       }}
     >
       <Tab.Screen
@@ -35,4 +35,4 @@ function MyTabs() {
 };
 
 
-export default MyTabs;
+export { MyTabs };
