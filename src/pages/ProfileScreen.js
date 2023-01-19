@@ -28,6 +28,7 @@ import { ReviewCard } from "../components/organisms/ReviewCard";
 
 //Fake API
 import userProfileData from "../assets/data/userProfileData";
+import storeDataDB from "../assets/data/storeDataDB";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,14 +38,14 @@ function ProfileScreen({ route }) {
 
   return (
     <View>
-      {userProfileData.map((userInfo) => (
+      {storeDataDB.map((userInfo) => (
         <ScrollView
           key={userInfo.id}
           style={styles.profileScrollViewContainer}
         >
           <View style={styles.profileScreenContainer}>
             <ImageBackground
-              source={{ uri: userInfo.backgroundImage }}
+              source={{ uri: userInfo.store_cover_image }}
               style={styles.profileBackGroundImageContainer}
             >
               <View
@@ -89,7 +90,7 @@ function ProfileScreen({ route }) {
             />
             <Texts
               style={styles.copyWrightLaws}
-              texts={userInfo.content.description}
+              texts={userInfo.store_description}
             />
           </View>
 
@@ -97,13 +98,13 @@ function ProfileScreen({ route }) {
             style={styles.copyWrightLaws2Container}>
             <Texts
               style={styles.copyWrightLaws2}
-              texts={userInfo.content.userNameId}
+              texts={userInfo.store_title}
             />
 
 
             <Texts
               style={styles.copyWrightLaws2}
-              texts={userInfo.content.copyRight}
+              texts={userInfo.store_owner}
             />
           </View>
         </ScrollView>

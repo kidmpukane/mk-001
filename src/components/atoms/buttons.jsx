@@ -69,6 +69,25 @@ const CustomButton3 = (props) => {
   );
 }
 
+const CustomOpacity = (props) => {
+
+  return (
+
+    <View>
+    <TouchableOpacity 
+ 
+        onPress={props.onPress} 
+        style={props.style} 
+       >
+    <Text 
+        style={styles.customButtonText}>
+        {props.title}
+    </Text>
+    </TouchableOpacity>
+    </View>
+  );
+}
+
 
 const MessagingButton = (props) => {
 
@@ -154,6 +173,7 @@ export {
   CustomButton, 
   MessagingButton, 
   CustomButton2,  
-  CustomButton3,  
+  CustomButton3,
+  CustomOpacity  
 
 }

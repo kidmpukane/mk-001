@@ -2,7 +2,6 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { PageTabNavigator } from "./src/navigation/PageTabNavigator";
-import { UploadScreen } from "./src/pages/UploadPost";
 import { ProductPage } from "./src/pages/ProductPage";
 import ProfileScreen from "./src/pages/ProfileScreen";
 import { StorePage } from "./src/pages/StorePage";
@@ -16,7 +15,10 @@ import { ProductViewScreen } from "./src/pages/ProductViewScreen";
 //import { PageTopTabNavigator } from './src/navigation/PageTopTabNavigator';
 import { Testmol } from './src/components/molecules/testmol';
 import { StoreDivider } from './src/pages/StoreDivider';
-import { StoreDividerBottom } from "./src/components/organisms/StoreDividerBottom";
+import CreateStore from "./src/pages/CreateStore";
+import CreateCollection from "./src/pages/CreateCollection";
+import CreateGallery from "./src/pages/CreateGallery";
+import ProductUpload from "./src/pages/ProductUpload";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +29,6 @@ const App = () => {
         {/*<Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />*/}
         <Stack.Screen name="Main" component={PageTabNavigator} />
-        <Stack.Screen name="UploadPost" component={UploadScreen} />
         <Stack.Screen name="StorePage" component={StorePage} />
         <Stack.Screen name="StoreDivider" component={StoreDivider} />
         <Stack.Screen name="ProductViewScreen" component={ProductViewScreen} />
@@ -35,6 +36,10 @@ const App = () => {
         <Stack.Screen name="ProductPage" component={ProductPage} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Testmol" component={Testmol} />
+        <Stack.Screen name="CreateStore" component={CreateStore} />
+        <Stack.Screen name="CreateCollection" component={CreateCollection} />
+        <Stack.Screen name="CreateGallery" component={CreateGallery} />
+        <Stack.Screen name="ProductUpload" component={ProductUpload} />
       </Stack.Navigator>
     </NavigationContainer>
   );

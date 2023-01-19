@@ -13,6 +13,8 @@ const userProfileData = [
             copyRight: "Copyright © 2022 All Rights Reserved"
         },
     },
+    
+
 ];
 
 export default userProfileData;

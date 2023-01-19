@@ -10,8 +10,8 @@ function CreatePost() {
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity
-        title="UploadPost"
-        onPress={() => navigation.navigate("UploadPost")}
+        title="ProductUpload"
+        onPress={() => navigation.navigate("ProductUpload")}
       >
         <View>
           <Ionicons name="add-outline" size={32} color={theme.colors.white} />

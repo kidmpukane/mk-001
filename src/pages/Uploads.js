@@ -11,16 +11,17 @@ import {
 import uploadData from "../assets/data/uploadData";
 import theme from "../assets/themes/theme";
 import { useNavigation } from "@react-navigation/native";
+import storeDataDB from "../assets/data/storeDataDB";
 
 const Uploads = ({ item }) => {
   const navigation = useNavigation();
 
   return (
     <>
-      {uploadData.map((item) => (
+      {storeDataDB.map((item) => (
         <ImageBackground
           key={item.id}
-          source={{ uri: item.background }}
+          source={{ uri: item.collections }}
           style={styles.imageBackground}
         >
           <TouchableOpacity
@@ -34,15 +35,15 @@ const Uploads = ({ item }) => {
               title="Profile" 
               onPress={() => navigation.navigate("Profile")}>
               <Image
-                source={{ uri: item.content.image }}
+                source={{ uri: item.store_profile_picture }}
                 style={styles.contentImg}
               />
             </Pressable>
-            <Text style={styles.contentTitle}>{item.content.title}</Text>
+            <Text style={styles.contentTitle}>{item.store_title}</Text>
             <Text style={styles.contentText} numberOfLines={3}>
-              {item.content.description}
+              {item.store_description}
             </Text>
-            <Text style={styles.contentText}>{item.content.price}</Text>
+            <Text style={styles.contentText}>{item.store_title}</Text>
           </TouchableOpacity>
         </ImageBackground>
       ))}
