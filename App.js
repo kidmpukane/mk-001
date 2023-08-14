@@ -13,8 +13,8 @@ import { ProductViewScreen } from "./src/pages/ProductViewScreen";
 //import {  UserRegistration  } from './src/pages/UserRegistrationScreen';
 //import {  Profile  } from './src/pages/ProfileScreen';
 //import { PageTopTabNavigator } from './src/navigation/PageTopTabNavigator';
-import { Testmol } from './src/components/molecules/testmol';
-import { StoreDivider } from './src/pages/StoreDivider';
+import { Testmol } from "./src/components/molecules/testmol";
+import { StoreDivider } from "./src/pages/StoreDivider";
 import CreateStore from "./src/pages/CreateStore";
 import CreateCollection from "./src/pages/CreateCollection";
 import CreateGallery from "./src/pages/CreateGallery";
@@ -27,19 +27,20 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
         {/*<Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />*/}
-        <Stack.Screen name="Main" component={PageTabNavigator} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="StorePage" component={StorePage} />
         <Stack.Screen name="StoreDivider" component={StoreDivider} />
         <Stack.Screen name="ProductViewScreen" component={ProductViewScreen} />
         <Stack.Screen name="StoreGallery" component={StoreGallery} />
         <Stack.Screen name="ProductPage" component={ProductPage} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Testmol" component={Testmol} />
         <Stack.Screen name="CreateStore" component={CreateStore} />
         <Stack.Screen name="CreateCollection" component={CreateCollection} />
         <Stack.Screen name="CreateGallery" component={CreateGallery} />
         <Stack.Screen name="ProductUpload" component={ProductUpload} />
+        <Stack.Screen name="Testmol" component={Testmol} />*/}
+
+        <Stack.Screen name="Main" component={PageTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -15,28 +15,21 @@ import Categories from "./Categories";
 import theme from "../assets/themes/theme";
 import Uploads from "./Uploads";
 
-
-
 const Title = (props) => <Text style={styles.title}>{props.children}</Text>;
 const Heading = (props) => <Text style={styles.heading}>{props.children}</Text>;
 
 const Home = () => {
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* <CreatePost /> */}
         {/*<Avatars />*/}
-        <Heading
-          style={styles.heading}
-          >Categories</Heading>
-        <Categories  />
-        <Uploads  />
+        <Heading style={styles.heading}></Heading>
+        <Uploads />
       </ScrollView>
     </SafeAreaView>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -44,18 +37,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#292929",
   },
   title: {
-    fontSize: 25,
+    fontSize: 2,
     fontWeight: "bold",
-    paddingHorizontal: 15,
+    paddingHorizontal: 5,
   },
   heading: {
-    fontSize: 22,
+    fontSize: 2,
     fontWeight: "bold",
-    paddingBottom: 10,
-    padding: 2,
-    paddingHorizontal: 15,
+    paddingBottom: 5,
+    padding: 5,
+    paddingHorizontal: 5,
     color: "#D9D9D9",
   },
-}); 
+});
 
 export default Home;

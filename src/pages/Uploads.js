@@ -12,50 +12,55 @@ import uploadData from "../assets/data/uploadData";
 import theme from "../assets/themes/theme";
 import { useNavigation } from "@react-navigation/native";
 import storeDataDB from "../assets/data/storeDataDB";
+import productsAPI from "../assets/data/productsAPI";
 
 const Uploads = ({ item }) => {
   const navigation = useNavigation();
 
   return (
     <>
-      {storeDataDB.map((item) => (
+      {productsAPI.map((item) => (
         <ImageBackground
           key={item.id}
-          source={{ uri: item.collections }}
+          source={{ uri: item.product_image }}
           style={styles.imageBackground}
         >
           <TouchableOpacity
             style={styles.contentContainer}
             title="ProductPage"
-            onPress={() => navigation.navigate("ProductViewScreen", {
-              profile: item
-            })}
+            onPress={() =>
+              navigation.navigate("ProductViewScreen", {
+                profile: item,
+              })
+            }
           >
             <Pressable
-              title="Profile" 
-              onPress={() => navigation.navigate("Profile")}>
+              title="Profile"
+              onPress={() => navigation.navigate("Profile")}
+            >
               <Image
                 source={{ uri: item.store_profile_picture }}
                 style={styles.contentImg}
               />
             </Pressable>
-            <Text style={styles.contentTitle}>{item.store_title}</Text>
-            <Text style={styles.contentText} numberOfLines={3}>
-              {item.store_description}
+            <Text style={styles.contentTitle}>{item.product_name}</Text>
+            <Text style={styles.contentText}>{item.store_description}</Text>
+            <Text numberOfLines={3} style={styles.contentText}>
+              {item.product_description}
             </Text>
-            <Text style={styles.contentText}>{item.store_title}</Text>
           </TouchableOpacity>
         </ImageBackground>
       ))}
     </>
   );
-}; 
+};
 const styles = StyleSheet.create({
   imageBackground: {
     resizeMode: "cover",
     overflow: "hidden",
-    height: theme.imageHeight.xl,
-    marginBottom: theme.spacing.xs,
+    height: theme.imageHeight.xxl,
+    marginTop: theme.spacing.xs,
+    marginBottom: theme.spacing.s,
     marginHorizontal: theme.spacing.sm,
     paddingHorizontal: theme.spacing.s,
     borderRadius: theme.borderRadius.m,
@@ -74,9 +79,9 @@ const styles = StyleSheet.create({
     opacity: 0.6,
     paddingHorizontal: 8,
     paddingVertical: 8,
-    marginTop: 165,
-    marginBottom: theme.spacing.xs,
-    marginHorizontal: theme.spacing.m,
+    marginTop: 400,
+    marginBottom: theme.spacing.s,
+    marginHorizontal: 2,
     paddingHorizontal: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     backgroundColor: "#000",
