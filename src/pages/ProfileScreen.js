@@ -7,6 +7,7 @@ import {
   Button,
   StyleSheet,
 } from "react-native";
+import { UseGetUserInfo } from "../hooks/useGetUserInfo";
 
 //Navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -26,89 +27,85 @@ import { OurStory } from "../components/organisms/OurStory";
 import { SocialMediaLinkBar } from "../components/organisms/SocialMediaLinks";
 import { ReviewCard } from "../components/organisms/ReviewCard";
 
-//Fake API
-import userProfileData from "../assets/data/userProfileData";
-import storeDataDB from "../assets/data/storeDataDB";
-
 const Stack = createNativeStackNavigator();
 
-function ProfileScreen({ route }) {
+function ProfileScreen() {
+  const navigation = useNavigation();
+  const { isLoading, data, isError, error } = UseGetUserInfo();
 
-  const navigation = useNavigation(); 
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (isError) {
+    return <Text>{error.message}</Text>;
+  }
+
+  //console.log(data ? data : error.message);
 
   return (
     <View>
-      {storeDataDB.map((userInfo) => (
-        <ScrollView
-          key={userInfo.id}
-          style={styles.profileScrollViewContainer}
-        >
-          <View style={styles.profileScreenContainer}>
-            <ImageBackground
-              source={{ uri: userInfo.store_cover_image }}
-              style={styles.profileBackGroundImageContainer}
-            >
-              <View
-                style={styles.userInfoContainer}>
-                <UserInfoOrganism />
-              </View>
-            </ImageBackground>
-          </View>
+      {data ? (
+        data?.map((item, index) => (
+          <ScrollView key={index} style={styles.profileScrollViewContainer}>
+            <View key={index} style={styles.profileScreenContainer}>
+              <ImageBackground
+                key={index}
+                source={{ uri: item.store_cover_image }}
+                style={styles.profileBackGroundImageContainer}
+              >
+                <View key={index} style={styles.userInfoContainer}>
+                  <UserInfoOrganism
+                    profilePicture={item.store_profile_picture}
+                    userName={item.store_title}
+                    atName={item.at_store_owner}
+                  />
+                </View>
+              </ImageBackground>
+            </View>
 
-          <View
-            style={styles.customButtonContainer}>
-            <CustomButton3
-              style={styles.customButton}
-              title="Start Shopping"
-              onPress={() => navigation.navigate("StoreDivider")}/>
-          </View>
+            <View style={styles.customButtonContainer}>
+              <CustomButton3
+                style={styles.customButton}
+                title="Start Shopping"
+                onPress={() => navigation.navigate("StorePage")}
+              />
+            </View>
 
-          <View
-            style={styles.ourStoryContainer}>
-            <OurStory />
-          </View>
+            <View style={styles.ourStoryContainer}>
+              <OurStory />
+            </View>
 
-          <View
-            style={styles.subHeadingContainer}>
-            <Texts
-              style={styles.subHeadings}
-              texts="social media & links"
-            />
-            <SocialMediaLinkBar />
-          </View>
-          
-          <View
-            style={styles.reviewCardContainer}>
-            <ReviewCard />
-          </View>
-      
+            <View style={styles.subHeadingContainer}>
+              <Texts style={styles.subHeadings} texts="social media & links" />
+              <SocialMediaLinkBar />
+            </View>
 
-          <View>
-            <Texts
-              style={styles.subHeadings}
-              texts="t&c's"
-            />
-            <Texts
-              style={styles.copyWrightLaws}
-              texts={userInfo.store_description}
-            />
-          </View>
+            <View style={styles.reviewCardContainer}>
+              <ReviewCard />
+            </View>
 
-          <View
-            style={styles.copyWrightLaws2Container}>
-            <Texts
-              style={styles.copyWrightLaws2}
-              texts={userInfo.store_title}
-            />
+            <View>
+              <Texts style={styles.subHeadings} texts="t&c's" />
+              <Texts
+                style={styles.copyWrightLaws}
+                texts={item.store_description}
+              />
+            </View>
 
+            <View style={styles.copyWrightLaws2Container}>
+              <Texts style={styles.copyWrightLaws2} texts={data.store_title} />
 
-            <Texts
-              style={styles.copyWrightLaws2}
-              texts={userInfo.store_owner}
-            />
-          </View>
-        </ScrollView>
-      ))}
+              <Texts style={styles.copyWrightLaws2} texts={data.store_owner} />
+            </View>
+          </ScrollView>
+        ))
+      ) : (
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      )}
+      <Text>Embarrassing</Text>
     </View>
   );
 }
@@ -169,7 +166,6 @@ const styles = StyleSheet.create({
   copyWrightLaws2Container: {
     justifyContent: "center",
     alignContent: "center",
-
   },
   copyWrightLaws2: {
     justifyContent: "center",
@@ -197,6 +193,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     color: "#08060B",
   },
-}); 
+});
 
 export default ProfileScreen;

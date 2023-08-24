@@ -18,7 +18,7 @@ import Uploads from "./Uploads";
 const Title = (props) => <Text style={styles.title}>{props.children}</Text>;
 const Heading = (props) => <Text style={styles.heading}>{props.children}</Text>;
 
-const Home = () => {
+const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default HomeScreen;

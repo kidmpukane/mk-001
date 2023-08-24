@@ -1,36 +1,32 @@
-import React from 'react'
-import {  
-    View,
-    StyleSheet  } from 'react-native';
-import { UserCardInfo } from '../molecules/userCardInfo';
-import {UserCardButtons} from '../molecules/userCardButtons';
-import theme from '../../assets/themes/theme';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { UserCardInfo } from "../molecules/userCardInfo";
+import { UserCardButtons } from "../molecules/userCardButtons";
+import theme from "../../assets/themes/theme";
 
 const UserInfoOrganism = (props) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.subContainer}>
+        <View
+          style={{
+            justifyContent: "center",
+          }}
+        >
+          <UserCardInfo
+            profilePicture={props.profilePicture}
+            userName={props.userName}
+            atName={props.atName}
+          />
+        </View>
 
-    return (
-      <View
-        style={styles.container}>
-
-      <View
-        style={styles.subContainer}>
-
-      <View 
-        style={{ 
-          justifyContent: "center", 
-          }}>
-        <UserCardInfo/>
+        <View style={styles.userCardContainer}>
+          <UserCardButtons />
+        </View>
       </View>
-
-      <View 
-        style={styles.userCardContainer}>
-        <UserCardButtons/>
-      </View>
-
-      </View>
-      </View>
-    )
-  }
+    </View>
+  );
+};
 
 /*{
 
@@ -81,11 +77,11 @@ const UserInfoOrganism = (props) => {
 }*/
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
   },
-  
-  subContainer:{
+
+  subContainer: {
     textAlign: "center",
     paddingTop: 15,
     paddingBottom: 15,
@@ -93,15 +89,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     paddingHorizontal: 4,
     borderRadius: 35,
-    backgroundColor:"#3D3D3D",
-
- },
- 
-  userCardContainer:{ 
-    paddingTop: 15,
-    
+    backgroundColor: "#3D3D3D",
   },
 
-})
+  userCardContainer: {
+    paddingTop: 15,
+  },
+});
 
-export { UserInfoOrganism }
+export { UserInfoOrganism };

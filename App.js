@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { PageTabNavigator } from "./src/navigation/PageTabNavigator";
 import { ProductPage } from "./src/pages/ProductPage";
-import ProfileScreen from "./src/pages/ProfileScreen";
+import { ProfileScreen } from "./src/pages/ProfileScreen";
 import { StorePage } from "./src/pages/StorePage";
 import { StoreGallery } from "./src/pages/StoreGallery";
 import { ProductViewScreen } from "./src/pages/ProductViewScreen";
@@ -19,14 +19,17 @@ import CreateStore from "./src/pages/CreateStore";
 import CreateCollection from "./src/pages/CreateCollection";
 import CreateGallery from "./src/pages/CreateGallery";
 import ProductUpload from "./src/pages/ProductUpload";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        {/*<Stack.Screen name="SignIn" component={SignInScreen} />
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Stack.Navigator headerMode="none">
+          {/*<Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="StorePage" component={StorePage} />
         <Stack.Screen name="StoreDivider" component={StoreDivider} />
@@ -40,9 +43,10 @@ const App = () => {
         <Stack.Screen name="ProductUpload" component={ProductUpload} />
         <Stack.Screen name="Testmol" component={Testmol} />*/}
 
-        <Stack.Screen name="Main" component={PageTabNavigator} />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen name="Main" component={PageTabNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 };
 export default App;
