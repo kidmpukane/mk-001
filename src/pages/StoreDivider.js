@@ -1,46 +1,62 @@
-import * as React from 'react';
-import { StyleSheet, View, ScrollView  } from 'react-native';
-import {  StorePageTop  } from '../components/organisms/StorePageTop'
-import { StoreDividerBottom } from '../components/organisms/StoreDividerBottom';
+import * as React from "react";
+import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StorePageTop } from "../components/organisms/StorePageTop";
+import { StoreDividerBottom } from "../components/organisms/StoreDividerBottom";
+import { UseGetStoreInfo } from "../hooks/useGetUserInfo";
 
+function StoreDivider() {
+  const { isLoading, data, isError, error } = UseGetStoreInfo();
 
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
 
-function StoreDivider () {
-  
-  return(
+  if (isError) {
+    return <Text>{error.message}</Text>;
+  }
+
+  return (
     <View style={styles.container}>
-    <ScrollView 
-      nestedScrollEnabled={true}
-      style={styles.scrollViewContainer}>
-    
-    
-    <View>
-      <StorePageTop/>
+      {data ? (
+        data?.map((item, index) => (
+          <ScrollView
+            key={index}
+            nestedScrollEnabled={true}
+            style={styles.scrollViewContainer}
+          >
+            <View>
+              <StorePageTop
+                storeDisplayImage={item.store_display_picture}
+                storeNameHeading={item.store_name}
+                storeDescription={item.store_description}
+              />
+            </View>
+            <View style={styles.subContainer}>
+              <StoreDividerBottom />
+            </View>
+          </ScrollView>
+        ))
+      ) : (
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      )}
     </View>
-    <View
-      style={styles.subContainer}>
-      <StoreDividerBottom/>
-    </View>
-
-    </ScrollView>
-    </View>
-  )
-};
+  );
+}
 
 const styles = StyleSheet.create({
-
-  container:{
+  container: {
     flex: 1,
     backgroundColor: "#292929",
   },
-  scrollViewContainer:{
+  scrollViewContainer: {
     flexGrow: 1,
   },
-  subContainer:{
+  subContainer: {
     flex: 1,
-    height: 600
-
-  }
+    height: 600,
+  },
 });
 
-export { StoreDivider }
+export { StoreDivider };

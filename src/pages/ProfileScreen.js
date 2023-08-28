@@ -27,10 +27,9 @@ import { OurStory } from "../components/organisms/OurStory";
 import { SocialMediaLinkBar } from "../components/organisms/SocialMediaLinks";
 import { ReviewCard } from "../components/organisms/ReviewCard";
 
-const Stack = createNativeStackNavigator();
-
 function ProfileScreen() {
   const navigation = useNavigation();
+
   const { isLoading, data, isError, error } = UseGetUserInfo();
 
   if (isLoading) {
@@ -68,7 +67,7 @@ function ProfileScreen() {
               <CustomButton3
                 style={styles.customButton}
                 title="Start Shopping"
-                onPress={() => navigation.navigate("StorePage")}
+                onPress={() => navigation.navigate("StoreDivider")}
               />
             </View>
 

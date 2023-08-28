@@ -29,12 +29,13 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <Stack.Navigator headerMode="none">
+          <Stack.Screen name="Main" component={PageTabNavigator} />
           {/*<Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="StorePage" component={StorePage} />
-        <Stack.Screen name="StoreDivider" component={StoreDivider} />
+        
         <Stack.Screen name="ProductViewScreen" component={ProductViewScreen} />
-        <Stack.Screen name="StoreGallery" component={StoreGallery} />
+        
         <Stack.Screen name="ProductPage" component={ProductPage} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="CreateStore" component={CreateStore} />
@@ -42,8 +43,8 @@ const App = () => {
         <Stack.Screen name="CreateGallery" component={CreateGallery} />
         <Stack.Screen name="ProductUpload" component={ProductUpload} />
         <Stack.Screen name="Testmol" component={Testmol} />*/}
-
-          <Stack.Screen name="Main" component={PageTabNavigator} />
+          <Stack.Screen name="StoreGallery" component={StoreGallery} />
+          <Stack.Screen name="StoreDivider" component={StoreDivider} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

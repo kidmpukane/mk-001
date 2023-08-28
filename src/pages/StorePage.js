@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Text } from "react-native";
 
 //Organisms
 import { CollectionLink } from "../components/organisms/CollectionLink";
@@ -7,156 +7,114 @@ import { CollectionLink } from "../components/organisms/CollectionLink";
 //Navigation
 import { useNavigation } from "@react-navigation/native";
 
+//Data fetching Hooks
+import {
+  UseGetCollectionInfo,
+  UseGetCollectionInfo2,
+  UseGetCollectionInfo3,
+} from "../hooks/useGetUserInfo";
+
 const StorePage = () => {
+  const { isLoading, isError, error, data } = UseGetCollectionInfo3();
   const navigation = useNavigation();
+  if (isLoading) {
+    return <Text>Loading</Text>;
+  }
+
+  if (isError) {
+    return <Text>{error.message}</Text>;
+  }
 
   return (
     <ScrollView style={styles.container} nestedScrollEnabled={true}>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="WOMENS"
-          subTexts="COLLECTION"
-          onPress={() => navigation.navigate("StoreGallery")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="MENS"
-          subTexts="COLLECTION"
-          onPress={() => console.log("Oh No pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="KIDS"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
+      {data ? (
+        data?.map((item, index) => (
+          <View key={index} style={styles.subContainer}>
+            <CollectionLink
+              headingTexts={item.collection_title}
+              subTexts={item.collection_subtitle}
+              onPress={() => console.log("pressed")}
+              source={{
+                uri: item.collection_cover_image,
+              }}
+            />
+          </View>
+        ))
+      ) : (
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      )}
     </ScrollView>
   );
 };
 
 const MenPage = () => {
+  const { isLoading, isError, error, data } = UseGetCollectionInfo();
+  const navigation = useNavigation();
+  if (isLoading) {
+    return <Text>Loading</Text>;
+  }
+
+  if (isError) {
+    return <Text>{error.message}</Text>;
+  }
+
   return (
-<ScrollView style={styles.container} nestedScrollEnabled={true}>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
+    <ScrollView style={styles.container} nestedScrollEnabled={true}>
+      {data ? (
+        data?.map((item, index) => (
+          <View key={index} style={styles.subContainer}>
+            <CollectionLink
+              headingTexts={item.collection_title}
+              subTexts={item.collection_subtitle}
+              onPress={() => navigation.navigate("StoreGallery")}
+              source={{
+                uri: item.collection_cover_image,
+              }}
+            />
+          </View>
+        ))
+      ) : (
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      )}
     </ScrollView>
   );
 };
 
 const WomenPage = () => {
+  const { isLoading, isError, error, data } = UseGetCollectionInfo2();
+  const navigation = useNavigation();
+  if (isLoading) {
+    return <Text>Loading</Text>;
+  }
+
+  if (isError) {
+    return <Text>{error.message}</Text>;
+  }
+
   return (
     <ScrollView style={styles.container} nestedScrollEnabled={true}>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-      <View style={styles.subContainer}>
-        <CollectionLink
-          headingTexts="VINTAGE SHOE"
-          subTexts="COLLECTION"
-          onPress={() => console.log("pressed")}
-          source={{
-            uri: "http://cdn.home-designing.com/wp-content/uploads/2021/01/modern-flower-vase.jpg",
-          }}
-        />
-      </View>
-
+      {data ? (
+        data?.map((item, index) => (
+          <View key={index} style={styles.subContainer}>
+            <CollectionLink
+              headingTexts={item.collection_title}
+              subTexts={item.collection_subtitle}
+              onPress={() => navigation.navigate("StoreGallery")}
+              source={{
+                uri: item.collection_cover_image,
+              }}
+            />
+          </View>
+        ))
+      ) : (
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      )}
     </ScrollView>
   );
 };

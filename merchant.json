@@ -10,76 +10,81 @@
       "store_description": "The Givenchy Company guarantees the latest and trendiest in Ready To Wear (RTW) women’s, children’s and men’s fashionable clothes, Haute-Couture for women, beauty products, exclusive and high quality shoes, accessories and leather goods e.g. handbags. The area where the Company is located was in need of a state-of-the-art store which carried fashion-conscious and upscale designs of the aforementioned products. This was necessitated by the laxity of competing stores to stock up on diverse styles; much to the chagrin of esteemed clients. Traditionally, customers who wished to buy specific high-end products in order to make a fashion statement had to make the trip to neighbouring cities and towns to look for their desired merchandise (Belk, 2003). In the fashion industry, Givenchy Company has found its niche through wide-ranging and unmatched selection of different styles and designs of all the products it carries. Givenchy Company operates using a business model that is unique and that is responsible for its success and growth in the industry."
     }
   ],
-  "store_dividers": [
+  "store": [
     {
-      "store_divider_id": 1,
+      "id": 1,
       "merchant_id": 123,
-      "store_divider_name": "Male"
-    },
-    {
-      "store_divider_id": 2,
-      "merchant_id": 123,
-      "store_divider_name": "Female"
-    },
-    {
-      "store_divider_id": 3,
-      "merchant_id": 456,
-      "store_divider_name": "Male"
-    },
-    {
-      "store_divider_id": 4,
-      "merchant_id": 456,
-      "store_divider_name": "Female"
+      "store_name": "GIVENCHY STORE",
+      "store_display_picture": "https://showstudio-wagtail-production-2019.s3-eu-west-1.amazonaws.com/images/Screen_Shot_2023-01-17_at_13.59.2.width-2400.format-jpeg_j9iuqL9M7YI889ef.jpg",
+      "store_description": "The Givenchy Company guarantees the latest and trendiest in Ready To Wear (RTW) women’s, children’s and men’s fashionable clothes, Haute-Couture for women, beauty products, exclusive and high quality shoes, accessories and leather goods e.g. handbags. The area where the Company is located was in need of a state-of-the-art store which carried fashion-conscious and upscale designs of the aforementioned products. This was necessitated by the laxity of competing stores to stock up on diverse styles; much to the chagrin of esteemed clients. Traditionally, customers who wished to buy specific high-end products in order to make a fashion statement had to make the trip to neighbouring cities and towns to look for their desired merchandise (Belk, 2003). In the fashion industry, Givenchy Company has found its niche through wide-ranging and unmatched selection of different styles and designs of all the products it carries. Givenchy Company operates using a business model that is unique and that is responsible for its success and growth in the industry."
     }
   ],
-  "collections": [
+
+  "male_divider": [
     {
-      "collaboration_id": 101,
-      "store_divider_id": 1,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 1,
+      "collection_title": "SHOES",
+      "collection_subtitle": "GIVENCHY SHOES",
+      "collection_cover_image": "https://www.givenchysouthafrica.co.za/images/hoverimg/202209011309359482.jpg"
     },
     {
-      "collaboration_id": 102,
-      "store_divider_id": 1,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 2,
+      "collection_title": "READY-TO-WEAR",
+      "collection_subtitle": "GIVENCHY COLLECTION",
+      "collection_cover_image": "https://assets.givenchy.com/m/4225c0371b02befc/High_Resolution_JPG-BM71653Y6B001-02-01.jpg?imwidth=1024"
     },
     {
-      "collaboration_id": 103,
-      "store_divider_id": 2,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 3,
+      "collection_title": "BAGS",
+      "collection_subtitle": "GIVENCHY BAGS",
+      "collection_cover_image": "https://assets.givenchy.com/m/4254142407520b5b/High_Resolution_JPG-BK50C7K1UB001-02-01.jpg?imwidth=1024"
     },
     {
-      "collaboration_id": 104,
-      "store_divider_id": 2,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 4,
+      "collection_title": "ACCESSORIES",
+      "collection_subtitle": "GIVENCHY ACCESSORIES",
+      "collection_cover_image": "https://assets.givenchy.com/m/1ce224c8ef1568a7/High_Resolution_JPG-BN008XF045001-02-05.jpg?imwidth=1024"
+    }
+  ],
+  "male_shoes": [],
+  "women's_divider": [
+    {
+      "collection_id": 1,
+      "collection_title": "SHOES",
+      "collection_subtitle": "GIVENCHY SHOES",
+      "collection_cover_image": "https://img.mytheresa.com/1000/1000/95/jpeg/catalog/product/e0/P00749084_b1.jpg"
     },
     {
-      "collaboration_id": 105,
-      "store_divider_id": 3,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 2,
+      "collection_title": "READY-TO-WEAR",
+      "collection_subtitle": "GIVENCHY COLLECTION",
+      "collection_cover_image": "https://assets.givenchy.com/m/78da157373982679/High_Resolution_JPG-BW70CH30ZL001-02-01.jpg?imwidth=1024"
     },
     {
-      "collaboration_id": 106,
-      "store_divider_id": 3,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 3,
+      "collection_title": "BAGS",
+      "collection_subtitle": "GIVENCHY BAGS",
+      "collection_cover_image": "https://assets.givenchy.com/m/619a15a8526a63c/High_Resolution_JPG-BB50N0B1F1001-02-01.jpg?imwidth=1024"
     },
     {
-      "collaboration_id": 107,
-      "store_divider_id": 4,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 4,
+      "collection_title": "ACCESSORIES",
+      "collection_subtitle": "GIVENCHY ACCESSORIES",
+      "collection_cover_image": "https://assets.givenchy.com/m/7a12ee6bf19b83ae/High_Resolution_JPG-BF00CGF045001-02-10.jpg?imwidth=600"
+    }
+  ],
+  "explore_divider": [
+    {
+      "collection_id": 1,
+      "collection_title": "NEWS",
+      "collection_subtitle": "GIVENCHY NEWS",
+      "collection_cover_image": "https://www.givenchy.com/coremedia/resource/blob/1148948/9585627a858b6409d0ecb2292cce8c8c/fw23-w-09-data.jpg"
     },
     {
-      "collaboration_id": 108,
-      "store_divider_id": 4,
-      "collection_title": "",
-      "collection_cover_image": ""
+      "collection_id": 2,
+      "collection_title": "COLLECTIONS",
+      "collection_subtitle": "MENS SUMMER 23",
+      "collection_cover_image": "https://www.givenchy.com/coremedia/resource/blob/1122868/b98ef80f42284fb19614d1985ec47952/1-data.jpg"
     }
   ]
 }
