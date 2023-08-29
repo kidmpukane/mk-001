@@ -16,7 +16,6 @@ const homeName = "Home";
 const libraryName = "Library";
 const profileName = "Profile";
 const searchName = "Search";
-const storeGallery = "Store";
 const createStore = "Create-Store";
 
 const Tab = createBottomTabNavigator();

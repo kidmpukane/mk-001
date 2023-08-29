@@ -1,7 +1,5 @@
 import { ScrollView, Text, View } from "react-native";
-import { ProductImages } from "../atoms/Images";
 import React from "react";
-import { ProductViewTop, ProductViewScroll } from "./productViewTop";
 
 const Testmol = (props) => {
   return (

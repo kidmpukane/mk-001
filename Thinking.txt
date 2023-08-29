@@ -1,0 +1,11 @@
+Given: http://example/{userID}/product/product-fullview{productID}
+userID is the id of the current user, the one that you are viewing the information of.
+productID is the id of the current product you are viewing.
+
+
+(Clicks user profile): http://example.com/${userID}
+ (Clicks user start shopping): http://example.com/${storeID}/store-divider
+  (Navigates user gender): http://example.com/store-divider/${collectionID}/store-collection
+   (Navigates to gallery): http://example.com/store-gallery/${galleryID}
+    (Navigates to selection): http://example.com/store-selection/${selectionID}
+     (Navigates to product): http://example.com/${productID}/product-view

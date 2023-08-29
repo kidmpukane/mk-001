@@ -19,6 +19,8 @@ import CreateStore from "./src/pages/CreateStore";
 import CreateCollection from "./src/pages/CreateCollection";
 import CreateGallery from "./src/pages/CreateGallery";
 import ProductUpload from "./src/pages/ProductUpload";
+import { FemaleStoreGallery } from "./src/pages/FemaleStoreGallery";
+import { MaleStoreGallery } from "./src/pages/MaleStoreGallery";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Stack = createNativeStackNavigator();
@@ -32,17 +34,23 @@ const App = () => {
           <Stack.Screen name="Main" component={PageTabNavigator} />
           {/*<Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="StorePage" component={StorePage} />
+        
         
         <Stack.Screen name="ProductViewScreen" component={ProductViewScreen} />
-        
+        <Stack.Screen name="Testmol" component={Testmol} />
         <Stack.Screen name="ProductPage" component={ProductPage} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="CreateStore" component={CreateStore} />
         <Stack.Screen name="CreateCollection" component={CreateCollection} />
         <Stack.Screen name="CreateGallery" component={CreateGallery} />
         <Stack.Screen name="ProductUpload" component={ProductUpload} />
-        <Stack.Screen name="Testmol" component={Testmol} />*/}
+        */}
+          <Stack.Screen name="StorePage" component={StorePage} />
+          <Stack.Screen
+            name="FemaleStoreGallery"
+            component={FemaleStoreGallery}
+          />
+          <Stack.Screen name="MaleStoreGallery" component={MaleStoreGallery} />
           <Stack.Screen name="StoreGallery" component={StoreGallery} />
           <Stack.Screen name="StoreDivider" component={StoreDivider} />
         </Stack.Navigator>

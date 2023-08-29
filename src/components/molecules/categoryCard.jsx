@@ -1,75 +1,66 @@
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { ProductImages } from '../atoms/Images'
-import { Headings, Texts } from '../atoms/headings'
-import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { ProductImages } from "../atoms/Images";
+import { Headings, Texts } from "../atoms/headings";
+import React from "react";
 
 const CategoryCard = (props) => {
-
-  const navigation = useNavigation();
-
   return (
-    
-    <TouchableOpacity
-      onPress={() =>  {navigation.navigate("ProductViewScreen")}}   
-      style={styles.container}>
-      <View 
-      style={styles.subContainer}>
-    <ProductImages
-      source={{ 
-        uri: 'https://cdn.shopify.com/s/files/1/0662/2047/products/ceramic-rolex-daytona-olive-rubber-strap_800x.jpg?v=1599520445' }}
-      style={styles.productImage}
-    />
-    </View>
+    <TouchableOpacity onPress={props.onPress} style={styles.container}>
+      <View style={styles.subContainer}>
+        <ProductImages
+          source={{
+            uri: "https://cdn.shopify.com/s/files/1/0662/2047/products/ceramic-rolex-daytona-olive-rubber-strap_800x.jpg?v=1599520445",
+          }}
+          style={styles.productImage}
+        />
+      </View>
 
-    <View
-      style={styles.textSubContainer}>
-    <Headings 
-      texts="Rolex OysterFlex Daytona"
-      style={[styles.heading, props.style]}/>
-    <Headings 
-      texts="Rose Gold/Green Band"
-      style={[styles.heading2, props.style]}/>
-    <Texts 
-      texts="$4750.90"
-      style={[styles.textStyles,props.style]}/>
-    </View>
+      <View style={styles.textSubContainer}>
+        <Headings
+          texts={props.productPrimaryHeading}
+          style={[styles.heading, props.style]}
+        />
+        <Headings
+          texts={props.productSubHeading}
+          style={[styles.heading2, props.style]}
+        />
+      </View>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flexDirection: "column",
     margin: 20,
   },
-  subContainer:{
-    width: '100%',
+  subContainer: {
+    width: "100%",
     height: 270,
   },
-  productImage:{
+  productImage: {
     height: "100%",
     width: "100%",
     borderRadius: 20,
-    backgroundColor: "#292929"
+    backgroundColor: "#292929",
   },
-  textSubContainer:{
+  textSubContainer: {
     width: "100%",
-    padding: 10
+    padding: 10,
   },
-  heading:{
+  heading: {
     fontSize: 20,
-    width: "100%"
+    width: "100%",
   },
-  heading2:{
+  heading2: {
     fontSize: 15,
-    width: "100%"
+    width: "100%",
   },
-  textStyles:{
+  textStyles: {
     color: "#D9D9D9",
     fontSize: 12,
     fontWeight: "bold",
   },
-})
+});
 
-export {  CategoryCard  }
+export { CategoryCard };
