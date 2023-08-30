@@ -50,7 +50,7 @@
       "description": ""
     }
   ],
-  "male_sneakers": [
+  "male_shoes": [
     {
       "id": 1,
       "name": "Spectre runner sneakers in leather with zip",
@@ -74,61 +74,57 @@
       "name": "City Sport sneakers in leather with GIVENCHY strap",
       "colours": "Balck & White",
       "product_image": "https://assets.givenchy.com/m/38e786ddcfa075e9/High_Resolution_JPG-BH005XH14X116-03-04.jpg?imwidth=1024"
-    }
-  ],
-  "males_boots_and_derbies": [
+    },
     {
-      "id": 1,
+      "id": 5,
       "name": "Show ankle workboots in shiny leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/4f776cdf924a816d/High_Resolution_JPG-BHZ026H1KM001-03-04.jpg?imwidth=1024"
     },
     {
-      "id": 2,
+      "id": 6,
       "name": "Lock ankle boots in leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/13e543ffbdc517f3/High_Resolution_JPG-BH6031H0VL001-03-04.jpg?imwidth=1024"
     },
     {
-      "id": 3,
+      "id": 7,
       "name": "Terra chelsea boots in leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/3ceb98d6ffea448e/High_Resolution_JPG-BH603KH1BU001-03-04.jpg?imwidth=1024"
     },
     {
-      "id": 4,
+      "id": 8,
       "name": "Squared derbies in leather with 4G buckle",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/21a44bf27e4bc94f/High_Resolution_JPG-BH103BH135001-03-04.jpg?imwidth=1024"
-    }
-  ],
-  "males_slides_and_sandals": [
+    },
     {
-      "id": 1,
+      "id": 9,
       "name": "Slide sandals in rubber",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/7a6906051399420f/High_Resolution_JPG-BH301TH1DB001-03-04.jpg?imwidth=1024"
     },
     {
-      "id": 2,
+      "id": 10,
       "name": "Slide sandals in rubber with GIVENCHY Infinity print",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/2ad38b743a20e3e4/High_Resolution_JPG-BH301TH1MD012-03-04.jpg?imwidth=1024"
     },
     {
-      "id": 3,
+      "id": 11,
       "name": "G Plage flat sandals with crossed straps in leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/f536018319fbc48/High_Resolution_JPG-BH301ZH1LS001-03-04.jpg?imwidth=1024"
     },
     {
-      "id": 4,
+      "id": 12,
       "name": "Marshmallow flat sandals in rubber",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/61be26c8f195ed21/High_Resolution_JPG-BH301AH19Y001-03-04.jpg?imwidth=1024"
     }
   ],
-  "male_ready-to-wear_tops": [
+  "male_ready-to-wear_collection": [
     {
       "id": 1,
       "product_name": "GIVENCHY Archetype slim fit t-shirt in cotton",
@@ -152,35 +148,33 @@
       "product_name": "Overlapped hooded t-shirt in cotton and mesh",
       "colours": "Multicolored",
       "product_image": "https://assets.givenchy.com/m/55c8d1a0bc8da395/High_Resolution_JPG-BM71K93YGS960-03-06.jpg?imwidth=1024"
-    }
-  ],
-  "male_ready-to-wear_trousers": [
+    },
     {
-      "id": 1,
+      "id": 5,
       "product_name": "Jeans in denim",
       "colours": "Light Blue",
       "product_image": "https://assets.givenchy.com/m/3fa7f90ea6865cc3/High_Resolution_JPG-BM50UY50VP452-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 2,
+      "id": 6,
       "product_name": "Low crotch wide jeans in denim",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/530eea2dfdff0433/High_Resolution_JPG-BM51465Y6P001-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 3,
+      "id": 7,
       "product_name": "GIVENCHY 4G slim fit jogger pants in fleece",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/4370e3cefeba381d/High_Resolution_JPG-BM50WB3Y6U001-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 4,
+      "id": 8,
       "product_name": "Destroyed cargo pants in denim",
       "colours": "Multicolored",
       "product_image": "https://assets.givenchy.com/m/63173d60a421ad48/High_Resolution_JPG-BM517E5Y3S255-03-01.jpg?imwidth=1024"
     }
   ],
-  "male_backpacks": [
+  "male_bags": [
     {
       "id": 1,
       "product_name": "Essential U backpack in 4G denim",
@@ -204,35 +198,33 @@
       "product_name": "G-Trek backpack in nylon",
       "colours": "Multicolored",
       "product_image": "https://assets.givenchy.com/m/33110281d858d279/High_Resolution_JPG-BK50BSK1SK305-03-01.jpg?imwidth=1024"
-    }
-  ],
-  "male_small_leather_goods": [
+    },
     {
-      "id": 1,
+      "id": 5,
       "product_name": "GIVENCHY wallet in 4G leather",
       "colours": "Blue",
       "product_image": "https://assets.givenchy.com/m/19b593c7a0ed401b/High_Resolution_JPG-BK608NK1QN467-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 2,
+      "id": 6,
       "product_name": "G-Zip toilet pouch in nylon",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/124b64ba2d6a7be2/High_Resolution_JPG-BK60EDK1JE001-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 3,
+      "id": 7,
       "product_name": "Large GIVENCHY gusset wallet in braided-effect leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/4361d1c1ac6d7e7e/High_Resolution_JPG-BK609ZK1MM001-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 4,
+      "id": 8,
       "product_name": "Card holder in grained leather",
       "colours": "Multicolored",
       "product_image": "https://assets.givenchy.com/m/5bd3bf021f1f3aea/High_Resolution_JPG-BK6099K18A313-03-01.jpg?imwidth=1024"
     }
   ],
-  "male_jewelry": [
+  "male_accessories": [
     {
       "id": 1,
       "product_name": "4G Crystal necklace in metal with crystals",
@@ -256,29 +248,27 @@
       "product_name": "Small Lock necklace in metal",
       "colours": "Golden yellow",
       "product_image": "https://assets.givenchy.com/m/1d20fff2407f7a79/High_Resolution_JPG-BF00GYF003710-03-01.jpg?imwidth=1024"
-    }
-  ],
-  "male_hats": [
+    },
     {
-      "id": 1,
+      "id": 5,
       "product_name": "GIVENCHY cap in ripped & repaired camo denim",
       "colours": "Brown/khaki",
       "product_image": "https://assets.givenchy.com/m/5d338326c15dd6b/High_Resolution_JPG-BPZ022P0TK246-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 2,
+      "id": 6,
       "product_name": "GIVENCHY bucket hat in nylon",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/71aceb2ff189fa6a/High_Resolution_JPG-BPZ05BP0DM001-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 3,
+      "id": 7,
       "product_name": "GIVENCHY cap in 4G embroidered denim",
       "colours": "Light Blue",
       "product_image": "https://assets.givenchy.com/m/45360e92a19d03e/High_Resolution_JPG-BPZ022P0NR452-03-01.jpg?imwidth=1024"
     },
     {
-      "id": 4,
+      "id": 8,
       "product_name": "GIVENCHY embroidered cap in cotton",
       "colours": "Red",
       "product_image": "https://assets.givenchy.com/m/751bba88602faf5/High_Resolution_JPG-BPZ022P0U8600-03-01.jpg?imwidth=1024"

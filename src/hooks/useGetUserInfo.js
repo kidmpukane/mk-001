@@ -36,20 +36,20 @@ const fetchCollectionData3 = async () => {
 };
 //--------------------------------------------------------//
 
-const storeInfo = "http://10.0.2.2:6660/males_boots_and_derbies";
+const useStoreInfo = (storeInfoUrl) => {
+  const fetchStoreInfo = async () => {
+    const response = await axios.get(storeInfoUrl);
+    return response.data;
+  };
 
-const fetchStoreInfo = async () => {
-  const response = await axios.get(storeInfo);
-  return response.data;
-};
-
-const UseGetStoresInfo = () => {
   const { isLoading, data, isError, error } = useQuery(
-    ["merchant"],
+    ["store-info", storeInfoUrl],
     fetchStoreInfo
   );
+
   return { isLoading, data, isError, error };
 };
+
 //----------------------------------------------------------//
 const UseGetUserInfo = () => {
   const { isLoading, data, isError, error } = useQuery(
@@ -97,5 +97,5 @@ export {
   UseGetCollectionInfo,
   UseGetCollectionInfo2,
   UseGetCollectionInfo3,
-  UseGetStoresInfo,
+  useStoreInfo,
 };

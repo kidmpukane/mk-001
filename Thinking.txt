@@ -9,3 +9,11 @@ productID is the id of the current product you are viewing.
    (Navigates to gallery): http://example.com/store-gallery/${galleryID}
     (Navigates to selection): http://example.com/store-selection/${selectionID}
      (Navigates to product): http://example.com/${productID}/product-view
+
+
+[>]Guy Code Pro tip:
+                    MaleStoreGallery(
+                        <Derbies and Boots/>
+                        <Sneakers/>
+                        <Slides and Sandals/>
+                    )

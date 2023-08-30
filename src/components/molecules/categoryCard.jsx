@@ -9,7 +9,7 @@ const CategoryCard = (props) => {
       <View style={styles.subContainer}>
         <ProductImages
           source={{
-            uri: "https://cdn.shopify.com/s/files/1/0662/2047/products/ceramic-rolex-daytona-olive-rubber-strap_800x.jpg?v=1599520445",
+            uri: props.productImage,
           }}
           style={styles.productImage}
         />
