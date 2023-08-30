@@ -5,7 +5,7 @@ import { CategoryCard } from "../components/molecules/categoryCard";
 import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 const MaleStoreGallery = (props) => {
-  const storeInfoUrl = "http://10.0.2.2:6660/male_accessories";
+  const storeInfoUrl = "http://10.0.2.2:6660/male_shoes";
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
 
   return (

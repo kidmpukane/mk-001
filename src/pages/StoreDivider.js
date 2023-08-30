@@ -2,10 +2,11 @@ import * as React from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
 import { StorePageTop } from "../components/organisms/StorePageTop";
 import { StoreDividerBottom } from "../components/organisms/StoreDividerBottom";
-import { UseGetStoreInfo } from "../hooks/useGetUserInfo";
+import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 function StoreDivider() {
-  const { isLoading, data, isError, error } = UseGetStoreInfo();
+  const storeInfoUrl = "http://10.0.2.2:6660/store/";
+  const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
     return <Text>Loading...</Text>;

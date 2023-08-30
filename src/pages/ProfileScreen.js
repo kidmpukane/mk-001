@@ -7,7 +7,7 @@ import {
   Button,
   StyleSheet,
 } from "react-native";
-import { UseGetUserInfo } from "../hooks/useGetUserInfo";
+import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 //Navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -29,8 +29,8 @@ import { ReviewCard } from "../components/organisms/ReviewCard";
 
 function ProfileScreen() {
   const navigation = useNavigation();
-
-  const { isLoading, data, isError, error } = UseGetUserInfo();
+  const storeInfoUrl = "http://10.0.2.2:6660/merchants/";
+  const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
     return <Text>Loading...</Text>;

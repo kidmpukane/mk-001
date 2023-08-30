@@ -8,14 +8,11 @@ import { CollectionLink } from "../components/organisms/CollectionLink";
 import { useNavigation } from "@react-navigation/native";
 
 //Data fetching Hooks
-import {
-  UseGetCollectionInfo,
-  UseGetCollectionInfo2,
-  UseGetCollectionInfo3,
-} from "../hooks/useGetUserInfo";
+import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 const StorePage = () => {
-  const { isLoading, isError, error, data } = UseGetCollectionInfo3();
+  const storeInfoUrl = "http://10.0.2.2:6660/explore_divider";
+  const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
     return <Text>Loading</Text>;
@@ -50,7 +47,8 @@ const StorePage = () => {
 };
 
 const MenPage = () => {
-  const { isLoading, isError, error, data } = UseGetCollectionInfo();
+  const storeInfoUrl = "http://10.0.2.2:6660/male_divider";
+  const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
     return <Text>Loading</Text>;
@@ -85,7 +83,8 @@ const MenPage = () => {
 };
 
 const WomenPage = () => {
-  const { isLoading, isError, error, data } = UseGetCollectionInfo2();
+  const storeInfoUrl = "http://10.0.2.2:6660/women's_divider";
+  const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
     return <Text>Loading</Text>;
