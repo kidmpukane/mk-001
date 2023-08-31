@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 //pages
-
+import { Testmol } from "../components/molecules/testmol";
 import Home from "../pages/HomeScreen";
 import LibraryScreen from "../pages/LibraryScreen";
 import SearchScreen from "../pages/SearchScreen";
@@ -17,6 +17,7 @@ const libraryName = "Library";
 const profileName = "Profile";
 const searchName = "Search";
 const createStore = "Create-Store";
+const testMolecule = "Test-Molecule";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,10 +46,10 @@ const PageTabNavigator = () => {
       />
 
       <Tab.Screen
-        name={createStore}
-        component={CreateStore}
+        name={testMolecule}
+        component={Testmol}
         options={{
-          tabBarLabel: "Create-Store",
+          tabBarLabel: "Test-Molecule",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="folder-open-outline"

@@ -29,9 +29,7 @@ const Uploads = ({ item }) => {
             style={styles.contentContainer}
             title="ProductPage"
             onPress={() =>
-              navigation.navigate("ProductViewScreen", {
-                profile: item,
-              })
+              navigation.navigate("ProductViewScreen", { profile: item })
             }
           >
             <Pressable

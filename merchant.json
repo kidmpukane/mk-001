@@ -22,6 +22,7 @@
 
   "male_divider": [
     {
+      "id": 97,
       "collection_id": 1,
       "collection_title": "SHOES",
       "collection_subtitle": "GIVENCHY SHOES",
@@ -29,6 +30,7 @@
       "description": ""
     },
     {
+      "id": 98,
       "collection_id": 2,
       "collection_title": "READY-TO-WEAR",
       "collection_subtitle": "GIVENCHY COLLECTION",
@@ -36,6 +38,7 @@
       "description": ""
     },
     {
+      "id": 99,
       "collection_id": 3,
       "collection_title": "BAGS",
       "collection_subtitle": "GIVENCHY BAGS",
@@ -43,6 +46,7 @@
       "description": ""
     },
     {
+      "id": 100,
       "collection_id": 4,
       "collection_title": "ACCESSORIES",
       "collection_subtitle": "GIVENCHY ACCESSORIES",
@@ -53,6 +57,7 @@
   "male_shoes": [
     {
       "id": 1,
+      "store_gallery_id": 97,
       "name": "Spectre runner sneakers in leather with zip",
       "colours": "Balck & White",
       "product_image": "https://assets.givenchy.com/m/4b4bb928d0a0227d/High_Resolution_JPG-BH009BH1LL004-03-04.jpg?imwidth=1024"
@@ -227,48 +232,56 @@
   "male_accessories": [
     {
       "id": 1,
+      "store_gallery_id": 100,
       "product_name": "4G Crystal necklace in metal with crystals",
       "colours": "Turquoise",
       "product_image": "https://assets.givenchy.com/m/2f57d08ee0fc1954/High_Resolution_JPG-BN009NF005440-03-01.jpg?imwidth=1024"
     },
     {
       "id": 2,
+      "store_gallery_id": 100,
       "product_name": "GIVENCHY padlock keyring in metal",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/136164d2d6179717/High_Resolution_JPG-BK60E8K1VB001-03-01.jpg?imwidth=1024"
     },
     {
       "id": 3,
+      "store_gallery_id": 100,
       "product_name": "ID necklace in metal",
       "colours": "Silver",
       "product_image": "https://assets.givenchy.com/m/257960eed6ad7e46/High_Resolution_JPG-BN009EF003040-03-01.jpg?imwidth=1024"
     },
     {
       "id": 4,
+      "store_gallery_id": 100,
       "product_name": "Small Lock necklace in metal",
       "colours": "Golden yellow",
       "product_image": "https://assets.givenchy.com/m/1d20fff2407f7a79/High_Resolution_JPG-BF00GYF003710-03-01.jpg?imwidth=1024"
     },
     {
       "id": 5,
+      "store_gallery_id": 100,
       "product_name": "GIVENCHY cap in ripped & repaired camo denim",
       "colours": "Brown/khaki",
       "product_image": "https://assets.givenchy.com/m/5d338326c15dd6b/High_Resolution_JPG-BPZ022P0TK246-03-01.jpg?imwidth=1024"
     },
     {
       "id": 6,
+      "store_gallery_id": 100,
       "product_name": "GIVENCHY bucket hat in nylon",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/71aceb2ff189fa6a/High_Resolution_JPG-BPZ05BP0DM001-03-01.jpg?imwidth=1024"
     },
     {
       "id": 7,
+      "store_gallery_id": 100,
       "product_name": "GIVENCHY cap in 4G embroidered denim",
       "colours": "Light Blue",
       "product_image": "https://assets.givenchy.com/m/45360e92a19d03e/High_Resolution_JPG-BPZ022P0NR452-03-01.jpg?imwidth=1024"
     },
     {
       "id": 8,
+      "store_gallery_id": 100,
       "product_name": "GIVENCHY embroidered cap in cotton",
       "colours": "Red",
       "product_image": "https://assets.givenchy.com/m/751bba88602faf5/High_Resolution_JPG-BPZ022P0U8600-03-01.jpg?imwidth=1024"
