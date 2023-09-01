@@ -5,7 +5,7 @@ import { StoreDividerBottom } from "../components/organisms/StoreDividerBottom";
 import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 function StoreDivider() {
-  const storeInfoUrl = "http://10.0.2.2:6660/store/";
+  const storeInfoUrl = "http://192.168.0.106:3000/store/";
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {

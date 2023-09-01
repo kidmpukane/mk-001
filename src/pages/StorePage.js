@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 const StorePage = () => {
-  const storeInfoUrl = "http://10.0.2.2:6660/explore_divider";
+  const storeInfoUrl = "http://192.168.0.106:3000/explore_divider";
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
@@ -47,7 +47,7 @@ const StorePage = () => {
 };
 
 const MenPage = () => {
-  const storeInfoUrl = "http://10.0.2.2:6660/male_divider";
+  const storeInfoUrl = "http://192.168.0.106:3000/male_divider";
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
@@ -83,7 +83,7 @@ const MenPage = () => {
 };
 
 const WomenPage = () => {
-  const storeInfoUrl = "http://10.0.2.2:6660/women's_divider";
+  const storeInfoUrl = "http://192.168.0.106:3000/women's_divider";
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {

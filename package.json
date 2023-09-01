@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "server-json": "json-server --watch merchant.json --port 6660"
+    "server-json": "json-server --watch merchant.json --host 0.0.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -27,8 +27,12 @@
     "axios": "^1.4.0",
     "entypo": "^2.2.1",
     "expo": "^47.0.8",
-    "expo-image-picker": "^14.0.2",
+    "expo-constants": "~14.0.2",
+    "expo-image-picker": "~14.0.2",
+    "expo-linking": "~3.3.1",
+    "expo-router": "^2.0.5",
     "expo-status-bar": "~1.4.2",
+    "expo-updates": "~0.15.6",
     "formik": "^2.2.9",
     "install": "^0.13.0",
     "ionicons": "^6.0.2",
