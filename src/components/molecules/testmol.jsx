@@ -1,9 +1,13 @@
 import { ScrollView, Text, View } from "react-native";
 import { useGetItemById } from "../../hooks/useGetUserInfo";
+import { useLocalSearchParams } from "expo-router";
 import React from "react";
 
 const Testmol = () => {
-  const hyperLinkUrl = "http://192.168.0.106:3000/male_bags";
+  const { item } = useLocalSearchParams();
+  //const { item } = route.params
+  let num = 2;
+  const hyperLinkUrl = `http://192.168.0.106:3000/male_shoes/${item.id}`;
   const { isLoading, isError, data, error } = useGetItemById(hyperLinkUrl);
 
   if (isLoading) {
@@ -23,15 +27,8 @@ const Testmol = () => {
         padding: 10,
       }}
     >
-      {data ? (
-        data?.map((item, index) => (
-          <View key={item.id}>
-            <Text>{item.product_name}</Text>
-          </View>
-        ))
-      ) : (
-        <Text>Error</Text>
-      )}
+      <Text>{data ? data.name : "Loading..."}</Text>
+      <Text>{data ? data.colours : "Loading..."}</Text>
     </View>
   );
 };

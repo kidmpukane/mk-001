@@ -3,8 +3,10 @@ import React from "react";
 import { GalleryPageTop } from "../components/organisms/StorePageTop";
 import { CategoryCard } from "../components/molecules/categoryCard";
 import { useStoreInfo } from "../hooks/useGetUserInfo";
+import { useNavigation } from "@react-navigation/native";
 
 const MaleStoreGallery = (props) => {
+  const navigation = useNavigation();
   const storeInfoUrl = "http://192.168.0.106:3000/male_shoes";
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
 
@@ -20,6 +22,9 @@ const MaleStoreGallery = (props) => {
           data?.map((item, index) => (
             <View key={index}>
               <CategoryCard
+                onPress={() => {
+                  navigation.navigate("Testmol", { item: item });
+                }}
                 productImage={item.product_image}
                 productPrimaryHeading={item.name}
                 productSubHeading={item.colours}
