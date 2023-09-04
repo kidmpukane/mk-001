@@ -36,7 +36,7 @@ const App = () => {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         
         
-        <Stack.Screen name="ProductViewScreen" component={ProductViewScreen} />
+        
         
         
         <Stack.Screen name="Profile" component={ProfileScreen} />
@@ -45,6 +45,10 @@ const App = () => {
         <Stack.Screen name="CreateGallery" component={CreateGallery} />
         <Stack.Screen name="ProductUpload" component={ProductUpload} />
         */}
+          <Stack.Screen
+            name="ProductViewScreen"
+            component={ProductViewScreen}
+          />
           <Stack.Screen name="Testmol" component={Testmol} />
           <Stack.Screen name="ProductPage" component={ProductPage} />
           <Stack.Screen name="StorePage" component={StorePage} />

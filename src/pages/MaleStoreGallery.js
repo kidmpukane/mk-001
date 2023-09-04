@@ -22,9 +22,9 @@ const MaleStoreGallery = (props) => {
           data?.map((item, index) => (
             <View key={index}>
               <CategoryCard
-                onPress={() => {
-                  navigation.navigate("Testmol", { item: item });
-                }}
+                // onPress={() => {
+                // navigation.navigate("ProductViewScreen", { item: item });
+                // }}
                 productImage={item.product_image}
                 productPrimaryHeading={item.name}
                 productSubHeading={item.colours}
