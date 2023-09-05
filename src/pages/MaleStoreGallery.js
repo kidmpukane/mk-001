@@ -21,7 +21,7 @@ const MaleStoreGallery = (props) => {
     <Text>Error Couldn't Load Information</Text>;
   }
 
-  console.log(data ? data?.collections : "fuckenewl...");
+  console.log(data ? data?.collections : "loading...");
 
   return (
     <View
@@ -30,21 +30,17 @@ const MaleStoreGallery = (props) => {
         backgroundColor: "#292929",
       }}
     >
-      <Text>Allo</Text>
       <ScrollView showsVerticalScrollIndicator={false}>
         {data ? (
-          data?.collections.map((item, index) => (
+          data?.collections.map((item) => (
             <View key={item.id}>
               <CategoryCard
                 onPress={() => {
                   navigation.navigate("ProductViewScreen", { item: item });
                 }}
                 productImage={item.product_image}
-                productPrimaryHeading={item.name}
+                productPrimaryHeading={item.product_name}
                 productSubHeading={item.colours}
-                // productImage="No Images"
-                // productPrimaryHeading="No Info"
-                // productSubHeading="No Colours"
               />
             </View>
           ))

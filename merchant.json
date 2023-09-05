@@ -59,84 +59,84 @@
     {
       "id": 1,
       "male_dividerId": 97,
-      "name": "Spectre runner sneakers in leather with zip",
+      "product_name": "Spectre runner sneakers in leather with zip",
       "colours": "Balck & White",
       "product_image": "https://assets.givenchy.com/m/4b4bb928d0a0227d/High_Resolution_JPG-BH009BH1LL004-03-04.jpg?imwidth=1024"
     },
     {
       "id": 2,
       "male_dividerId": 97,
-      "name": "G4 sneakers in leather",
+      "product_name": "G4 sneakers in leather",
       "colours": "Green & White",
       "product_image": "https://assets.givenchy.com/m/250a7011b88e9b9a/High_Resolution_JPG-BH007WH1DE115-03-04.jpg?imwidth=1024"
     },
     {
       "id": 3,
       "male_dividerId": 97,
-      "name": "TK-MX Runner sneakers in suede with used effect",
+      "product_name": "TK-MX Runner sneakers in suede with used effect",
       "colours": "Light Grey",
       "product_image": "https://assets.givenchy.com/m/7e727f184703186/High_Resolution_JPG-BH008MH1M8050-03-04.jpg?imwidth=1024"
     },
     {
       "id": 4,
       "male_dividerId": 97,
-      "name": "City Sport sneakers in leather with GIVENCHY strap",
+      "product_name": "City Sport sneakers in leather with GIVENCHY strap",
       "colours": "Balck & White",
       "product_image": "https://assets.givenchy.com/m/38e786ddcfa075e9/High_Resolution_JPG-BH005XH14X116-03-04.jpg?imwidth=1024"
     },
     {
       "id": 5,
       "male_dividerId": 97,
-      "name": "Show ankle workboots in shiny leather",
+      "product_name": "Show ankle workboots in shiny leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/4f776cdf924a816d/High_Resolution_JPG-BHZ026H1KM001-03-04.jpg?imwidth=1024"
     },
     {
       "id": 6,
       "male_dividerId": 97,
-      "name": "Lock ankle boots in leather",
+      "product_name": "Lock ankle boots in leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/13e543ffbdc517f3/High_Resolution_JPG-BH6031H0VL001-03-04.jpg?imwidth=1024"
     },
     {
       "id": 7,
       "male_dividerId": 97,
-      "name": "Terra chelsea boots in leather",
+      "product_name": "Terra chelsea boots in leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/3ceb98d6ffea448e/High_Resolution_JPG-BH603KH1BU001-03-04.jpg?imwidth=1024"
     },
     {
       "id": 8,
       "male_dividerId": 97,
-      "name": "Squared derbies in leather with 4G buckle",
+      "product_name": "Squared derbies in leather with 4G buckle",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/21a44bf27e4bc94f/High_Resolution_JPG-BH103BH135001-03-04.jpg?imwidth=1024"
     },
     {
       "id": 9,
       "male_dividerId": 97,
-      "name": "Slide sandals in rubber",
+      "product_name": "Slide sandals in rubber",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/7a6906051399420f/High_Resolution_JPG-BH301TH1DB001-03-04.jpg?imwidth=1024"
     },
     {
       "id": 10,
       "male_dividerId": 97,
-      "name": "Slide sandals in rubber with GIVENCHY Infinity print",
+      "product_name": "Slide sandals in rubber with GIVENCHY Infinity print",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/2ad38b743a20e3e4/High_Resolution_JPG-BH301TH1MD012-03-04.jpg?imwidth=1024"
     },
     {
       "id": 11,
       "male_dividerId": 97,
-      "name": "G Plage flat sandals with crossed straps in leather",
+      "product_name": "G Plage flat sandals with crossed straps in leather",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/f536018319fbc48/High_Resolution_JPG-BH301ZH1LS001-03-04.jpg?imwidth=1024"
     },
     {
       "id": 12,
       "male_dividerId": 97,
-      "name": "Marshmallow flat sandals in rubber",
+      "product_name": "Marshmallow flat sandals in rubber",
       "colours": "Balck",
       "product_image": "https://assets.givenchy.com/m/61be26c8f195ed21/High_Resolution_JPG-BH301AH19Y001-03-04.jpg?imwidth=1024"
     },

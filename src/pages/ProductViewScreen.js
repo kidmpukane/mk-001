@@ -9,7 +9,7 @@ import { useLocalSearchParams } from "expo-router";
 
 const ProductViewScreen = (props) => {
   const { item } = useLocalSearchParams();
-  const hyperLinkUrl = `http://192.168.0.106:3000/male_shoes/${item.id}`;
+  const hyperLinkUrl = `http://192.168.0.106:3000/collections/${item.id}`;
   const { isLoading, isError, data, error } = useGetItemById(hyperLinkUrl);
 
   if (isLoading) {
@@ -34,12 +34,11 @@ const ProductViewScreen = (props) => {
           />
           <View style={styles.productViewTopStyles}>
             <ProductViewTop
-              productName={data ? data.name : "Loading..."}
+              productName={data ? data.product_name : "Loading..."}
               secondaryName={data ? data.colours : "Loading..."}
             />
           </View>
         </View>
-        <View style={styles.productViewScrollStyles}></View>
       </ScrollView>
     </View>
   );
