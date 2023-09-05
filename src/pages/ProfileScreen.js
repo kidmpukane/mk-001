@@ -40,7 +40,7 @@ function ProfileScreen() {
     return <Text>{error.message}</Text>;
   }
 
-  console.log(data ? data : error.message);
+  // console.log(data ? data : error.message);
 
   return (
     <View>

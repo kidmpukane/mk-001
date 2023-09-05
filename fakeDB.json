@@ -13,37 +13,37 @@
   "store_divider": [
     {
       "id": 10,
-      "merchant_id": 1,
-      "store_cover_image": "",
-      "store_name": "Store Store",
-      "store_description": ""
+      "merchantId": 1,
+      "store_cover_image": "https://wallpapers.com/images/hd/givenchy-paris-with-statue-vcr116or9nh3shgj.jpg",
+      "store_name": "GIVENCHY STORE",
+      "store_description": "The Givenchy Company guarantees the latest and trendiest in Ready To Wear (RTW) women’s, children’s and men’s fashionable clothes, Haute-Couture for women, beauty products, exclusive and high quality shoes, accessories and leather goods e.g. handbags. The area where the Company is located was in need of a state-of-the-art store which carried fashion-conscious and upscale designs of the aforementioned products. This was necessitated by the laxity of competing stores to stock up on diverse styles; much to the chagrin of esteemed clients. Traditionally, customers who wished to buy specific high-end products in order to make a fashion statement had to make the trip to neighbouring cities and towns to look for their desired merchandise (Belk, 2003). In the fashion industry, Givenchy Company has found its niche through wide-ranging and unmatched selection of different styles and designs of all the products it carries. Givenchy Company operates using a business model that is unique and that is responsible for its success and growth in the industry."
     }
   ],
   "primary_collection": [
     {
       "id": 20,
-      "store_divider_id": 10,
-      "collection_name": "women’s"
+      "store_dividerId": 10,
+      "collection_name": "WOMEN"
     }
   ],
   "secondary_collection": [
     {
       "id": 21,
-      "store_divider_id": 10,
-      "collection_name": "men’s"
+      "store_dividerId": 10,
+      "collection_name": "MEN"
     }
   ],
   "tertiary_collection": [
     {
       "id": 22,
-      "store_divider_id": 10,
-      "collection_name": "store’s"
+      "store_dividerId": 10,
+      "collection_name": "OTHER"
     }
   ],
   "primary_gallery": [
     {
       "id": 30,
-      "collection_id": 20,
+      "primary_collectionId": 20,
       "primary_heading": "",
       "sub_heading": "",
       "gallery_image": ""
@@ -52,7 +52,7 @@
   "secondary_gallery": [
     {
       "id": 31,
-      "collection_id": 20,
+      "collectionId": 20,
       "primary_heading": "",
       "sub_heading": "",
       "gallery_image": ""
@@ -61,7 +61,7 @@
   "tertiary_gallery": [
     {
       "id": 32,
-      "collection_id": 20,
+      "collectionId": 20,
       "primary_heading": "",
       "sub_heading": "",
       "gallery_image": ""
@@ -70,7 +70,7 @@
   "quaternary_gallery": [
     {
       "id": 33,
-      "collection_id": 20,
+      "collectionId": 20,
       "primary_heading": "",
       "sub_heading": "",
       "gallery_image": ""
@@ -79,56 +79,57 @@
   "products": [
     {
       "id": 40,
-      "gallery_id": 30,
+      "galleryId": 30,
+      "merchantId": 1,
       "product_name": "",
       "product_colour": "",
       "product_image": ""
     },
     {
       "id": 41,
-      "gallery_id": 30,
+      "galleryId": 30,
       "product_name": "",
       "product_colour": "",
       "product_image": ""
     },
     {
       "id": 42,
-      "gallery_id": 31,
+      "galleryId": 31,
       "product_name": "",
       "product_colour": "",
       "product_image": ""
     },
     {
       "id": 43,
-      "gallery_id": 31,
+      "galleryId": 31,
       "product_name": "",
       "product_colour": "",
       "product_image": ""
     },
     {
       "id": 44,
-      "gallery_id": 32,
+      "galleryId": 32,
       "product_name": "",
       "product_colour": "",
       "product_image": ""
     },
     {
       "id": 45,
-      "gallery_id": 32,
+      "galleryId": 32,
       "product_name": "",
       "product_colour": "",
       "product_image": ""
     },
     {
       "id": 46,
-      "gallery_id": 33,
+      "galleryId": 33,
       "product_name": "",
       "product_colour": "",
       "product_image": ""
     },
     {
       "id": 47,
-      "gallery_id": 33,
+      "galleryId": 33,
       "product_name": "",
       "product_colour": "",
       "product_image": ""

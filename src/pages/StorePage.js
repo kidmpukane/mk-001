@@ -66,7 +66,9 @@ const MenPage = () => {
             <CollectionLink
               headingTexts={item.collection_title}
               subTexts={item.collection_subtitle}
-              onPress={() => navigation.navigate("MaleStoreGallery")}
+              onPress={() =>
+                navigation.navigate("MaleStoreGallery", { item: item })
+              }
               source={{
                 uri: item.collection_cover_image,
               }}
