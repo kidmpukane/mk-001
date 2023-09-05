@@ -13,13 +13,27 @@ import theme from "../assets/themes/theme";
 import { useNavigation } from "@react-navigation/native";
 import storeDataDB from "../assets/data/storeDataDB";
 import productsAPI from "../assets/data/productsAPI";
+import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 const Uploads = ({ item }) => {
   const navigation = useNavigation();
+  const storeInfoUrl = `http://192.168.0.106:3000/collections`;
+
+  const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
+
+  if (isLoading) {
+    <Text>Loading...</Text>;
+  }
+  if (isError) {
+    <Text>{error.message}</Text>;
+  } else {
+    <Text>Error Couldn't Load Information</Text>;
+  }
+  console.log(data ? data : "loading...");
 
   return (
     <>
-      {productsAPI.map((item) => (
+      {data.map((item) => (
         <ImageBackground
           key={item.id}
           source={{ uri: item.product_image }}
@@ -29,20 +43,22 @@ const Uploads = ({ item }) => {
             style={styles.contentContainer}
             title="ProductPage"
             onPress={() =>
-              navigation.navigate("ProductViewScreen", { profile: item })
+              navigation.navigate("ProductViewScreen", { item: item })
             }
           >
             <Pressable
               title="Profile"
-              onPress={() => navigation.navigate("Profile")}
+              onPress={() => navigation.navigate("Profile", { item: item })}
             >
               <Image
-                source={{ uri: item.store_profile_picture }}
+                source={{
+                  uri: "https://i.pinimg.com/564x/79/3b/b3/793bb33bbce6c8d6beabc9c02c965fff.jpg",
+                }}
                 style={styles.contentImg}
               />
             </Pressable>
             <Text style={styles.contentTitle}>{item.product_name}</Text>
-            <Text style={styles.contentText}>{item.store_description}</Text>
+            <Text style={styles.contentText}>{item.colours}</Text>
             <Text numberOfLines={3} style={styles.contentText}>
               {item.product_description}
             </Text>
