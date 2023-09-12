@@ -29,7 +29,8 @@ import { ReviewCard } from "../components/organisms/ReviewCard";
 
 function ProfileScreen() {
   const navigation = useNavigation();
-  const storeInfoUrl = "http://192.168.0.106:3000/merchants";
+  const storeInfoUrl =
+    "http://192.168.0.106:8000/api/user-profile/13465768798900";
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
@@ -40,71 +41,67 @@ function ProfileScreen() {
     return <Text>{error.message}</Text>;
   }
 
-  // console.log(data ? data : error.message);
+  //console.log(data ? data : error.message);
 
   return (
     <View>
-      {data ? (
-        data?.map((item, index) => (
-          <ScrollView key={index} style={styles.profileScrollViewContainer}>
-            <View key={index} style={styles.profileScreenContainer}>
-              <ImageBackground
-                key={index}
-                source={{ uri: item.store_cover_image }}
-                style={styles.profileBackGroundImageContainer}
-              >
-                <View key={index} style={styles.userInfoContainer}>
-                  <UserInfoOrganism
-                    profilePicture={item.store_profile_picture}
-                    userName={item.store_title}
-                    atName={item.at_store_owner}
-                  />
-                </View>
-              </ImageBackground>
-            </View>
-
-            <View style={styles.customButtonContainer}>
-              <CustomButton3
-                style={styles.customButton}
-                title="Start Shopping"
-                onPress={() => navigation.navigate("StoreDivider")}
+      <ScrollView style={styles.profileScrollViewContainer}>
+        <View style={styles.profileScreenContainer}>
+          <ImageBackground
+            source={{ uri: data ? data.background_picture : "Loading..." }}
+            style={styles.profileBackGroundImageContainer}
+          >
+            <View style={styles.userInfoContainer}>
+              <UserInfoOrganism
+                profilePicture={data ? data.profile_picture : "Loading..."}
+                userName={data ? data.store_name : "Loading..."}
+                atName={data ? data.at_store : "Loading..."}
               />
             </View>
-
-            <View style={styles.ourStoryContainer}>
-              <OurStory />
-            </View>
-
-            <View style={styles.subHeadingContainer}>
-              <Texts style={styles.subHeadings} texts="social media & links" />
-              <SocialMediaLinkBar />
-            </View>
-
-            <View style={styles.reviewCardContainer}>
-              <ReviewCard />
-            </View>
-
-            <View>
-              <Texts style={styles.subHeadings} texts="t&c's" />
-              <Texts
-                style={styles.copyWrightLaws}
-                texts={item.store_description}
-              />
-            </View>
-
-            <View style={styles.copyWrightLaws2Container}>
-              <Texts style={styles.copyWrightLaws2} texts={data.store_title} />
-
-              <Texts style={styles.copyWrightLaws2} texts={data.store_owner} />
-            </View>
-          </ScrollView>
-        ))
-      ) : (
-        <View>
-          <Text>{error.message}</Text>
+          </ImageBackground>
         </View>
-      )}
-      <Text>Embarrassing</Text>
+
+        <View style={styles.customButtonContainer}>
+          <CustomButton3
+            style={styles.customButton}
+            title="Start Shopping"
+            onPress={() => navigation.navigate("StoreDivider", { item: data })}
+          />
+        </View>
+
+        <View style={styles.ourStoryContainer}>
+          <OurStory />
+        </View>
+
+        <View style={styles.subHeadingContainer}>
+          <Texts style={styles.subHeadings} texts="social media & links" />
+          <SocialMediaLinkBar />
+        </View>
+
+        <View style={styles.reviewCardContainer}>
+          <ReviewCard />
+        </View>
+
+        <View>
+          <Texts style={styles.subHeadings} texts="t&c's" />
+          <Texts
+            style={styles.copyWrightLaws}
+            texts={data ? data.store_description : "Loading..."}
+          />
+        </View>
+
+        <View style={styles.copyWrightLaws2Container}>
+          <Texts
+            style={styles.copyWrightLaws2}
+            texts={data ? data.store_title : "Loading.."}
+          />
+
+          <Texts
+            style={styles.copyWrightLaws2}
+            texts={data ? data.store_owner : "Loading..."}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -195,3 +192,9 @@ const styles = StyleSheet.create({
 });
 
 export default ProfileScreen;
+
+{
+  /*
+
+*/
+}

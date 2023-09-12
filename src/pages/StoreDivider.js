@@ -3,9 +3,11 @@ import { StyleSheet, View, ScrollView, Text } from "react-native";
 import { StorePageTop } from "../components/organisms/StorePageTop";
 import { StoreDividerBottom } from "../components/organisms/StoreDividerBottom";
 import { useStoreInfo } from "../hooks/useGetUserInfo";
+import { useLocalSearchParams } from "expo-router";
 
 function StoreDivider() {
-  const storeInfoUrl = "http://192.168.0.106:3000/store/";
+  const { item } = useLocalSearchParams();
+  const storeInfoUrl = `http://192.168.0.106:8000/api/get-stores/${item?.id}`;
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
@@ -15,6 +17,8 @@ function StoreDivider() {
   if (isError) {
     return <Text>{error.message}</Text>;
   }
+
+  console.log(item?.id);
 
   return (
     <View style={styles.container}>
@@ -27,7 +31,7 @@ function StoreDivider() {
           >
             <View>
               <StorePageTop
-                storeDisplayImage={item.store_display_picture}
+                storeDisplayImage={item.store_cover_image}
                 storeNameHeading={item.store_name}
                 storeDescription={item.store_description}
               />

@@ -29,11 +29,11 @@ const Uploads = ({ item }) => {
   } else {
     <Text>Error Couldn't Load Information</Text>;
   }
-  console.log(data ? data : "loading...");
+  //console.log(data ? data : "loading...");
 
   return (
     <>
-      {data.map((item) => (
+      {data?.map((item) => (
         <ImageBackground
           key={item.id}
           source={{ uri: item.product_image }}
