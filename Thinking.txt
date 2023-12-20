@@ -17,3 +17,12 @@ productID is the id of the current product you are viewing.
                         <Sneakers/>
                         <Slides and Sandals/>
                     )
+
+
+
+=> Receive 5 random images
+==> Create a button that when clicked sends data to an endpoint.
+===> The end point sends back 5 similar images...
+
+Make the image pressable to where it navigates to more information
+Make the pressable the generator

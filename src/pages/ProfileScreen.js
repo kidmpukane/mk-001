@@ -30,7 +30,7 @@ import { ReviewCard } from "../components/organisms/ReviewCard";
 function ProfileScreen() {
   const navigation = useNavigation();
   const storeInfoUrl =
-    "http://192.168.0.106:8000/api/user-profile/13465768798900";
+    "http://192.168.18.8:3000/api/merchant-profile/747535601913/";
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
@@ -41,7 +41,7 @@ function ProfileScreen() {
     return <Text>{error.message}</Text>;
   }
 
-  //console.log(data ? data : error.message);
+  console.log(data ? data : error.message);
 
   return (
     <View>

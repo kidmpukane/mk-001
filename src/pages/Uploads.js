@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   View,
@@ -17,7 +17,9 @@ import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 const Uploads = ({ item }) => {
   const navigation = useNavigation();
-  const storeInfoUrl = `http://192.168.0.106:3000/collections`;
+  const [storeInfoUrl, setStoreInfoUrl] = useState(
+    "http://192.168.18.8:3000/api/products/all-products"
+  );
 
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
 
@@ -31,40 +33,62 @@ const Uploads = ({ item }) => {
   }
   //console.log(data ? data : "loading...");
 
+  const handleClick = (item) => {
+    fetch("http://192.168.18.8:3000/api/products/find-nearest-neighbors", {
+      method: "POST", // or 'GET', 'PUT', 'DELETE', etc. based on your endpoint requirements
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    })
+      .then((response) => {
+        // Handle response from the endpoint if needed
+      })
+      .catch((error) => {
+        // Handle errors
+      });
+
+    setStoreInfoUrl(
+      "http://192.168.18.8:3000/api/products/find-nearest-neighbors"
+    );
+  };
+
   return (
     <>
-      {data?.map((item) => (
-        <ImageBackground
-          key={item.id}
-          source={{ uri: item.product_image }}
-          style={styles.imageBackground}
-        >
-          <TouchableOpacity
-            style={styles.contentContainer}
-            title="ProductPage"
-            onPress={() =>
-              navigation.navigate("ProductViewScreen", { item: item })
-            }
+      {data &&
+        data.all_products.map((item) => (
+          <ImageBackground
+            key={item.id}
+            source={{ uri: item.product_image }}
+            style={styles.imageBackground}
           >
-            <Pressable
-              title="Profile"
-              onPress={() => navigation.navigate("Profile", { item: item })}
+            <TouchableOpacity
+              style={styles.contentContainer}
+              title="ProductPage"
+              onPress={() => handleClick(item)}
+              // onPress={() =>
+              //   navigation.navigate("ProductViewScreen", { item: item })
+              // }
             >
-              <Image
-                source={{
-                  uri: "https://i.pinimg.com/564x/79/3b/b3/793bb33bbce6c8d6beabc9c02c965fff.jpg",
-                }}
-                style={styles.contentImg}
-              />
-            </Pressable>
-            <Text style={styles.contentTitle}>{item.product_name}</Text>
-            <Text style={styles.contentText}>{item.colours}</Text>
-            <Text numberOfLines={3} style={styles.contentText}>
-              {item.product_description}
-            </Text>
-          </TouchableOpacity>
-        </ImageBackground>
-      ))}
+              <Pressable
+                title="Profile"
+                onPress={() => navigation.navigate("Profile", { item: item })}
+              >
+                <Image
+                  source={{
+                    uri: "https://i.pinimg.com/564x/79/3b/b3/793bb33bbce6c8d6beabc9c02c965fff.jpg",
+                  }}
+                  style={styles.contentImg}
+                />
+              </Pressable>
+              <Text style={styles.contentTitle}>{item.product_name}</Text>
+              <Text style={styles.contentText}>{item.product_colours}</Text>
+              {/* <Text numberOfLines={3} style={styles.contentText}>
+          {item.product_description}
+        </Text> */}
+            </TouchableOpacity>
+          </ImageBackground>
+        ))}
     </>
   );
 };
