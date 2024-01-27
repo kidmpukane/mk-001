@@ -349,5 +349,47 @@
       "collection_subtitle": "MENS SUMMER 23",
       "collection_cover_image": "https://www.givenchy.com/coremedia/resource/blob/1122868/b98ef80f42284fb19614d1985ec47952/1-data.jpg"
     }
+  ],
+  "all_products": [
+    {
+      "all_products": [
+        {
+          "id": 1,
+          "product_name": "Squared derbies in leather with 4G buckle",
+          "product_image": "https://assets.givenchy.com/m/34b9ceefffa90c29/High_Resolution_JPG-BM716G3YAC001-03-01.jpg?imwidth=1024",
+          "product_sizes": "1, 2, 3, 4, 5, & 10",
+          "product_colours": "Not Listed",
+          "feature_list": null,
+          "created_at": "2023-12-11T14:48:11.955725Z",
+          "updated_at": "2023-12-11T14:48:11.955725Z",
+          "merchant_id": 747535601913,
+          "collection_id": 112949049648
+        },
+        {
+          "id": 14,
+          "product_name": "Spectre runner sneakers in leather with zip",
+          "product_image": "https://assets.givenchy.com/m/4b4bb928d0a0227d/High_Resolution_JPG-BH009BH1LL004-03-04.jpg?imwidth=1024",
+          "product_sizes": "1, 2, 3, 4, 5, & 10",
+          "product_colours": "Balck & White",
+          "feature_list": null,
+          "created_at": "2023-12-15T16:10:57.644065Z",
+          "updated_at": "2023-12-19T06:25:43.231819Z",
+          "merchant_id": 747535601913,
+          "collection_id": 112949049648
+        },
+        {
+          "id": 2,
+          "product_name": "GIVENCHY embroidered cap in cotton",
+          "product_image": "https://assets.givenchy.com/m/21a44bf27e4bc94f/High_Resolution_JPG-BH103BH135001-03-04.jpg?imwidth=1024",
+          "product_sizes": "1, 2, 3, 4, 5, & 10",
+          "product_colours": "Black",
+          "feature_list": null,
+          "created_at": "2023-12-11T15:03:39.285547Z",
+          "updated_at": "2023-12-19T06:25:53.084611Z",
+          "merchant_id": 269786615672,
+          "collection_id": 837725272203
+        }
+      ]
+    }
   ]
 }

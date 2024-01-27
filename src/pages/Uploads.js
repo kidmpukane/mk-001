@@ -18,7 +18,7 @@ import { useStoreInfo } from "../hooks/useGetUserInfo";
 const Uploads = ({ item }) => {
   const navigation = useNavigation();
   const [storeInfoUrl, setStoreInfoUrl] = useState(
-    "http://192.168.18.8:3000/api/products/all-products"
+    "http://192.168.18.8:3000/all_products"
   );
 
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
@@ -31,7 +31,7 @@ const Uploads = ({ item }) => {
   } else {
     <Text>Error Couldn't Load Information</Text>;
   }
-  //console.log(data ? data : "loading...");
+  console.log(data ? data : "loading...");
 
   const handleClick = (item) => {
     fetch("http://192.168.18.8:3000/api/products/find-nearest-neighbors", {
@@ -56,43 +56,64 @@ const Uploads = ({ item }) => {
   return (
     <>
       {data &&
-        data.all_products.map((item) => (
+        data[0]?.all_products?.map((item) => (
           <ImageBackground
             key={item.id}
             source={{ uri: item.product_image }}
             style={styles.imageBackground}
           >
-            <TouchableOpacity
-              style={styles.contentContainer}
-              title="ProductPage"
-              onPress={() => handleClick(item)}
-              // onPress={() =>
-              //   navigation.navigate("ProductViewScreen", { item: item })
-              // }
-            >
-              <Pressable
-                title="Profile"
-                onPress={() => navigation.navigate("Profile", { item: item })}
-              >
-                <Image
-                  source={{
-                    uri: "https://i.pinimg.com/564x/79/3b/b3/793bb33bbce6c8d6beabc9c02c965fff.jpg",
-                  }}
-                  style={styles.contentImg}
-                />
-              </Pressable>
-              <Text style={styles.contentTitle}>{item.product_name}</Text>
-              <Text style={styles.contentText}>{item.product_colours}</Text>
-              {/* <Text numberOfLines={3} style={styles.contentText}>
+            <View style={styles.mainContainer}>
+              <View style={styles.leftSideButtonContainer}>
+                <TouchableOpacity
+                  style={styles.contentContainer}
+                  title="ProductPage"
+                  onPress={() => handleClick(item)}
+                  // onPress={() =>
+                  //   navigation.navigate("ProductViewScreen", { item: item })
+                  // }
+                >
+                  <Pressable
+                    title="Profile"
+                    onPress={() =>
+                      navigation.navigate("Profile", { item: item })
+                    }
+                  >
+                    <Image
+                      source={{
+                        uri: "https://i.pinimg.com/564x/79/3b/b3/793bb33bbce6c8d6beabc9c02c965fff.jpg",
+                      }}
+                      style={styles.contentImg}
+                    />
+                  </Pressable>
+                  <Text style={styles.contentTitle}>{item.product_name}</Text>
+                  <Text style={styles.contentText}>{item.product_colours}</Text>
+                  {/* <Text numberOfLines={3} style={styles.contentText}>
           {item.product_description}
         </Text> */}
-            </TouchableOpacity>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.rightSideButtonContainer}>
+                <TouchableOpacity style={styles.searchButton}>
+                  <Text>1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.escapeButton}>
+                  <Text>2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.addButton}>
+                  <Text>3</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </ImageBackground>
         ))}
     </>
   );
 };
 const styles = StyleSheet.create({
+  mainContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
   imageBackground: {
     resizeMode: "cover",
     overflow: "hidden",
@@ -115,11 +136,41 @@ const styles = StyleSheet.create({
   contentContainer: {
     textAlign: "center",
     opacity: 0.6,
+    paddingBottom: 35,
     paddingHorizontal: 8,
     paddingVertical: 8,
     marginTop: 400,
     marginBottom: theme.spacing.s,
     marginHorizontal: 2,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: "#000",
+  },
+  searchButton: {
+    textAlign: "center",
+    opacity: 0.6,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    marginBottom: 1,
+    marginHorizontal: 2,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: "#000",
+  },
+  escapeButton: {
+    textAlign: "center",
+    opacity: 0.6,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: "#000",
+  },
+  addButton: {
+    textAlign: "center",
+    opacity: 0.6,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
     paddingHorizontal: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     backgroundColor: "#000",
@@ -137,6 +188,14 @@ const styles = StyleSheet.create({
   },
   contentText: {
     color: "#FFF",
+  },
+  leftSideButtonContainer: {
+    width: "80%",
+  },
+  rightSideButtonContainer: {
+    width: "20%",
+    marginTop: 400,
+    justifyContent: "space-between",
   },
 });
 
