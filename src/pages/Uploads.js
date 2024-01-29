@@ -93,13 +93,22 @@ const Uploads = ({ item }) => {
                 </TouchableOpacity>
               </View>
               <View style={styles.rightSideButtonContainer}>
-                <TouchableOpacity style={styles.searchButton}>
+                <TouchableOpacity
+                  style={styles.searchButton}
+                  onPress={() => console.log({ item: item.id })}
+                >
                   <Text>1</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.escapeButton}>
+                <TouchableOpacity
+                  style={styles.escapeButton}
+                  onPress={() => console.log({ item: item.id })}
+                >
                   <Text>2</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.addButton}>
+                <TouchableOpacity
+                  style={styles.addButton}
+                  onPress={() => console.log({ item: item.id })}
+                >
                   <Text>3</Text>
                 </TouchableOpacity>
               </View>
@@ -136,43 +145,42 @@ const styles = StyleSheet.create({
   contentContainer: {
     textAlign: "center",
     opacity: 0.6,
-    paddingBottom: 35,
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-    marginTop: 400,
+    paddingHorizontal: 10,
+    paddingVertical: 40,
     marginBottom: theme.spacing.s,
     marginHorizontal: 2,
     paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+    borderRadius: 20,
     backgroundColor: "#000",
   },
   searchButton: {
-    textAlign: "center",
+    justifyContent: "center",
     opacity: 0.6,
     paddingHorizontal: 8,
-    paddingVertical: 8,
-    marginBottom: 1,
-    marginHorizontal: 2,
+    paddingVertical: 19,
     paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+    borderRadius: 12,
     backgroundColor: "#000",
   },
   escapeButton: {
     textAlign: "center",
     opacity: 0.6,
+    marginTop: -6,
     paddingHorizontal: 8,
-    paddingVertical: 8,
+    paddingVertical: 19,
     paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+    borderRadius: 12,
     backgroundColor: "#000",
   },
   addButton: {
     textAlign: "center",
     opacity: 0.6,
     paddingHorizontal: 8,
-    paddingVertical: 8,
+    marginTop: -6,
+    paddingTop: 32,
+    paddingVertical: 32,
     paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+    borderRadius: 12,
     backgroundColor: "#000",
   },
   contentImg: {
@@ -190,12 +198,13 @@ const styles = StyleSheet.create({
     color: "#FFF",
   },
   leftSideButtonContainer: {
-    width: "80%",
+    width: "85%",
+    marginTop: 390,
   },
   rightSideButtonContainer: {
-    width: "20%",
-    marginTop: 400,
-    justifyContent: "space-between",
+    width: "15%",
+    marginTop: 380,
+    justifyContent: "space-evenly",
   },
 });
 
