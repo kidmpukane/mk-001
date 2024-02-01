@@ -18,7 +18,7 @@ import { useStoreInfo } from "../hooks/useGetUserInfo";
 const Uploads = ({ item }) => {
   const navigation = useNavigation();
   const [storeInfoUrl, setStoreInfoUrl] = useState(
-    "http://192.168.18.8:3000/all_products"
+    "http://10.0.2.2:8000/api/products/all-products"
   );
 
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
@@ -31,11 +31,11 @@ const Uploads = ({ item }) => {
   } else {
     <Text>Error Couldn't Load Information</Text>;
   }
-  console.log(data ? data : "loading...");
+  // console.log(data ? data : "loading...");
 
   const handleClick = (item) => {
-    fetch("http://192.168.18.8:3000/api/products/find-nearest-neighbors", {
-      method: "POST", // or 'GET', 'PUT', 'DELETE', etc. based on your endpoint requirements
+    fetch("http://10.0.2.2:8000/api/products/find-nearest-neighbors", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,15 +48,13 @@ const Uploads = ({ item }) => {
         // Handle errors
       });
 
-    setStoreInfoUrl(
-      "http://192.168.18.8:3000/api/products/find-nearest-neighbors"
-    );
+    setStoreInfoUrl("http://10.0.2.2:8000/api/products/find-nearest-neighbors");
   };
 
   return (
     <>
       {data &&
-        data[0]?.all_products?.map((item) => (
+        data.all_products?.map((item) => (
           <ImageBackground
             key={item.id}
             source={{ uri: item.product_image }}
@@ -68,9 +66,6 @@ const Uploads = ({ item }) => {
                   style={styles.contentContainer}
                   title="ProductPage"
                   onPress={() => handleClick(item)}
-                  // onPress={() =>
-                  //   navigation.navigate("ProductViewScreen", { item: item })
-                  // }
                 >
                   <Pressable
                     title="Profile"
@@ -87,9 +82,6 @@ const Uploads = ({ item }) => {
                   </Pressable>
                   <Text style={styles.contentTitle}>{item.product_name}</Text>
                   <Text style={styles.contentText}>{item.product_colours}</Text>
-                  {/* <Text numberOfLines={3} style={styles.contentText}>
-          {item.product_description}
-        </Text> */}
                 </TouchableOpacity>
               </View>
               <View style={styles.rightSideButtonContainer}>

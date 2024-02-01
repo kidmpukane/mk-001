@@ -29,7 +29,8 @@ import { ReviewCard } from "../components/organisms/ReviewCard";
 
 function ProfileScreen() {
   const navigation = useNavigation();
-  const storeInfoUrl = "http://localhost:3000/merchants";
+  const storeInfoUrl =
+    "http://10.0.2.2:8000/api/merchant-profile/747535601913/";
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
