@@ -65,7 +65,8 @@ function ProfileScreen() {
           <CustomButton3
             style={styles.customButton}
             title="Start Shopping"
-            onPress={() => navigation.navigate("StoreDivider", { item: data })}
+            onPress={() => console.log("Start Shopping")}
+            // onPress={() => navigation.navigate("StoreDivider", { item: data })}
           />
         </View>
 
