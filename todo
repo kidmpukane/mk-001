@@ -1,0 +1,3 @@
+[]: Get the auth data and plug it into authContext
+[]: Use the graph logic and incorporate it into the authContext 
+[]: Finish the logic and secure it using Secure Store
