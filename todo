@@ -1,3 +1,5 @@
-[]: Get the auth data and plug it into authContext
+[]:Send Login information store the response (token, sessionId, 
+and userId) inside the context.
+[]: Use state management to keep track of the state of these values
 []: Use the graph logic and incorporate it into the authContext 
 []: Finish the logic and secure it using Secure Store
