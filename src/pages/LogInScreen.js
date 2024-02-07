@@ -10,26 +10,39 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
-const signUpValidationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email address").required("Required"),
+const logInValidationSchema = Yup.object().shape({
+  username: Yup.string().required("User name required"),
   password: Yup.string()
     .min(8, "Password must be between 8 to 25 characters")
     .max(25, "Password must be between 8 to 25 characters")
     .required("Required")
     .matches(/[a-z]+/, "One lowercase character")
-    .matches(/[A-Z]+/, "One uppercase character")
+    // .matches(/[A-Z]+/, "One uppercase character")
     .matches(/\d+/, "One number"),
 });
 
 const LogInScreen = (props) => (
   <Formik
-    validationSchema={signUpValidationSchema}
+    validationSchema={logInValidationSchema}
     initialValues={{
-      email: "",
+      username: "",
       password: "",
     }}
-    onSubmit={(values) => console.log(values)}
+    onSubmit={async (values) => {
+      try {
+        const response = await axios.post(
+          "http://10.0.2.2:8000/accounts/login",
+          values
+        );
+        console.log(response.data);
+        // Handle successful login (e.g., navigate to home screen)
+      } catch (error) {
+        console.error(error);
+        // Handle failed login (e.g., show error message)
+      }
+    }}
   >
     {({
       handleChange,
@@ -60,15 +73,15 @@ const LogInScreen = (props) => (
 
         <TextInput
           style={styles.input}
-          onBlur={handleBlur("email")}
-          value={values.email}
-          placeholder="E-mail"
+          onBlur={handleBlur("username")}
+          value={values.username} // Change from values.email to values.username
+          placeholder="Username" // Change from "username" to "Username"
           placeholderTextColor="white"
-          onChangeText={handleChange("email")}
+          onChangeText={handleChange("username")}
         />
 
-        {errors.email && touched.email && (
-          <Text style={styles.errorText}>{errors.email}</Text>
+        {errors.username && touched.username && (
+          <Text style={styles.errorText}>{errors.username}</Text>
         )}
 
         <TextInput
@@ -88,7 +101,7 @@ const LogInScreen = (props) => (
         <Button
           onPress={handleSubmit}
           title="Submit"
-          disabled={!isValid || values.email === ""}
+          disabled={!values.username || !values.password}
         />
       </View>
     )}
