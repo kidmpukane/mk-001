@@ -7,7 +7,7 @@ import {
   AuthenticationProvider,
   AuthenticationContext,
 } from "./src/authProviders/AuthenticationContext";
-
+import { CustomerRegistration } from "./src/pages/CustomerRegistration";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -29,7 +29,7 @@ const AppContent = () => {
   console.log("authState:", authInfo);
   console.log("sessionToken:", sessionToken);
 
-  return sessionToken ? <ApplicationStack /> : <AuthenticationStack />;
+  return sessionToken ? <CustomerRegistration /> : <AuthenticationStack />;
 };
 
 export default App;
