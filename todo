@@ -1,5 +1,7 @@
-[]:Send Login information store the response (token, sessionId, 
+[x]:Send Login information store the response (token, sessionId,
 and userId) inside the context.
-[]: Use state management to keep track of the state of these values
-[]: Use the graph logic and incorporate it into the authContext 
+[x]: Use state management to keep track of the state of these values
+[x]: Use the graph logic and incorporate it into the authContext
+[]: Add profileId to useContext
+[]: Add condition that lets user customise their profile if they have missing values.
 []: Finish the logic and secure it using Secure Store

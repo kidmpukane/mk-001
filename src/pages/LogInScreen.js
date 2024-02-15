@@ -35,21 +35,34 @@ const LogInScreen = (props) => {
       }}
       onSubmit={async (values) => {
         try {
-          // Uncomment the following lines when you have a working API endpoint
-          const response = await axios.post(
-            "http://10.0.2.2:8000/accounts/login",
-            values
+          // Fetch CSRF token from the dedicated endpoint
+          const csrfResponse = await axios.get(
+            "http://10.0.2.2:8000/accounts/csrf_cookie"
           );
-          console.log(values);
+
+          // Uncomment the following line when you have a working API endpoint
+          console.log("CSRF token:", csrfResponse.data.csrf_token);
+
+          // Make the login request with the CSRF token in the headers
+          const loginResponse = await axios.post(
+            "http://10.0.2.2:8000/accounts/login",
+            values,
+            {
+              headers: {
+                "X-CSRFToken": csrfResponse.data.csrf_token,
+              },
+            }
+          );
+
           // Update the authentication context with the new CSRF token, session ID, and user ID
           updateAuthInfo({
-            authCookie: response.data.csrf_token,
-            sessionToken: response.data.sessionid,
-            userId: response.data.user_id,
+            authCookie: loginResponse.data.csrf_token,
+            sessionToken: loginResponse.data.sessionid,
+            userId: loginResponse.data.user_id,
           });
 
           // Uncomment the following line when you have a working API endpoint
-          console.log(response.data.csrf_token);
+          console.log("Login response:", loginResponse.data);
 
           // Handle successful login (e.g., navigate to home screen)
         } catch (error) {

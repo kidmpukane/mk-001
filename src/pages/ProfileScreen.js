@@ -56,8 +56,8 @@ function ProfileScreen() {
             <View style={styles.userInfoContainer}>
               <UserInfoOrganism
                 profilePicture={data ? data.profile_picture : "Loading..."}
-                userName={data ? data.store_name : "Loading..."}
-                atName={data ? data.at_store : "Loading..."}
+                userName={data ? data.user_name : "Loading..."}
+                atName={data ? data.at_user : "Loading..."}
               />
             </View>
           </ImageBackground>
