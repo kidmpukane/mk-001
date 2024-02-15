@@ -29,7 +29,7 @@ const AppContent = () => {
   console.log("authState:", authInfo);
   console.log("sessionToken:", sessionToken);
 
-  return sessionToken ? <CustomerRegistration /> : <AuthenticationStack />;
+  return sessionToken ? <ApplicationStack /> : <AuthenticationStack />;
 };
 
 export default App;
