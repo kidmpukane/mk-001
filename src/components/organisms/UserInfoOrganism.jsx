@@ -21,7 +21,13 @@ const UserInfoOrganism = (props) => {
         </View>
 
         <View style={styles.userCardContainer}>
-          <UserCardButtons />
+          <UserCardButtons
+            customButtonTitle={props.customButtonTitle}
+            customButtonTitleTwo={props.customButtonTitleTwo}
+            customButtonOnPress={props.customButtonOnPress}
+            customButtonTwoOnPress={props.customButtonTwoOnPress}
+            smallButtonOnPress={props.smallButtonOnPress}
+          />
         </View>
       </View>
     </View>

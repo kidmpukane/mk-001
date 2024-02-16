@@ -56,40 +56,47 @@ function ProfileScreen() {
             <View style={styles.userInfoContainer}>
               <UserInfoOrganism
                 profilePicture={data ? data.profile_picture : "Loading..."}
-                userName={data ? data.user_name : "Loading..."}
+                userName="User Name"
                 atName={data ? data.at_user : "Loading..."}
+                customButtonTitle="FOLLOWERS"
+                customButtonTitleTwo="EDIT INFO"
+                smallButtonOnPress={() => console.log("Small Button Pressed")}
+                customButtonTwoOnPress={() =>
+                  navigation.navigate("UserInfoForm", { item: data.id })
+                }
+                customButtonOnPress={() => console.log("FOLLOWERS")}
               />
             </View>
           </ImageBackground>
         </View>
 
-        <View style={styles.customButtonContainer}>
+        {/* <View style={styles.customButtonContainer}>
           <CustomButton3
             style={styles.customButton}
             title="Start Shopping"
             onPress={() => console.log("Start Shopping")}
             // onPress={() => navigation.navigate("StoreDivider", { item: data })}
           />
-        </View>
+        </View> */}
 
-        <View style={styles.ourStoryContainer}>
+        {/* <View style={styles.ourStoryContainer}>
           <OurStory />
-        </View>
+        </View> */}
 
         <View style={styles.subHeadingContainer}>
           <Texts style={styles.subHeadings} texts="social media & links" />
           <SocialMediaLinkBar />
         </View>
 
-        <View style={styles.reviewCardContainer}>
+        {/* <View style={styles.reviewCardContainer}>
           <ReviewCard />
-        </View>
+        </View> */}
 
         <View>
           <Texts style={styles.subHeadings} texts="t&c's" />
           <Texts
             style={styles.copyWrightLaws}
-            texts={data ? data.store_description : "Loading..."}
+            texts={data ? data.user_bio : "Loading..."}
           />
         </View>
 
@@ -146,7 +153,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   subHeadingContainer: {
-    paddingTop: 20,
+    paddingTop: 100,
     paddingBottom: 20,
     marginHorizontal: 4,
     paddingHorizontal: 4,

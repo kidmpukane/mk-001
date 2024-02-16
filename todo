@@ -2,6 +2,7 @@
 and userId) inside the context.
 [x]: Use state management to keep track of the state of these values
 [x]: Use the graph logic and incorporate it into the authContext
-[]: Add profileId to useContext
+[]: Onclick functionality to navigate user to the edit profile form
+[]: Add Username to backend field
 []: Add condition that lets user customise their profile if they have missing values.
 []: Finish the logic and secure it using Secure Store

@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProfileScreen } from "../pages/ProfileScreen";
+import { UserInfoForm } from "../pages/UserInfoForm";
 import { PageTabNavigator } from "./PageTabNavigator";
 import React from "react";
 const Stack = createStackNavigator();
@@ -9,6 +10,7 @@ const ApplicationStack = () => {
     <Stack.Navigator>
       {/* <Stack.Screen name="MainNavigationBar" component={PageTabNavigator} /> */}
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="UserInfoForm" component={UserInfoForm} />
     </Stack.Navigator>
   );
 };
