@@ -1,8 +1,12 @@
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useLocalSearchParams } from "expo-router";
+import { AuthenticationContext } from "../authProviders/AuthenticationContext";
+import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import React from "react";
+import React, { useContext } from "react";
+import { CustomButton2 } from "../components/atoms/buttons";
+import { useNavigation } from "@react-navigation/native";
 
 const userInfoFormSchema = Yup.object().shape({
   user_name: Yup.string()
@@ -11,7 +15,7 @@ const userInfoFormSchema = Yup.object().shape({
     .required("Required"),
   user_bio: Yup.string()
     .min(3, "User Bio must be between 5 to 25 characters")
-    .max(25, "User Bio must be between 5 to 25 characters")
+    .max(500, "User Bio must be between 5 to 25 characters")
     .required("Required"),
   profile_picture: Yup.string()
     .min(3, "Profile Picture Required")
@@ -25,7 +29,8 @@ const userInfoFormSchema = Yup.object().shape({
 
 const UserInfoForm = () => {
   const { item } = useLocalSearchParams();
-
+  const { authInfo } = useContext(AuthenticationContext);
+  const navigation = useNavigation();
   return (
     <Formik
       validationSchema={userInfoFormSchema}
@@ -45,8 +50,26 @@ const UserInfoForm = () => {
         is_merchant: item.is_merchant,
         user: item.user,
       }}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={async (values) => {
+        console.log("Data being sent:", values);
+        try {
+          const response = await axios.put(
+            `http://10.0.2.2:8000/api/customer-profile-update/${item.id}/`,
+            values,
+            {
+              headers: {
+                "X-CSRFToken": authInfo.authCookie,
+                sessionId: authInfo.sessionToken,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          console.log("Success:", response.data);
+          navigation.navigate("Profile", { id: item });
+        } catch (error) {
+          console.error("Error:", error);
+        }
       }}
     >
       {({
@@ -68,11 +91,13 @@ const UserInfoForm = () => {
         >
           <Text
             style={{
-              fontSize: 26,
+              fontSize: 20,
               fontWeight: "bold",
               color: "white",
+              padding: 40,
             }}
           >
+            <Text>{JSON.stringify(errors, null, 2)}</Text>
             User Registration Screen
           </Text>
 
@@ -112,7 +137,7 @@ const UserInfoForm = () => {
             onChangeText={handleChange("background_picture")}
           />
 
-          <Button onPress={handleSubmit} title="Submit" />
+          <Button onPress={handleSubmit} title="SUBMIT" />
         </View>
       )}
     </Formik>
@@ -123,12 +148,21 @@ export { UserInfoForm };
 
 const styles = StyleSheet.create({
   input: {
-    height: 40,
+    height: 55,
     borderColor: "gray",
-    borderWidth: 1,
+    borderRadius: 25,
+    borderWidth: 2,
     color: "white",
-    marginBottom: 20,
-    padding: 10,
-    width: 200,
+    marginBottom: 30,
+    padding: 20,
+    width: 350,
+  },
+  customButton2: {
+    height: 50,
+    width: 350,
+    padding: 12,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 40,
   },
 });

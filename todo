@@ -4,6 +4,7 @@ and userId) inside the context.
 [x]: Use the graph logic and incorporate it into the authContext
 [x]: Onclick functionality to navigate user to the edit profile form
 [x]: Add Username to backend field
-[]: Complete Form
-[]: Add condition that lets user customise their profile if they have missing values.
+[x]: Complete Form
+[x]: Add condition that lets user customise their profile if they have missing values.
+[]: Add Images in react native
 []: Finish the logic and secure it using Secure Store
