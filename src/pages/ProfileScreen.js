@@ -56,13 +56,13 @@ function ProfileScreen() {
             <View style={styles.userInfoContainer}>
               <UserInfoOrganism
                 profilePicture={data ? data.profile_picture : "Loading..."}
-                userName="User Name"
+                userName={data ? data.user_name : "Loading..."}
                 atName={data ? data.at_user : "Loading..."}
                 customButtonTitle="FOLLOWERS"
                 customButtonTitleTwo="EDIT INFO"
                 smallButtonOnPress={() => console.log("Small Button Pressed")}
                 customButtonTwoOnPress={() =>
-                  navigation.navigate("UserInfoForm", { item: data.id })
+                  navigation.navigate("UserInfoForm", { item: data })
                 }
                 customButtonOnPress={() => console.log("FOLLOWERS")}
               />
