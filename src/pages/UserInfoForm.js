@@ -66,7 +66,7 @@ const UserInfoForm = () => {
           );
 
           console.log("Success:", response.data);
-          navigation.navigate("Profile", { id: item });
+          navigation.navigate("Profile");
         } catch (error) {
           console.error("Error:", error);
         }

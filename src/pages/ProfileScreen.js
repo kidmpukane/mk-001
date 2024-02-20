@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import { useContext } from "react";
 import { AuthenticationContext } from "../authProviders/AuthenticationContext.js";
+import { useFocusEffect } from "@react-navigation/native"; // Import useFocusEffect
+
+//Hooks
 import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 //Navigation
@@ -33,11 +36,18 @@ function ProfileScreen() {
   const { authInfo } = useContext(AuthenticationContext);
   const navigation = useNavigation();
   const storeInfoUrl = `http://10.0.2.2:8000/accounts/get-customer/${authInfo.userId}/`;
-  const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
+  const { isLoading, data, isError, error, refetch } =
+    useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+    }, [])
+  );
 
   if (isError) {
     return <Text>{error.message}</Text>;

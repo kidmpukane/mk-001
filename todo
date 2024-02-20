@@ -6,5 +6,7 @@ and userId) inside the context.
 [x]: Add Username to backend field
 [x]: Complete Form
 [x]: Add condition that lets user customise their profile if they have missing values.
-[]: Add Images in react native
-[]: Finish the logic and secure it using Secure Store
+[]: Add Images in react native.
+[]: Update state of new info after put request.
+[]: Add Session and token permission classes
+[]: Finish the logic and secure it using Secure.
