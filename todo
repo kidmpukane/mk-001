@@ -7,6 +7,6 @@ and userId) inside the context.
 [x]: Complete Form
 [x]: Add condition that lets user customise their profile if they have missing values.
 []: Add Images in react native.
-[]: Update state of new info after put request.
+[x]: Update state of new info after put request.
 []: Add Session and token permission classes
 []: Finish the logic and secure it using Secure.

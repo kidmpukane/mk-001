@@ -14,35 +14,28 @@ import { Headings, Texts } from "../components/atoms/headings";
 import { CustomOpacity, CustomButton2 } from "../components/atoms/buttons";
 import { useNavigation } from "@react-navigation/native";
 
-
 export default function CreateGallery() {
-
- const navigation = useNavigation(); 
+  const navigation = useNavigation();
 
   const [image, setImage] = useState(null);
 
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
-
   } = useForm({
-
     defaultValues: {
       title: "",
       subTitle: "",
       image: "",
-
     },
   });
+
   const onSubmit = (data) => console.log(data);
 
-
-  
-  const imageUploader = async (data) => {
- 
-        try {
-
+  const imageUploader = async () => {
+    try {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: false,
@@ -51,46 +44,45 @@ export default function CreateGallery() {
         quality: 1,
       });
 
-      let imageData = {
-        type: result.type,
-        uri: result.uri,
-      };
+      if (
+        result &&
+        !result.canceled &&
+        result.assets &&
+        result.assets.length > 0
+      ) {
+        let imageData = {
+          uri: result.assets[0].uri,
+        };
 
-      
-      const data = new FormData();
-      data.append("image", imageData);
-      
+        const formData = new FormData();
+        setValue("image", imageData);
 
-      console.log(imageData);
-
-      console.log(result);
-      setImage(result.uri);
+        console.log(imageData);
+        console.log(result);
+        setImage(result.assets[0].uri);
+      }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-  }
+  };
 
   return (
     <ScrollView style={styles.layout}>
       <View>
-
         {image && <Image source={{ uri: image }} style={styles.coverImage} />}
         <CustomOpacity
-        
           style={styles.imageButton}
           title="+ Add Your Stores Cover Image"
-          onPress={()=>{
-            imageUploader();
-          }}
+          onPress={imageUploader}
         />
       </View>
       <Headings style={styles.title} texts="Fill In Information" />
 
       <Texts
         style={styles.body}
-        texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
+        texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bear in mind that this is a temporary feature and will be addressed in the Beta release."
       />
-      
+
       <Controller
         control={control}
         rules={{
@@ -127,13 +119,12 @@ export default function CreateGallery() {
         name="subTitle"
       />
 
-<Headings style={styles.title} texts="Fill In Information" />
+      <Headings style={styles.title} texts="Fill In Information" />
 
-<Texts
-  style={styles.body}
-  texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
-/>
-
+      <Texts
+        style={styles.body}
+        texts="Select the images you wish to upload one at a time; they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bear in mind that this is a temporary feature and will be addressed in the Beta release."
+      />
 
       <CustomButton2
         title="Submit"
@@ -206,7 +197,6 @@ const styles = StyleSheet.create({
     color: "#D9D9D9",
   },
   coverImage: {
-
     width: "98%",
     height: 350,
     resizeMode: "cover",

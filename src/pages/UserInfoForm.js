@@ -1,29 +1,30 @@
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import React, { useContext, useState } from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Image,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import * as ImagePicker from "expo-image-picker";
+import { useFormikContext, Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
 import { useLocalSearchParams } from "expo-router";
 import { AuthenticationContext } from "../authProviders/AuthenticationContext";
-import axios from "axios";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import React, { useContext } from "react";
-import { CustomButton2 } from "../components/atoms/buttons";
-import { useNavigation } from "@react-navigation/native";
+import { CustomOpacity, CustomButton2 } from "../components/atoms/buttons";
+import { Headings, Texts } from "../components/atoms/headings";
 
 const userInfoFormSchema = Yup.object().shape({
   user_name: Yup.string()
-    .min(3, "User Name must be between 5 to 25 characters")
+    .min(5, "User Name must be between 5 to 25 characters")
     .max(25, "User Name must be between 5 to 25 characters")
     .required("Required"),
   user_bio: Yup.string()
-    .min(3, "User Bio must be between 5 to 25 characters")
-    .max(500, "User Bio must be between 5 to 25 characters")
-    .required("Required"),
-  profile_picture: Yup.string()
-    .min(3, "Profile Picture Required")
-    .max(250, "Profile Picture Required")
-    .required("Required"),
-  background_picture: Yup.string()
-    .min(3, "Background Picture Required")
-    .max(250, "Background Picture Required")
+    .min(5, "User Bio must be between 5 to 500 characters")
+    .max(500, "User Bio must be between 5 to 500 characters")
     .required("Required"),
 });
 
@@ -31,76 +32,104 @@ const UserInfoForm = () => {
   const { item } = useLocalSearchParams();
   const { authInfo } = useContext(AuthenticationContext);
   const navigation = useNavigation();
+  const [coverImage, setCoverImage] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+
+  const pickCoverImage = async (setFieldValue) => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setCoverImage(result.assets[0].uri);
+      setFieldValue("background_picture", result.assets[0].uri);
+      console.log(result);
+    }
+  };
+
+  const pickProfileImage = async (setFieldValue) => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setProfileImage(result.assets[0].uri);
+      setFieldValue("profile_picture", result.assets[0].uri);
+      console.log(result);
+    }
+  };
+
   return (
     <Formik
       validationSchema={userInfoFormSchema}
       initialValues={{
-        id: item.id,
-        user_name: item.user_name !== undefined ? item.user_name : "",
-        profile_picture: item.profile_picture ? item.profile_picture : "",
-        background_picture: item.background_picture
-          ? item.background_picture
-          : "",
-        at_user: item.at_user
-          ? item.at_user
-          : `@${
-              item.user_name !== undefined ? item.user_name.toLowerCase() : ""
-            }`,
-        user_bio: item.user_bio ? item.user_bio : "",
-        is_merchant: item.is_merchant,
-        user: item.user,
+        user_name: item.user_name || "",
+        user_bio: item.user_bio || "",
+        profile_picture: null,
+        background_picture: null,
       }}
-      onSubmit={async (values) => {
-        console.log("Data being sent:", values);
-        try {
-          const response = await axios.put(
-            `http://10.0.2.2:8000/api/customer-profile-update/${item.id}/`,
-            values,
-            {
-              headers: {
-                "X-CSRFToken": authInfo.authCookie,
-                sessionId: authInfo.sessionToken,
-                "Content-Type": "application/json",
-              },
-            }
-          );
+      onSubmit={(values) => console.log(values)}
+      //   async (values) => {
+      //   try {
+      //     const response = await axios.put(
+      //       `http://10.0.2.2:8000/api/customer-profile-update/${item.id}/`,
+      //       values,
+      //       {
+      //         headers: {
+      //           "X-CSRFToken": authInfo.authCookie,
+      //           sessionId: authInfo.sessionToken,
+      //           "Content-Type": "application/json",
+      //         },
+      //       }
+      //     );
 
-          console.log("Success:", response.data);
-          navigation.navigate("Profile");
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      }}
+      //     console.log("Success:", response.data);
+      //     navigation.navigate("Profile");
+      //   } catch (error) {
+      //     console.error("Error:", error);
+      //   }
+      // }
     >
       {({
         handleChange,
         handleBlur,
         handleSubmit,
         values,
-        isValid,
         errors,
         touched,
+        setFieldValue,
       }) => (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#1B2631",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-              color: "white",
-              padding: 40,
-            }}
-          >
-            <Text>{JSON.stringify(errors, null, 2)}</Text>
-            User Registration Screen
-          </Text>
+        <ScrollView style={styles.layout}>
+          <Headings style={styles.title} texts="Fill In Information" />
+          <Texts style={styles.body} texts={JSON.stringify(errors, null, 2)} />
 
+          <View>
+            {coverImage && (
+              <Image source={{ uri: coverImage }} style={styles.coverImage} />
+            )}
+            <CustomOpacity
+              style={styles.imageButton}
+              title="+ Add Cover Image"
+              onPress={() => pickCoverImage(setFieldValue)}
+            />
+          </View>
+          <View>
+            {profileImage && (
+              <Image source={{ uri: profileImage }} style={styles.coverImage} />
+            )}
+            <CustomOpacity
+              style={styles.imageButton2}
+              title="+ Add Profile Image"
+              onPress={() => pickProfileImage(setFieldValue)}
+            />
+          </View>
+          <Texts style={styles.body} texts="USER NAME" />
           <TextInput
             style={styles.input}
             onBlur={handleBlur("user_name")}
@@ -109,9 +138,10 @@ const UserInfoForm = () => {
             placeholderTextColor="white"
             onChangeText={handleChange("user_name")}
           />
-
+          <Texts style={styles.body} texts="BIO" />
           <TextInput
-            style={styles.input}
+            multiline
+            style={styles.bioInput}
             onBlur={handleBlur("user_bio")}
             value={values.user_bio}
             placeholder="User Bio"
@@ -119,26 +149,12 @@ const UserInfoForm = () => {
             onChangeText={handleChange("user_bio")}
           />
 
-          <TextInput
-            style={styles.input}
-            onBlur={handleBlur("profile_picture")}
-            value={values.profile_picture}
-            placeholder="Profile Picture"
-            placeholderTextColor="white"
-            onChangeText={handleChange("profile_picture")}
+          <CustomButton2
+            style={styles.customSubmitButton}
+            onPress={handleSubmit}
+            title="SUBMIT"
           />
-
-          <TextInput
-            style={styles.input}
-            onBlur={handleBlur("background_picture")}
-            value={values.background_picture}
-            placeholder="Background Picture"
-            placeholderTextColor="white"
-            onChangeText={handleChange("background_picture")}
-          />
-
-          <Button onPress={handleSubmit} title="SUBMIT" />
-        </View>
+        </ScrollView>
       )}
     </Formik>
   );
@@ -147,15 +163,96 @@ const UserInfoForm = () => {
 export { UserInfoForm };
 
 const styles = StyleSheet.create({
+  layout: {
+    backgroundColor: "#292929",
+  },
+  imageButton: {
+    padding: 100,
+    alignItems: "center",
+    backgroundColor: "#3D3D3D",
+    borderRadius: 30,
+    marginTop: 30,
+    marginHorizontal: 8,
+    paddingHorizontal: 6,
+  },
+  imageButton2: {
+    width: 80,
+    height: 80,
+    alignItems: "center",
+    backgroundColor: "#3D3D3D",
+    borderRadius: 10,
+    marginTop: -20,
+    marginHorizontal: 8,
+    paddingHorizontal: 6,
+  },
+
+  customButton: {
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
   input: {
-    height: 55,
-    borderColor: "gray",
-    borderRadius: 25,
-    borderWidth: 2,
+    backgroundColor: "#292929",
+    borderWidth: 3,
+    borderColor: "#777575",
+    borderRadius: 150,
+    marginHorizontal: 6,
+    paddingHorizontal: 25,
+    margin: 10,
+    padding: 12,
     color: "white",
-    marginBottom: 30,
-    padding: 20,
-    width: 350,
+    fontSize: 18,
+  },
+  bioInput: {
+    textAlignVertical: "top",
+    backgroundColor: "#292929",
+    borderColor: "#777575",
+    color: "white",
+    borderWidth: 3,
+    borderRadius: 20,
+    marginHorizontal: 6,
+    paddingHorizontal: 25,
+    margin: 10,
+    padding: 12,
+    paddingTop: 30,
+    height: 250,
+    fontSize: 18,
+  },
+  customSubmitButton: {
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
+  title: {
+    margin: 24,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#D9D9D9",
+  },
+  body: {
+    margin: 15,
+    fontSize: 15,
+    color: "#D9D9D9",
+  },
+  coverImage: {
+    width: "98%",
+    height: 350,
+    resizeMode: "cover",
+    overflow: "hidden",
+    marginBottom: 20,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+    borderRadius: 50,
+    justifyContent: "center",
   },
   customButton2: {
     height: 50,

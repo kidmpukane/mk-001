@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProfileScreen } from "../pages/ProfileScreen";
 import { UserInfoForm } from "../pages/UserInfoForm";
+import CreateGallery from "../pages/CreateGallery";
 import { PageTabNavigator } from "./PageTabNavigator";
 import React from "react";
 const Stack = createStackNavigator();
@@ -11,6 +12,7 @@ const ApplicationStack = () => {
       {/* <Stack.Screen name="MainNavigationBar" component={PageTabNavigator} /> */}
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="UserInfoForm" component={UserInfoForm} />
+      <Stack.Screen name="CreateGallery" component={CreateGallery} />
     </Stack.Navigator>
   );
 };
@@ -21,7 +23,7 @@ export { ApplicationStack };
   /* 
           <Stack.Screen name="CreateStore" component={CreateStore} />
           <Stack.Screen name="CreateCollection" component={CreateCollection} />
-          <Stack.Screen name="CreateGallery" component={CreateGallery} />
+
           <Stack.Screen name="ProductUpload" component={ProductUpload} />
           <Stack.Screen name="ProductViewScreen" component={ProductViewScreen}/>
           <Stack.Screen name="Testmol" component={Testmol} />

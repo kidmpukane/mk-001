@@ -35,7 +35,7 @@ import { ReviewCard } from "../components/organisms/ReviewCard";
 function ProfileScreen() {
   const { authInfo } = useContext(AuthenticationContext);
   const navigation = useNavigation();
-  const storeInfoUrl = `http://10.0.2.2:8000/accounts/get-customer/${authInfo.userId}/`;
+  const storeInfoUrl = `http://10.0.2.2:8000/accounts/get-customer/${authInfo?.userId}/`;
   const { isLoading, data, isError, error, refetch } =
     useStoreInfo(storeInfoUrl);
 
@@ -43,11 +43,11 @@ function ProfileScreen() {
     return <Text>Loading...</Text>;
   }
 
-  useFocusEffect(
-    React.useCallback(() => {
-      refetch();
-    }, [])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     refetch();
+  //   }, [refetch])
+  // );
 
   if (isError) {
     return <Text>{error.message}</Text>;
@@ -74,7 +74,9 @@ function ProfileScreen() {
                 customButtonTwoOnPress={() =>
                   navigation.navigate("UserInfoForm", { item: data })
                 }
-                customButtonOnPress={() => console.log("FOLLOWERS")}
+                customButtonOnPress={() =>
+                  navigation.navigate("CreateGallery", { item: data })
+                }
               />
             </View>
           </ImageBackground>
