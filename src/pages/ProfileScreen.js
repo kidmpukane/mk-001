@@ -7,7 +7,7 @@ import {
   Button,
   StyleSheet,
 } from "react-native";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthenticationContext } from "../authProviders/AuthenticationContext.js";
 import { useFocusEffect } from "@react-navigation/native"; // Import useFocusEffect
 
@@ -43,12 +43,26 @@ function ProfileScreen() {
     return <Text>Loading...</Text>;
   }
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     refetch();
-  //   }, [refetch])
-  // );
+  // State to track whether UserInfoForm is submitted
+  const [userInfoFormSubmitted, setUserInfoFormSubmitted] = useState(false);
 
+  useEffect(() => {
+    // Check if UserInfoForm is submitted, then trigger refetch
+    if (userInfoFormSubmitted) {
+      refetch();
+      // Reset the state so that it doesn't refetch on every render
+      setUserInfoFormSubmitted(false);
+    }
+  }, [userInfoFormSubmitted, refetch]);
+
+  // Only use useFocusEffect when UserInfoForm is submitted
+  useFocusEffect(
+    React.useCallback(() => {
+      if (userInfoFormSubmitted) {
+        refetch();
+      }
+    }, [userInfoFormSubmitted, refetch])
+  );
   if (isError) {
     return <Text>{error.message}</Text>;
   }
@@ -60,12 +74,20 @@ function ProfileScreen() {
       <ScrollView style={styles.profileScrollViewContainer}>
         <View style={styles.profileScreenContainer}>
           <ImageBackground
-            source={{ uri: data ? data.background_picture : "Loading..." }}
+            source={{
+              uri: data
+                ? `http://10.0.2.2:8000/${data.background_picture}`
+                : "Loading...",
+            }}
             style={styles.profileBackGroundImageContainer}
           >
             <View style={styles.userInfoContainer}>
               <UserInfoOrganism
-                profilePicture={data ? data.profile_picture : "Loading..."}
+                profilePicture={
+                  data
+                    ? `http://10.0.2.2:8000/${data.profile_picture}`
+                    : "Loading..."
+                }
                 userName={data ? data.user_name : "Loading..."}
                 atName={data ? data.at_user : "Loading..."}
                 customButtonTitle="FOLLOWERS"

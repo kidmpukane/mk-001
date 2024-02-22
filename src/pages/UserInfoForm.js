@@ -69,32 +69,66 @@ const UserInfoForm = () => {
     <Formik
       validationSchema={userInfoFormSchema}
       initialValues={{
+        id: item.id,
+        at_user: item.at_user,
         user_name: item.user_name || "",
         user_bio: item.user_bio || "",
         profile_picture: null,
         background_picture: null,
       }}
-      onSubmit={(values) => console.log(values)}
-      //   async (values) => {
-      //   try {
-      //     const response = await axios.put(
-      //       `http://10.0.2.2:8000/api/customer-profile-update/${item.id}/`,
-      //       values,
-      //       {
-      //         headers: {
-      //           "X-CSRFToken": authInfo.authCookie,
-      //           sessionId: authInfo.sessionToken,
-      //           "Content-Type": "application/json",
-      //         },
-      //       }
-      //     );
+      onSubmit={async (values) => {
+        try {
+          const formData = new FormData();
 
-      //     console.log("Success:", response.data);
-      //     navigation.navigate("Profile");
-      //   } catch (error) {
-      //     console.error("Error:", error);
-      //   }
-      // }
+          formData.append("id", values.id);
+          formData.append("at_user", values.at_user);
+          formData.append("user_name", values.user_name);
+          formData.append("user_bio", values.user_bio);
+
+          // Check if background_picture is not null
+          if (values.background_picture) {
+            const backgroundPictureUri = values.background_picture;
+            const backgroundPictureName = backgroundPictureUri.split("/").pop();
+            const backgroundPictureType = "image/jpeg"; // Adjust the type based on your requirements
+
+            formData.append("background_picture", {
+              uri: backgroundPictureUri,
+              name: backgroundPictureName,
+              type: backgroundPictureType,
+            });
+          }
+
+          // Check if profile_picture is not null
+          if (values.profile_picture) {
+            const profilePictureUri = values.profile_picture;
+            const profilePictureName = profilePictureUri.split("/").pop();
+            const profilePictureType = "image/jpeg"; // Adjust the type based on your requirements
+
+            formData.append("profile_picture", {
+              uri: profilePictureUri,
+              name: profilePictureName,
+              type: profilePictureType,
+            });
+          }
+
+          const response = await axios.put(
+            `http://10.0.2.2:8000/api/customer-profile-update/${values.id}/`,
+            formData,
+            {
+              headers: {
+                "X-CSRFToken": authInfo.authCookie,
+                sessionId: authInfo.sessionToken,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+
+          console.log("Success:", response.data);
+          navigation.navigate("Profile");
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }}
     >
       {({
         handleChange,
