@@ -6,7 +6,17 @@ and userId) inside the context.
 [x]: Add Username to backend field
 [x]: Complete Form
 [x]: Add condition that lets user customise their profile if they have missing values.
-[]: Add Images in react native.
+[x]: Add Images in react native.
 [x]: Update state of new info after put request.
+[x]: Intergate front and backend image upload
+[]: Fix authority to check if user is merchant or customer
+[]: Create Store Form
+[]: Create Collection Form
+[]: Create Gallery Form
+[]: Create Product Upload
+[]: Create User Collections
+[]: Fix User Registration for Customers
+[]: Fix User Registration for Merchants
 []: Add Session and token permission classes
+[]: Fix the hook refetching bug
 []: Finish the logic and secure it using Secure.
