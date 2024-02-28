@@ -7,6 +7,7 @@ export const AuthenticationProvider = ({ children }) => {
     authCookie: null,
     sessionToken: null,
     userId: null,
+    isMerchant: false,
   });
 
   const updateAuthInfo = (newAuthInfo) => {

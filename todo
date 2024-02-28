@@ -9,7 +9,8 @@ and userId) inside the context.
 [x]: Add Images in react native.
 [x]: Update state of new info after put request.
 [x]: Intergate front and backend image upload
-[]: Fix authority to check if user is merchant or customer
+[x]: Is Merchant bug
+[x]: Fix authority to check if user is merchant or customer
 []: Create Store Form
 []: Create Collection Form
 []: Create Gallery Form

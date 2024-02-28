@@ -36,7 +36,9 @@ function ProfileScreen() {
   const { authInfo } = useContext(AuthenticationContext);
   const navigation = useNavigation();
   const [userInfoFormSubmitted, setUserInfoFormSubmitted] = useState(false);
-  const storeInfoUrl = `http://10.0.2.2:8000/accounts/get-customer/${authInfo?.userId}/`;
+  const storeInfoUrl = `http://10.0.2.2:8000/accounts/get-${
+    authInfo.isMerchant == true ? "merchant" : "customer"
+  }/${authInfo?.userId}/`;
   const { isLoading, data, isError, error, refetch } =
     useStoreInfo(storeInfoUrl);
 
@@ -63,15 +65,19 @@ function ProfileScreen() {
   }
 
   console.log(data ? data : error.message);
-  console.log(data ? data.is_merchant : "Unidentified???");
+  console.log(
+    data && data.length > 0 ? data[0].is_merchant : "Unidentified???"
+  );
+  const responseData = data && data.length > 0 ? data[0] : null;
+
   return (
     <View>
       <ScrollView style={styles.profileScrollViewContainer}>
         <View style={styles.profileScreenContainer}>
           <ImageBackground
             source={{
-              uri: data
-                ? `http://10.0.2.2:8000/${data.background_picture}`
+              uri: responseData
+                ? `http://10.0.2.2:8000/${responseData.background_picture}`
                 : "Loading...",
             }}
             style={styles.profileBackGroundImageContainer}
@@ -79,27 +85,27 @@ function ProfileScreen() {
             <View style={styles.userInfoContainer}>
               <UserInfoOrganism
                 profilePicture={
-                  data
-                    ? `http://10.0.2.2:8000/${data.profile_picture}`
+                  responseData
+                    ? `http://10.0.2.2:8000/${responseData.profile_picture}`
                     : "Loading..."
                 }
-                userName={data ? data.user_name : "Loading..."}
-                atName={data ? data.at_user : "Loading..."}
+                userName={responseData ? responseData.user_name : "Loading..."}
+                atName={responseData ? responseData.at_user : "Loading..."}
                 customButtonTitle="FOLLOWERS"
                 customButtonTitleTwo="EDIT INFO"
                 smallButtonOnPress={() => console.log("Small Button Pressed")}
                 customButtonTwoOnPress={() =>
-                  navigation.navigate("UserInfoForm", { item: data })
+                  navigation.navigate("UserInfoForm", { item: responseData })
                 }
                 customButtonOnPress={() =>
-                  navigation.navigate("CreateGallery", { item: data })
+                  navigation.navigate("CreateGallery", { item: responseData })
                 }
               />
             </View>
           </ImageBackground>
         </View>
 
-        {data.is_merchant == true ? (
+        {responseData && responseData.is_merchant === true ? (
           <View style={styles.customButtonContainer}>
             <CustomButton3
               style={styles.customButton}
@@ -114,16 +120,16 @@ function ProfileScreen() {
           <OurStory />
         </View> */}
 
-        {/* <View style={styles.subHeadingContainer}>
+        <View style={styles.subHeadingContainer}>
           <Texts style={styles.subHeadings} texts="social media & links" />
           <SocialMediaLinkBar />
-        </View> */}
+        </View>
 
-        {/* <View style={styles.reviewCardContainer}>
+        <View style={styles.reviewCardContainer}>
           <ReviewCard />
-        </View> */}
+        </View>
 
-        {/* <View style={styles.copyWrightLaws2Container}>
+        <View style={styles.copyWrightLaws2Container}>
           <Texts
             style={styles.copyWrightLaws2}
             texts={data ? data.store_title : "Loading.."}
@@ -133,7 +139,7 @@ function ProfileScreen() {
             style={styles.copyWrightLaws2}
             texts={data ? data.store_owner : "Loading..."}
           />
-        </View> */}
+        </View>
       </ScrollView>
     </View>
   );
@@ -160,10 +166,10 @@ const styles = StyleSheet.create({
   },
   customButtonContainer: {
     width: "100%",
-    paddingTop: 120,
+    paddingTop: -2000,
   },
   customButton: {
-    marginTop: 10,
+    paddingTop: 200,
     marginHorizontal: 4,
     paddingHorizontal: 4,
   },

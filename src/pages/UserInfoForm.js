@@ -112,7 +112,9 @@ const UserInfoForm = () => {
           }
 
           const response = await axios.put(
-            `http://10.0.2.2:8000/api/customer-profile-update/${values.id}/`,
+            `http://10.0.2.2:8000/api/${
+              item.is_merchant == true ? "merchant" : "customer"
+            }-profile-update/${values.id}/`,
             formData,
             {
               headers: {

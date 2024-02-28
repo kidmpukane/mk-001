@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import axios from "axios";
 
 const logInValidationSchema = Yup.object().shape({
-  username: Yup.string().required("User name required"),
+  email: Yup.string().email("Invalid email address").required("Required"),
   password: Yup.string()
     .min(8, "Password must be between 8 to 25 characters")
     .max(25, "Password must be between 8 to 25 characters")
@@ -31,7 +31,7 @@ const LogInScreen = (props) => {
       validationSchema={logInValidationSchema}
       initialValues={{
         username: "",
-        password: "",
+        email: "",
       }}
       onSubmit={async (values) => {
         try {
@@ -59,6 +59,7 @@ const LogInScreen = (props) => {
             authCookie: loginResponse.data.csrf_token,
             sessionToken: loginResponse.data.sessionid,
             userId: loginResponse.data.user_id,
+            isMerchant: loginResponse.data.is_merchant,
           });
 
           // Uncomment the following line when you have a working API endpoint
@@ -85,22 +86,22 @@ const LogInScreen = (props) => {
 
           <TextInput
             style={styles.input}
-            onBlur={handleBlur("username")}
-            value={values.username}
-            placeholder="Username"
+            onBlur={handleBlur("email")}
+            value={values.email}
+            placeholder="e-mail"
             placeholderTextColor="white"
-            onChangeText={handleChange("username")}
+            onChangeText={handleChange("email")}
           />
 
-          {errors.username && touched.username && (
-            <Text style={styles.errorText}>{errors.username}</Text>
+          {errors.email && touched.email && (
+            <Text style={styles.errorText}>{errors.email}</Text>
           )}
 
           <TextInput
             style={styles.input}
             onBlur={handleBlur("password")}
             value={values.password}
-            placeholder="Password"
+            placeholder="password"
             secureTextEntry={true}
             placeholderTextColor="white"
             onChangeText={handleChange("password")}
@@ -113,7 +114,7 @@ const LogInScreen = (props) => {
           <Button
             onPress={handleSubmit}
             title="Submit"
-            disabled={!values.username || !values.password}
+            disabled={!values.email || !values.password}
           />
         </View>
       )}
