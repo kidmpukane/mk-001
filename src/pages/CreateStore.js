@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useContext } from "react";
 import {
   Image,
   TouchableOpacity,
@@ -13,36 +14,58 @@ import { useForm, Controller } from "react-hook-form";
 import { Headings, Texts } from "../components/atoms/headings";
 import { CustomOpacity, CustomButton2 } from "../components/atoms/buttons";
 import { useNavigation } from "@react-navigation/native";
+import { useLocalSearchParams } from "expo-router";
+import { AuthenticationContext } from "../authProviders/AuthenticationContext";
 
-
-export default function CreateStore() {
-
- const navigation = useNavigation(); 
-
+const CreateStore = () => {
+  const { item } = useLocalSearchParams();
+  const navigation = useNavigation();
   const [image, setImage] = useState(null);
+  const { authInfo } = useContext(AuthenticationContext);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-
   } = useForm({
-
     defaultValues: {
-      title: "",
-      description: "",
-      image: "",
-
+      store_name: null,
+      store_description: null,
+      store_image: null,
+      merchant_id: item.id,
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const formData = new FormData();
 
+      // Add your form data fields to the formData object
+      formData.append("store_name", data.store_name);
+      formData.append("store_description", data.store_description);
+      formData.append("store_image", data.store_image);
 
-  
+      // Add any other fields as needed
+
+      const response = await axios.post(
+        "http://10.0.2.2:8000/api/register-new-store/",
+        formData,
+        {
+          headers: {
+            "X-CSRFToken": authInfo.authCookie,
+            sessionId: authInfo.sessionToken,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Success:", response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const imageUploader = async (data) => {
- 
-        try {
-
+    try {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: false,
@@ -56,10 +79,8 @@ export default function CreateStore() {
         uri: result.uri,
       };
 
-      
       const data = new FormData();
       data.append("image", imageData);
-      
 
       console.log(imageData);
 
@@ -68,18 +89,16 @@ export default function CreateStore() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <ScrollView style={styles.layout}>
       <View>
-
         {image && <Image source={{ uri: image }} style={styles.coverImage} />}
         <CustomOpacity
-        
           style={styles.imageButton}
           title="+ Add Your Stores Cover Image"
-          onPress={()=>{
+          onPress={() => {
             imageUploader();
           }}
         />
@@ -90,7 +109,7 @@ export default function CreateStore() {
         style={styles.body}
         texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
       />
-      
+
       <Controller
         control={control}
         rules={{
@@ -98,7 +117,7 @@ export default function CreateStore() {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            placeholder="Title"
+            placeholder="Store Name"
             placeholderTextColor="white"
             style={styles.input}
             onBlur={onBlur}
@@ -106,7 +125,7 @@ export default function CreateStore() {
             value={value}
           />
         )}
-        name="title"
+        name="store_name"
       />
 
       <Controller
@@ -116,7 +135,7 @@ export default function CreateStore() {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            placeholder="Description"
+            placeholder="Store Description"
             placeholderTextColor="white"
             style={styles.input}
             onBlur={onBlur}
@@ -124,31 +143,32 @@ export default function CreateStore() {
             value={value}
           />
         )}
-        name="description"
+        name="store_description"
       />
 
-<Headings style={styles.title} texts="Fill In Information" />
+      <Headings style={styles.title} texts="Fill In Information" />
 
-<Texts
-  style={styles.body}
-  texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
-/>
+      <Texts
+        style={styles.body}
+        texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
+      />
 
+      <CustomButton2
+        title="SKIP"
+        style={styles.customSubmitButton}
+        onPress={() => navigation.navigate("Profile")}
+      />
 
       <CustomButton2
         title="Submit"
         style={styles.customSubmitButton}
         onPress={handleSubmit(onSubmit)}
       />
-
-      <CustomButton2
-        title="Navigation For Testing"
-        style={styles.customSubmitButton}
-        onPress={() =>  navigation.navigate("CreateCollection")}
-      />
     </ScrollView>
   );
-}
+};
+
+export default CreateStore;
 
 const styles = StyleSheet.create({
   layout: {
@@ -206,7 +226,6 @@ const styles = StyleSheet.create({
     color: "#D9D9D9",
   },
   coverImage: {
-
     width: "98%",
     height: 350,
     resizeMode: "cover",

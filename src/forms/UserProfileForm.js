@@ -205,7 +205,9 @@ function UserProfileForm() {
           />
           <CustomButton2
             style={styles.customSubmitButton}
-            onPress={() => console.log("Skip")}
+            onPress={() =>
+              navigation.navigate("CreateStore", { item: responseData })
+            }
             title="SKIP"
           />
           <CustomButton2
