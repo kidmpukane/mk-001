@@ -55,7 +55,7 @@ const RegistrationScreen = (props) => {
 
           // Make the login request with the CSRF token in the headers
           const registrationResponse = await axios.post(
-            "http://10.0.2.2:8000/accounts/login",
+            "http://10.0.2.2:8000/accounts/register",
             values,
             {
               headers: {
@@ -74,8 +74,9 @@ const RegistrationScreen = (props) => {
 
           // Uncomment the following line when you have a working API endpoint
           console.log("Registration Response:", registrationResponse.data);
-
-          // Handle successful login (e.g., navigate to home screen)
+          navigation.navigate("UserProfileFormScreen", {
+            item: registrationResponse.data,
+          });
         } catch (error) {
           console.error(error);
           // Handle failed login (e.g., show error message)
