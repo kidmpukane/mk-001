@@ -9,7 +9,7 @@ const AuthenticationStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="LogInScreen" component={LogInScreen} />
-      {/* <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} /> */}
+      <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
     </Stack.Navigator>
   );
 };

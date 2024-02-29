@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthenticationContext } from "../authProviders/AuthenticationContext";
+import { useNavigation } from "@react-navigation/native";
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,6 +26,7 @@ const logInValidationSchema = Yup.object().shape({
 
 const LogInScreen = (props) => {
   const { authInfo, updateAuthInfo } = useContext(AuthenticationContext);
+  const navigation = useNavigation();
 
   return (
     <Formik
@@ -115,6 +117,10 @@ const LogInScreen = (props) => {
             onPress={handleSubmit}
             title="Submit"
             disabled={!values.email || !values.password}
+          />
+          <Button
+            onPress={() => navigation.navigate("RegistrationScreen")}
+            title="Don't Have An Account YET?"
           />
         </View>
       )}
