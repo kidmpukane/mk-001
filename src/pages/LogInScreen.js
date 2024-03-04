@@ -176,8 +176,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#0C0404",
   },
   container: {
-    marginTop: 200,
-    padding: 10,
+    marginTop: 180,
+    padding: 15,
   },
   buttonContainer: {
     paddingTop: 50,

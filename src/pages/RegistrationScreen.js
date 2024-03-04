@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: 100,
-    padding: 10,
+    padding: 15,
   },
   authErrorText: {
     fontSize: 16,

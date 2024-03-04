@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
   Image,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import { AuthenticationContext } from "../authProviders/AuthenticationContext.js";
@@ -165,7 +166,11 @@ function UserProfileForm() {
 
           <View>
             {coverImage && (
-              <Image source={{ uri: coverImage }} style={styles.coverImage} />
+              <TouchableWithoutFeedback
+                onPress={() => pickCoverImage(setFieldValue)}
+              >
+                <Image source={{ uri: coverImage }} style={styles.coverImage} />
+              </TouchableWithoutFeedback>
             )}
             {!coverImage && (
               <CustomOpacity
@@ -177,13 +182,22 @@ function UserProfileForm() {
           </View>
           <View>
             {profileImage && (
-              <Image source={{ uri: profileImage }} style={styles.coverImage} />
+              <TouchableWithoutFeedback
+                onPress={() => pickProfileImage(setFieldValue)}
+              >
+                <Image
+                  source={{ uri: profileImage }}
+                  style={styles.profileImage}
+                />
+              </TouchableWithoutFeedback>
             )}
-            <CustomOpacity
-              style={styles.imageButton2}
-              title="+ Add Profile Image"
-              onPress={() => pickProfileImage(setFieldValue)}
-            />
+            {!profileImage && (
+              <CustomOpacity
+                style={styles.imageButton2}
+                title="+ Add Profile Image"
+                onPress={() => pickProfileImage(setFieldValue)}
+              />
+            )}
           </View>
           <TextInput
             style={styles.input}
@@ -223,6 +237,7 @@ function UserProfileForm() {
 const styles = StyleSheet.create({
   layout: {
     backgroundColor: "#0C0404",
+    padding: 15,
   },
   imageButton: {
     padding: 100,
@@ -240,9 +255,9 @@ const styles = StyleSheet.create({
     height: 80,
     alignItems: "center",
     borderRadius: 10,
-    marginTop: -20,
+    marginTop: -120,
     marginHorizontal: 8,
-    paddingHorizontal: 6,
+    marginLeft: 16,
     backgroundColor: "#0C0404",
     borderWidth: 3,
     borderColor: "#777575",
@@ -295,7 +310,7 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: 24,
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#D9D9D9",
   },
@@ -305,23 +320,28 @@ const styles = StyleSheet.create({
     color: "#D9D9D9",
   },
   coverImage: {
-    width: "98%",
-    height: 350,
+    width: "100%",
+    height: 250,
     resizeMode: "cover",
     overflow: "hidden",
     marginBottom: 20,
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
-    borderRadius: 50,
+    borderRadius: 20,
     justifyContent: "center",
   },
-  customButton2: {
-    height: 50,
-    width: 350,
-    padding: 12,
+  profileImage: {
+    width: 80,
+    height: 80,
     alignItems: "center",
-    backgroundColor: "#D9D9D9",
-    borderRadius: 40,
+    borderRadius: 15,
+    marginTop: -120,
+    marginHorizontal: 8,
+    paddingHorizontal: 6,
+    resizeMode: "cover",
+    overflow: "hidden",
+    marginBottom: 20,
+    justifyContent: "center",
+    borderWidth: 4,
+    borderColor: "#0C0404",
   },
 });
 

@@ -172,28 +172,23 @@ export default CreateStore;
 
 const styles = StyleSheet.create({
   layout: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
+    padding: 15,
   },
   imageButton: {
-    padding: 100,
+    padding: 10,
     alignItems: "center",
-    backgroundColor: "#3D3D3D",
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
     borderRadius: 30,
     marginTop: 30,
     marginHorizontal: 8,
     paddingHorizontal: 6,
   },
-  customButton: {
-    padding: 18,
-    alignItems: "center",
-    backgroundColor: "#D9D9D9",
-    borderRadius: 30,
 
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
-  },
   input: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
     borderWidth: 3,
     borderColor: "#777575",
     borderRadius: 150,
@@ -202,8 +197,9 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 12,
     color: "white",
-    fontSize: 15,
+    fontSize: 18,
   },
+
   customSubmitButton: {
     marginTop: 20,
     marginBottom: 20,
@@ -216,24 +212,22 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: 24,
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#D9D9D9",
   },
   body: {
-    margin: 24,
-    fontSize: 12,
+    margin: 15,
+    fontSize: 15,
     color: "#D9D9D9",
   },
   coverImage: {
-    width: "98%",
-    height: 350,
+    width: "100%",
+    height: 250,
     resizeMode: "cover",
     overflow: "hidden",
     marginBottom: 20,
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
-    borderRadius: 50,
+    borderRadius: 20,
     justifyContent: "center",
   },
 });
