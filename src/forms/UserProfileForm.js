@@ -162,17 +162,18 @@ function UserProfileForm() {
       }) => (
         <ScrollView style={styles.layout}>
           <Headings style={styles.title} texts="Fill In Information" />
-          <Texts style={styles.body} texts={JSON.stringify(errors, null, 2)} />
 
           <View>
             {coverImage && (
               <Image source={{ uri: coverImage }} style={styles.coverImage} />
             )}
-            <CustomOpacity
-              style={styles.imageButton}
-              title="+ Add Cover Image"
-              onPress={() => pickCoverImage(setFieldValue)}
-            />
+            {!coverImage && (
+              <CustomOpacity
+                style={styles.imageButton}
+                title="+ Add Cover Image"
+                onPress={() => pickCoverImage(setFieldValue)}
+              />
+            )}
           </View>
           <View>
             {profileImage && (
@@ -184,22 +185,20 @@ function UserProfileForm() {
               onPress={() => pickProfileImage(setFieldValue)}
             />
           </View>
-          <Texts style={styles.body} texts="USER NAME" />
           <TextInput
             style={styles.input}
             onBlur={handleBlur("user_name")}
             value={values.user_name}
-            placeholder="User Name"
+            placeholder="user name"
             placeholderTextColor="white"
             onChangeText={handleChange("user_name")}
           />
-          <Texts style={styles.body} texts="BIO" />
           <TextInput
             multiline
             style={styles.bioInput}
             onBlur={handleBlur("user_bio")}
             value={values.user_bio}
-            placeholder="User Bio"
+            placeholder="user bio"
             placeholderTextColor="white"
             onChangeText={handleChange("user_bio")}
           />
@@ -223,12 +222,14 @@ function UserProfileForm() {
 
 const styles = StyleSheet.create({
   layout: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
   },
   imageButton: {
     padding: 100,
     alignItems: "center",
-    backgroundColor: "#3D3D3D",
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
     borderRadius: 30,
     marginTop: 30,
     marginHorizontal: 8,
@@ -238,11 +239,13 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     alignItems: "center",
-    backgroundColor: "#3D3D3D",
     borderRadius: 10,
     marginTop: -20,
     marginHorizontal: 8,
     paddingHorizontal: 6,
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
   },
 
   customButton: {
@@ -250,12 +253,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#D9D9D9",
     borderRadius: 30,
-
     marginHorizontal: 4,
     paddingHorizontal: 4,
   },
   input: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
     borderWidth: 3,
     borderColor: "#777575",
     borderRadius: 150,
@@ -268,7 +270,7 @@ const styles = StyleSheet.create({
   },
   bioInput: {
     textAlignVertical: "top",
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
     borderColor: "#777575",
     color: "white",
     borderWidth: 3,

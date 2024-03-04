@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { Headings, Texts } from "../components/atoms/headings";
+import { CustomOpacity, CustomButton2 } from "../components/atoms/buttons";
 import { AuthenticationContext } from "../authProviders/AuthenticationContext";
 import { useNavigation } from "@react-navigation/native";
 import {
   SafeAreaView,
   StyleSheet,
+  ScrollView,
   View,
   Text,
   TextInput,
@@ -21,143 +24,208 @@ const logInValidationSchema = Yup.object().shape({
     .max(25, "Password must be between 8 to 25 characters")
     .required("Required")
     .matches(/[a-z]+/, "One lowercase character")
+    .matches(/[A-Z]+/, "One uppercase character")
     .matches(/\d+/, "One number"),
 });
 
 const LogInScreen = (props) => {
   const { authInfo, updateAuthInfo } = useContext(AuthenticationContext);
+  const [backendError, setBackendError] = useState("");
   const navigation = useNavigation();
 
   return (
-    <Formik
-      validationSchema={logInValidationSchema}
-      initialValues={{
-        username: "",
-        email: "",
-      }}
-      onSubmit={async (values) => {
-        try {
-          // Fetch CSRF token from the dedicated endpoint
-          const csrfResponse = await axios.get(
-            "http://10.0.2.2:8000/accounts/csrf_cookie"
-          );
+    <ScrollView style={styles.layout}>
+      <Formik
+        validationSchema={logInValidationSchema}
+        initialValues={{
+          username: "",
+          email: "",
+        }}
+        onSubmit={async (values) => {
+          try {
+            // Fetch CSRF token from the dedicated endpoint
+            const csrfResponse = await axios.get(
+              "http://10.0.2.2:8000/accounts/csrf_cookie"
+            );
 
-          // Uncomment the following line when you have a working API endpoint
-          console.log("CSRF token:", csrfResponse.data.csrf_token);
+            // Log CSRF token for debugging
+            console.log("CSRF token:", csrfResponse.data.csrf_token);
 
-          // Make the login request with the CSRF token in the headers
-          const loginResponse = await axios.post(
-            "http://10.0.2.2:8000/accounts/login",
-            values,
-            {
-              headers: {
-                "X-CSRFToken": csrfResponse.data.csrf_token,
-              },
+            // Make the login request with the CSRF token in the headers
+            const loginResponse = await axios.post(
+              "http://10.0.2.2:8000/accounts/login",
+              values,
+              {
+                headers: {
+                  "X-CSRFToken": csrfResponse.data.csrf_token,
+                },
+              }
+            );
+
+            // Update the authentication context with the new CSRF token, session ID, and user ID
+            updateAuthInfo({
+              authCookie: loginResponse.data.csrf_token,
+              sessionToken: loginResponse.data.sessionid,
+              userId: loginResponse.data.user_id,
+              isMerchant: loginResponse.data.is_merchant,
+            });
+
+            // Log login response for debugging
+            console.log("Login response:", loginResponse.data);
+
+            // Handle successful login (e.g., navigate to home screen)
+            // This part depends on your application's structure
+          } catch (error) {
+            console.error(error);
+
+            let backendErrorMessage =
+              "An error occurred. Please try again later.";
+
+            if (error.response && error.response.data) {
+              const statusCode = error.response.status;
+
+              switch (statusCode) {
+                case 400:
+                  backendErrorMessage =
+                    "Invalid request. Please check your input and try again.";
+                  break;
+                case 401:
+                  backendErrorMessage =
+                    "Unauthorized. Please check your credentials and try again.";
+                  break;
+                case 403:
+                  backendErrorMessage =
+                    "Forbidden. You don't have permission to access this resource.";
+                  break;
+                case 404:
+                  backendErrorMessage =
+                    "Resource not found. Please check the URL and try again.";
+                  break;
+                // Add more cases for other common HTTP status codes as needed
+                default:
+                  break;
+              }
             }
-          );
 
-          // Update the authentication context with the new CSRF token, session ID, and user ID
-          updateAuthInfo({
-            authCookie: loginResponse.data.csrf_token,
-            sessionToken: loginResponse.data.sessionid,
-            userId: loginResponse.data.user_id,
-            isMerchant: loginResponse.data.is_merchant,
-          });
+            // Assuming setBackendError is a function to update the UI with the error message
+            setBackendError(backendErrorMessage);
+          }
+        }}
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isValid,
+          errors,
+          touched,
+        }) => (
+          <View style={styles.container}>
+            <Headings style={styles.title} texts="Log In" />
 
-          // Uncomment the following line when you have a working API endpoint
-          console.log("Login response:", loginResponse.data);
+            <TextInput
+              style={styles.input}
+              onBlur={handleBlur("email")}
+              value={values.email}
+              placeholder="e-mail"
+              placeholderTextColor="white"
+              onChangeText={handleChange("email")}
+            />
 
-          // Handle successful login (e.g., navigate to home screen)
-        } catch (error) {
-          console.error(error);
-          // Handle failed login (e.g., show error message)
-        }
-      }}
-    >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        isValid,
-        errors,
-        touched,
-      }) => (
-        <View style={styles.container}>
-          <Text style={styles.title}>Log In Screen</Text>
+            {errors.email && touched.email && (
+              <Texts style={styles.errorText} texts={errors.email} />
+            )}
 
-          <TextInput
-            style={styles.input}
-            onBlur={handleBlur("email")}
-            value={values.email}
-            placeholder="e-mail"
-            placeholderTextColor="white"
-            onChangeText={handleChange("email")}
-          />
+            <TextInput
+              style={styles.input}
+              onBlur={handleBlur("password")}
+              value={values.password}
+              placeholder="password"
+              secureTextEntry={true}
+              placeholderTextColor="white"
+              onChangeText={handleChange("password")}
+            />
 
-          {errors.email && touched.email && (
-            <Text style={styles.errorText}>{errors.email}</Text>
-          )}
-
-          <TextInput
-            style={styles.input}
-            onBlur={handleBlur("password")}
-            value={values.password}
-            placeholder="password"
-            secureTextEntry={true}
-            placeholderTextColor="white"
-            onChangeText={handleChange("password")}
-          />
-
-          {errors.password && touched.password && (
-            <Text style={styles.errorText}>{errors.password}</Text>
-          )}
-
-          <Button
-            onPress={handleSubmit}
-            title="Submit"
-            disabled={!values.email || !values.password}
-          />
-          <Button
-            onPress={() => navigation.navigate("RegistrationScreen")}
-            title="Don't Have An Account YET?"
-          />
-        </View>
-      )}
-    </Formik>
+            {errors.password && touched.password && (
+              <Texts style={styles.errorText} texts={errors.password} />
+            )}
+            <Texts style={styles.authErrorText} texts={backendError} />
+            <View style={styles.buttonContainer}>
+              <CustomButton2
+                style={styles.customSubmitButton}
+                onPress={handleSubmit}
+                title="Submit"
+                disabled={!values.email && !values.password}
+              />
+              <CustomButton2
+                style={styles.customSubmitButton}
+                onPress={() => navigation.navigate("RegistrationScreen")}
+                title="Don't Have An Account YET?"
+              />
+            </View>
+          </View>
+        )}
+      </Formik>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#1B2631",
+  layout: {
+    backgroundColor: "#0C0404",
   },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    color: "white",
-    marginBottom: 20,
+  container: {
+    marginTop: 200,
+    padding: 10,
+  },
+  buttonContainer: {
+    paddingTop: 50,
   },
   input: {
-    width: 350,
-    height: 55,
-    backgroundColor: "#1B2631",
-    borderColor: "grey",
-    borderRadius: 50,
-    borderWidth: 1,
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
+    borderRadius: 150,
+    marginHorizontal: 6,
+    paddingHorizontal: 25,
     margin: 10,
-    padding: 8,
+    padding: 12,
     color: "white",
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: "500",
+    fontSize: 15,
   },
   errorText: {
-    fontSize: 12.5,
-    color: "orange",
+    fontWeight: "bold",
+    fontSize: 14,
+    color: "#f60b29",
+    marginLeft: 20,
+  },
+  authErrorText: {
+    fontSize: 16,
+    color: "#f60b29",
+    textAlign: "center",
+  },
+  customSubmitButton: {
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
+  title: {
+    margin: 24,
+    fontSize: 50,
+    alignItems: "center",
+    fontWeight: "bold",
+    color: "#D9D9D9",
+  },
+  body: {
+    margin: 24,
+    fontSize: 12,
+    color: "#D9D9D9",
   },
 });
 
