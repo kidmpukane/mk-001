@@ -52,7 +52,7 @@ const CreateStore = () => {
         {
           headers: {
             "X-CSRFToken": authInfo.authCookie,
-            sessionId: authInfo.sessionToken,
+            sessionId: authInfo.sessionId,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -117,7 +117,7 @@ const CreateStore = () => {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            placeholder="Store Name"
+            placeholder="enter store name"
             placeholderTextColor="white"
             style={styles.input}
             onBlur={onBlur}
@@ -135,7 +135,7 @@ const CreateStore = () => {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            placeholder="Store Description"
+            placeholder="enter store description"
             placeholderTextColor="white"
             style={styles.input}
             onBlur={onBlur}
@@ -156,7 +156,7 @@ const CreateStore = () => {
       <CustomButton2
         title="SKIP"
         style={styles.customSubmitButton}
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("ProfileScreen")}
       />
 
       <CustomButton2

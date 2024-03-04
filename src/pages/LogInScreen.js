@@ -65,7 +65,7 @@ const LogInScreen = (props) => {
             // Update the authentication context with the new CSRF token, session ID, and user ID
             updateAuthInfo({
               authCookie: loginResponse.data.csrf_token,
-              sessionToken: loginResponse.data.sessionid,
+              sessionId: loginResponse.data.sessionid,
               userId: loginResponse.data.user_id,
               isMerchant: loginResponse.data.is_merchant,
             });

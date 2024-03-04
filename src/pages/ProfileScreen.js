@@ -69,6 +69,8 @@ function ProfileScreen() {
     data && data.length > 0 ? data[0].is_merchant : "Unidentified???"
   );
   const responseData = data && data.length > 0 ? data[0] : null;
+  console.log(responseData);
+  console.log(authInfo);
 
   return (
     <View>

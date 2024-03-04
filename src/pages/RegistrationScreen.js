@@ -72,7 +72,7 @@ const RegistrationScreen = (props) => {
             // Update the authentication context with the new CSRF token, session ID, and user ID
             updateAuthInfo({
               authCookie: registrationResponse.data.csrf_token,
-              sessionToken: registrationResponse.data.sessionid,
+              sessionId: registrationResponse.data.sessionid,
               userId: registrationResponse.data.user_id,
               isMerchant: registrationResponse.data.is_merchant,
             });

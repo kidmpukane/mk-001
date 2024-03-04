@@ -5,7 +5,7 @@ export const AuthenticationContext = createContext();
 export const AuthenticationProvider = ({ children }) => {
   const [authInfo, setAuthInfo] = useState({
     authCookie: null,
-    sessionToken: null,
+    sessionId: null,
     userId: null,
     isMerchant: false,
   });

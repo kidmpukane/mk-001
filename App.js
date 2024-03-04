@@ -25,11 +25,11 @@ const App = () => {
 // Example logging in AppContent component
 const AppContent = () => {
   const { authInfo } = useContext(AuthenticationContext);
-  const sessionToken = authInfo?.sessionToken;
+  const sessionId = authInfo?.sessionId;
   console.log("authState:", authInfo);
-  console.log("sessionToken:", sessionToken);
+  console.log("sessionId:", sessionId);
 
-  return sessionToken ? <ApplicationStack /> : <AuthenticationStack />;
+  return sessionId ? <ApplicationStack /> : <AuthenticationStack />;
 };
 
 export default App;

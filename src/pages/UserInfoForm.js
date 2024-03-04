@@ -119,7 +119,7 @@ const UserInfoForm = () => {
             {
               headers: {
                 "X-CSRFToken": authInfo.authCookie,
-                sessionId: authInfo.sessionToken,
+                sessionId: authInfo.sessionId,
                 "Content-Type": "multipart/form-data",
               },
             }
