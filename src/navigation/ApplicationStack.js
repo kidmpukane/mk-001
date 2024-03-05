@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const ApplicationStack = () => {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen name="MainNavigationBar" component={PageTabNavigator} /> */}
+      <Stack.Screen name="MainNavigationBar" component={PageTabNavigator} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="UserInfoForm" component={UserInfoForm} />
       <Stack.Screen name="UserProfileFormScreen" component={UserProfileForm} />
