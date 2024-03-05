@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Button,
   StyleSheet,
+  Image,
 } from "react-native";
 
 import { AuthenticationContext } from "../authProviders/AuthenticationContext.js";
@@ -23,8 +24,8 @@ import CreatePost from "./CreatePost";
 
 //Atoms
 import { ProductImages } from "../components/atoms/Images";
-import { CustomButton3 } from "../components/atoms/buttons";
-import { Texts } from "../components/atoms/headings";
+import { CustomButton2, CustomButton3 } from "../components/atoms/buttons";
+import { Headings, Texts } from "../components/atoms/headings";
 
 //Organisms
 import { UserInfoOrganism } from "../components/organisms/UserInfoOrganism.jsx";
@@ -83,31 +84,51 @@ function ProfileScreen() {
                 : "Loading...",
             }}
             style={styles.profileBackGroundImageContainer}
-          >
-            <View style={styles.userInfoContainer}>
-              <UserInfoOrganism
-                profilePicture={
-                  responseData
-                    ? `http://10.0.2.2:8000/${responseData.profile_picture}`
-                    : "Loading..."
-                }
-                userName={responseData ? responseData.user_name : "Loading..."}
-                atName={responseData ? responseData.at_user : "Loading..."}
-                customButtonTitle="FOLLOWERS"
-                customButtonTitleTwo="EDIT INFO"
-                smallButtonOnPress={() => console.log("Small Button Pressed")}
-                customButtonTwoOnPress={() =>
-                  navigation.navigate("UserInfoForm", { item: responseData })
-                }
-                customButtonOnPress={() =>
-                  navigation.navigate("CreateGallery", { item: responseData })
-                }
+          ></ImageBackground>
+        </View>
+        <View style={styles.userInfoContainer}>
+          <View style={styles.profileInfo}>
+            <Image
+              source={{
+                uri: responseData
+                  ? `http://10.0.2.2:8000/${responseData.profile_picture}`
+                  : "Loading...",
+              }}
+              style={styles.profilePicture}
+            />
+            <View style={styles.userDetails}>
+              <Headings
+                style={styles.title}
+                texts={responseData ? responseData.user_name : "Loading..."}
               />
+              <Texts
+                style={styles.texts}
+                texts={responseData ? responseData.email : "Loading..."}
+              />
+              <View style={styles.blockContainer}>
+                <Texts
+                  numberOfLines={4}
+                  style={styles.longTexts}
+                  texts={responseData ? responseData.user_bio : "Loading..."}
+                />
+              </View>
             </View>
-          </ImageBackground>
+          </View>
+          <CustomButton2
+            style={styles.customSubmitButton}
+            onPress={() => console.log("followers")}
+            title="FOLLOWERS"
+          />
+          <CustomButton2
+            style={styles.customSubmitButton}
+            onPress={() =>
+              navigation.navigate("UserInfoForm", { item: responseData })
+            }
+            title="EDIT INFO"
+          />
         </View>
 
-        {responseData && responseData.is_merchant === true ? (
+        {authInfo.isMerchant === true ? (
           <View style={styles.customButtonContainer}>
             <CustomButton3
               style={styles.customButton}
@@ -117,31 +138,6 @@ function ProfileScreen() {
             />
           </View>
         ) : null}
-
-        {/* <View style={styles.ourStoryContainer}>
-          <OurStory />
-        </View> */}
-
-        <View style={styles.subHeadingContainer}>
-          <Texts style={styles.subHeadings} texts="social media & links" />
-          <SocialMediaLinkBar />
-        </View>
-
-        <View style={styles.reviewCardContainer}>
-          <ReviewCard />
-        </View>
-
-        <View style={styles.copyWrightLaws2Container}>
-          <Texts
-            style={styles.copyWrightLaws2}
-            texts={data ? data.store_title : "Loading.."}
-          />
-
-          <Texts
-            style={styles.copyWrightLaws2}
-            texts={data ? data.store_owner : "Loading..."}
-          />
-        </View>
       </ScrollView>
     </View>
   );
@@ -149,22 +145,65 @@ function ProfileScreen() {
 
 const styles = StyleSheet.create({
   profileScrollViewContainer: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
     height: "100%",
+  },
+  profileInfo: {
+    flexDirection: "row",
+    marginTop: -20,
+    paddingBottom: 50,
+  },
+  userDetails: {
+    paddingRight: 80,
+    marginLeft: 20,
+  },
+  blockContainer: {
+    paddingRight: 20,
+  },
+  title: {
+    fontSize: 20,
+    alignItems: "center",
+    fontWeight: "bold",
+    color: "#0C0404",
+  },
+  texts: {
+    fontSize: 15,
+    alignItems: "center",
+    fontWeight: "bold",
+    color: "#0C0404",
+  },
+  longTexts: {
+    fontSize: 12,
+    color: "#0C0404",
+    paddingRight: 50,
+    alignItems: "center",
+  },
+  profilePicture: {
+    width: 100,
+    height: 100,
+    borderRadius: 15,
+    marginHorizontal: 8,
+    paddingHorizontal: 6,
+    resizeMode: "cover",
+    overflow: "hidden",
+    justifyContent: "center",
+    borderWidth: 2,
+    borderColor: "#0C0404",
   },
   profileScreenContainer: {
     width: "100%",
-    paddingBottom: 10,
   },
   profileBackGroundImageContainer: {
-    height: "100%",
-    width: "99.2%",
-    marginTop: 20,
+    width: "100%",
+    height: 500,
+    resizeMode: "cover",
+    overflow: "hidden",
+    borderRadius: 20,
   },
   userInfoContainer: {
     width: "100%",
     height: "100%",
-    marginTop: 200,
+    marginTop: -100,
   },
   customButtonContainer: {
     width: "100%",
@@ -175,63 +214,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     paddingHorizontal: 4,
   },
-  // reviewCardContainer: {
-  //   marginTop: 10,
-  //   marginHorizontal: 4,
-  //   paddingHorizontal: 4,
-  // },
-  // ourStoryContainer: {
-  //   paddingTop: 20,
-  //   marginHorizontal: 4,
-  //   paddingHorizontal: 4,
-  // },
-  // subHeadingContainer: {
-  //   paddingTop: 100,
-  //   paddingBottom: 20,
-  //   marginHorizontal: 4,
-  //   paddingHorizontal: 4,
-  // },
-  // subHeadings: {
-  //   color: "#D9D9D9",
-  //   fontSize: 12,
-  //   fontWeight: "bold",
-  //   padding: 20,
-  // },
-  // copyWrightLaws: {
-  //   color: "#D9D9D9",
-  //   fontSize: 12,
-  //   padding: 40,
-  // },
-  // copyWrightLaws2Container: {
-  //   justifyContent: "center",
-  //   alignContent: "center",
-  // },
-  // copyWrightLaws2: {
-  //   justifyContent: "center",
-  //   alignContent: "center",
-  //   color: "#D9D9D9",
-  //   fontSize: 12,
-  //   padding: 10,
-  // },
-  // storeName: {
-  //   color: "#D9D9D9",
-  //   fontSize: 12,
-  //   fontWeight: "bold",
-  //   paddingBottom: 40,
-  // },
-  // title: {
-  //   fontSize: 25,
-  //   fontWeight: "bold",
-  //   paddingHorizontal: 15,
-  // },
-  // heading: {
-  //   fontSize: 22,
-  //   fontWeight: "bold",
-  //   paddingBottom: 10,
-  //   padding: 2,
-  //   paddingHorizontal: 15,
-  //   color: "#08060B",
-  // },
+  customSubmitButton: {
+    marginTop: 10,
+    marginBottom: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
 });
 
 export { ProfileScreen };
