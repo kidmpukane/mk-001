@@ -4,91 +4,60 @@ import {
   View,
   ScrollView,
   ImageBackground,
-  Button,
   StyleSheet,
   Image,
 } from "react-native";
-
+import { useFocusEffect } from "@react-navigation/native";
 import { AuthenticationContext } from "../authProviders/AuthenticationContext.js";
-import { useFocusEffect } from "@react-navigation/native"; // Import useFocusEffect
-
-//Hooks
-import { useStoreInfo } from "../hooks/useGetUserInfo";
-
-//Navigation
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
-
-//Components
-import CreatePost from "./CreatePost";
-
-//Atoms
-import { ProductImages } from "../components/atoms/Images";
-import {
-  CustomOpacity,
-  CustomButton2,
-  CustomButton3,
-} from "../components/atoms/buttons";
 import { Headings, Texts } from "../components/atoms/headings";
-
-//Organisms
-import { UserInfoOrganism } from "../components/organisms/UserInfoOrganism.jsx";
-import { OurStory } from "../components/organisms/OurStory";
-import { SocialMediaLinkBar } from "../components/organisms/SocialMediaLinks";
-import { ReviewCard } from "../components/organisms/ReviewCard";
+import { useStoreInfo } from "../hooks/useGetUserInfo";
+import { CustomOpacity, CustomButton2 } from "../components/atoms/buttons.jsx";
+import { useNavigation } from "@react-navigation/native";
 
 function ProfileScreen() {
   const { authInfo } = useContext(AuthenticationContext);
   const navigation = useNavigation();
-  const [userInfoFormSubmitted, setUserInfoFormSubmitted] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+
   const storeInfoUrl = `http://10.0.2.2:8000/accounts/get-${
     authInfo.isMerchant == true ? "merchant" : "customer"
   }/${authInfo?.userId}/`;
+
   const { isLoading, data, isError, error, refetch } =
     useStoreInfo(storeInfoUrl);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setUserInfo(data[0]);
+    }
+  }, [data]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
 
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
 
-  // useEffect(() => {
-  //   if (userInfoFormSubmitted) {
-  //     refetch();
-  //     setUserInfoFormSubmitted(false);
-  //   }
-  // }, [userInfoFormSubmitted, refetch]);
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     if (userInfoFormSubmitted) {
-  //       refetch();
-  //     }
-  //   }, [userInfoFormSubmitted, refetch])
-  // );
   if (isError) {
     return <Text>{error.message}</Text>;
   }
-
-  console.log(data ? data : error.message);
-  console.log(
-    data && data.length > 0 ? data[0].is_merchant : "Unidentified???"
-  );
-  const responseData = data && data.length > 0 ? data[0] : null;
-  console.log(responseData);
-  console.log(authInfo);
 
   return (
     <View>
       <ScrollView style={styles.profileScrollViewContainer}>
         <Headings
           style={styles.titleGrand}
-          texts={responseData ? responseData.user_name : "Loading..."}
+          texts={userInfo ? userInfo.user_name : "Loading..."}
         />
         <View style={styles.profileScreenContainer}>
           <ImageBackground
             source={{
-              uri: responseData
-                ? `http://10.0.2.2:8000/${responseData.background_picture}`
+              uri: userInfo
+                ? `http://10.0.2.2:8000/${userInfo.background_picture}`
                 : "Loading...",
             }}
             style={styles.profileBackGroundImageContainer}
@@ -98,8 +67,8 @@ function ProfileScreen() {
           <View style={styles.profileInfo}>
             <Image
               source={{
-                uri: responseData
-                  ? `http://10.0.2.2:8000/${responseData.profile_picture}`
+                uri: userInfo
+                  ? `http://10.0.2.2:8000/${userInfo.profile_picture}`
                   : "Loading...",
               }}
               style={styles.profilePicture}
@@ -107,17 +76,17 @@ function ProfileScreen() {
             <View style={styles.userDetails}>
               <Headings
                 style={styles.title}
-                texts={responseData ? responseData.user_name : "Loading..."}
+                texts={userInfo ? userInfo.user_name : "Loading..."}
               />
               <Texts
                 style={styles.texts}
-                texts={responseData ? responseData.email : "Loading..."}
+                texts={userInfo ? userInfo.email : "Loading..."}
               />
               <View style={styles.blockContainer}>
                 <Texts
-                  numberOfLines={4}
                   style={styles.longTexts}
-                  texts={responseData ? responseData.user_bio : "Loading..."}
+                  numberOfLines={4}
+                  texts={userInfo ? userInfo.user_bio : "Loading..."}
                 />
               </View>
             </View>
@@ -131,7 +100,7 @@ function ProfileScreen() {
             <CustomButton2
               style={styles.customSubmitButton}
               onPress={() =>
-                navigation.navigate("UserInfoForm", { item: responseData })
+                navigation.navigate("UserInfoForm", { item: userInfo })
               }
               title="EDIT INFO"
             />
@@ -141,8 +110,9 @@ function ProfileScreen() {
               <CustomOpacity
                 style={styles.customButton}
                 title="Start Shopping"
-                onPress={() => console.log("Start Shopping")}
-                // onPress={() => navigation.navigate("StoreDivider", { item: data })}
+                onPress={() =>
+                  navigation.navigate("StoreDivider", { item: data })
+                }
               />
             </View>
           ) : null}
