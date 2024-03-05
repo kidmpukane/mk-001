@@ -49,10 +49,10 @@ function ProfileScreen() {
   return (
     <View>
       <ScrollView style={styles.profileScrollViewContainer}>
-        <Headings
+        {/* <Headings
           style={styles.titleGrand}
           texts={userInfo ? userInfo.user_name : "Loading..."}
-        />
+        /> */}
         <View style={styles.profileScreenContainer}>
           <ImageBackground
             source={{
