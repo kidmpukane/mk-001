@@ -39,7 +39,7 @@ function ProfileScreen() {
   );
 
   if (isLoading) {
-    return <Text>Loading....</Text>;
+    return <Text>Loading...</Text>;
   }
 
   if (isError) {
