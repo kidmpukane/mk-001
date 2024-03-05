@@ -24,7 +24,11 @@ import CreatePost from "./CreatePost";
 
 //Atoms
 import { ProductImages } from "../components/atoms/Images";
-import { CustomButton2, CustomButton3 } from "../components/atoms/buttons";
+import {
+  CustomOpacity,
+  CustomButton2,
+  CustomButton3,
+} from "../components/atoms/buttons";
 import { Headings, Texts } from "../components/atoms/headings";
 
 //Organisms
@@ -76,6 +80,10 @@ function ProfileScreen() {
   return (
     <View>
       <ScrollView style={styles.profileScrollViewContainer}>
+        <Headings
+          style={styles.titleGrand}
+          texts={responseData ? responseData.user_name : "Loading..."}
+        />
         <View style={styles.profileScreenContainer}>
           <ImageBackground
             source={{
@@ -114,30 +122,31 @@ function ProfileScreen() {
               </View>
             </View>
           </View>
-          <CustomButton2
-            style={styles.customSubmitButton}
-            onPress={() => console.log("followers")}
-            title="FOLLOWERS"
-          />
-          <CustomButton2
-            style={styles.customSubmitButton}
-            onPress={() =>
-              navigation.navigate("UserInfoForm", { item: responseData })
-            }
-            title="EDIT INFO"
-          />
-        </View>
-
-        {authInfo.isMerchant === true ? (
           <View style={styles.customButtonContainer}>
-            <CustomButton3
-              style={styles.customButton}
-              title="Start Shopping"
-              onPress={() => console.log("Start Shopping")}
-              // onPress={() => navigation.navigate("StoreDivider", { item: data })}
+            <CustomButton2
+              style={styles.customSubmitButton}
+              onPress={() => console.log("followers")}
+              title="FOLLOWERS"
+            />
+            <CustomButton2
+              style={styles.customSubmitButton}
+              onPress={() =>
+                navigation.navigate("UserInfoForm", { item: responseData })
+              }
+              title="EDIT INFO"
             />
           </View>
-        ) : null}
+          {authInfo.isMerchant === true ? (
+            <View style={styles.merchCustomButtonContainer}>
+              <CustomOpacity
+                style={styles.customButton}
+                title="Start Shopping"
+                onPress={() => console.log("Start Shopping")}
+                // onPress={() => navigation.navigate("StoreDivider", { item: data })}
+              />
+            </View>
+          ) : null}
+        </View>
       </ScrollView>
     </View>
   );
@@ -148,9 +157,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#0C0404",
     height: "100%",
   },
+  titleGrand: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    fontSize: 30,
+    alignItems: "center",
+    fontWeight: "bold",
+  },
   profileInfo: {
     flexDirection: "row",
-    marginTop: -20,
+    marginTop: -360,
     paddingBottom: 50,
   },
   userDetails: {
@@ -181,7 +197,7 @@ const styles = StyleSheet.create({
   profilePicture: {
     width: 100,
     height: 100,
-    borderRadius: 15,
+    borderRadius: 50,
     marginHorizontal: 8,
     paddingHorizontal: 6,
     resizeMode: "cover",
@@ -195,34 +211,47 @@ const styles = StyleSheet.create({
   },
   profileBackGroundImageContainer: {
     width: "100%",
-    height: 500,
+    height: 480,
     resizeMode: "cover",
     overflow: "hidden",
-    borderRadius: 20,
+    borderRadius: 40,
   },
   userInfoContainer: {
     width: "100%",
     height: "100%",
-    marginTop: -100,
+    marginTop: -110,
   },
   customButtonContainer: {
-    width: "100%",
-    paddingTop: -2000,
+    marginTop: 250,
+    padding: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  merchCustomButtonContainer: {
+    justifyContent: "center",
   },
   customButton: {
-    paddingTop: 200,
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
+    padding: 20,
+    alignItems: "center",
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
+    borderRadius: 50,
+    marginHorizontal: 6,
+    paddingHorizontal: 100,
+    margin: 10,
+    color: "white",
+    fontSize: 18,
   },
   customSubmitButton: {
-    marginTop: 10,
+    width: "100%",
+    marginTop: -4,
     marginBottom: 20,
     padding: 18,
     alignItems: "center",
     backgroundColor: "#D9D9D9",
     borderRadius: 30,
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
+    marginRight: 80,
   },
 });
 
