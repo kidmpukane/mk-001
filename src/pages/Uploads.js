@@ -18,7 +18,7 @@ import { useStoreInfo } from "../hooks/useGetUserInfo";
 const Uploads = ({ item }) => {
   const navigation = useNavigation();
   const [storeInfoUrl, setStoreInfoUrl] = useState(
-    "http://192.168.18.8:3000/api/products/all-products"
+    "http://10.0.2.2:8000/api/products/all-products"
   );
 
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
@@ -31,11 +31,11 @@ const Uploads = ({ item }) => {
   } else {
     <Text>Error Couldn't Load Information</Text>;
   }
-  //console.log(data ? data : "loading...");
+  // console.log(data ? data : "loading...");
 
   const handleClick = (item) => {
-    fetch("http://192.168.18.8:3000/api/products/find-nearest-neighbors", {
-      method: "POST", // or 'GET', 'PUT', 'DELETE', etc. based on your endpoint requirements
+    fetch("http://10.0.2.2:8000/api/products/find-nearest-neighbors", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,51 +48,73 @@ const Uploads = ({ item }) => {
         // Handle errors
       });
 
-    setStoreInfoUrl(
-      "http://192.168.18.8:3000/api/products/find-nearest-neighbors"
-    );
+    setStoreInfoUrl("http://10.0.2.2:8000/api/products/find-nearest-neighbors");
   };
 
   return (
     <>
       {data &&
-        data.all_products.map((item) => (
+        data.all_products?.map((item) => (
           <ImageBackground
             key={item.id}
             source={{ uri: item.product_image }}
             style={styles.imageBackground}
           >
-            <TouchableOpacity
-              style={styles.contentContainer}
-              title="ProductPage"
-              onPress={() => handleClick(item)}
-              // onPress={() =>
-              //   navigation.navigate("ProductViewScreen", { item: item })
-              // }
-            >
-              <Pressable
-                title="Profile"
-                onPress={() => navigation.navigate("Profile", { item: item })}
-              >
-                <Image
-                  source={{
-                    uri: "https://i.pinimg.com/564x/79/3b/b3/793bb33bbce6c8d6beabc9c02c965fff.jpg",
-                  }}
-                  style={styles.contentImg}
-                />
-              </Pressable>
-              <Text style={styles.contentTitle}>{item.product_name}</Text>
-              <Text style={styles.contentText}>{item.product_colours}</Text>
-              {/* <Text numberOfLines={3} style={styles.contentText}>
-          {item.product_description}
-        </Text> */}
-            </TouchableOpacity>
+            <View style={styles.mainContainer}>
+              <View style={styles.leftSideButtonContainer}>
+                <TouchableOpacity
+                  style={styles.contentContainer}
+                  title="ProductPage"
+                  onPress={() => handleClick(item)}
+                >
+                  <Pressable
+                    title="Profile"
+                    onPress={() =>
+                      navigation.navigate("Profile", { item: item })
+                    }
+                  >
+                    <Image
+                      source={{
+                        uri: "https://i.pinimg.com/564x/79/3b/b3/793bb33bbce6c8d6beabc9c02c965fff.jpg",
+                      }}
+                      style={styles.contentImg}
+                    />
+                  </Pressable>
+                  <Text style={styles.contentTitle}>{item.product_name}</Text>
+                  <Text style={styles.contentText}>{item.product_colours}</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.rightSideButtonContainer}>
+                <TouchableOpacity
+                  style={styles.searchButton}
+                  onPress={() => console.log({ item: item.id })}
+                >
+                  <Text>1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.escapeButton}
+                  onPress={() => console.log({ item: item.id })}
+                >
+                  <Text>2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.addButton}
+                  onPress={() => console.log({ item: item.id })}
+                >
+                  <Text>3</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </ImageBackground>
         ))}
     </>
   );
 };
 const styles = StyleSheet.create({
+  mainContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
   imageBackground: {
     resizeMode: "cover",
     overflow: "hidden",
@@ -115,13 +137,42 @@ const styles = StyleSheet.create({
   contentContainer: {
     textAlign: "center",
     opacity: 0.6,
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-    marginTop: 400,
+    paddingHorizontal: 10,
+    paddingVertical: 40,
     marginBottom: theme.spacing.s,
     marginHorizontal: 2,
     paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+    borderRadius: 20,
+    backgroundColor: "#000",
+  },
+  searchButton: {
+    justifyContent: "center",
+    opacity: 0.6,
+    paddingHorizontal: 8,
+    paddingVertical: 19,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: 12,
+    backgroundColor: "#000",
+  },
+  escapeButton: {
+    textAlign: "center",
+    opacity: 0.6,
+    marginTop: -6,
+    paddingHorizontal: 8,
+    paddingVertical: 19,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: 12,
+    backgroundColor: "#000",
+  },
+  addButton: {
+    textAlign: "center",
+    opacity: 0.6,
+    paddingHorizontal: 8,
+    marginTop: -6,
+    paddingTop: 32,
+    paddingVertical: 32,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: 12,
     backgroundColor: "#000",
   },
   contentImg: {
@@ -137,6 +188,15 @@ const styles = StyleSheet.create({
   },
   contentText: {
     color: "#FFF",
+  },
+  leftSideButtonContainer: {
+    width: "85%",
+    marginTop: 390,
+  },
+  rightSideButtonContainer: {
+    width: "15%",
+    marginTop: 380,
+    justifyContent: "space-evenly",
   },
 });
 

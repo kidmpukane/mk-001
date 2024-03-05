@@ -1,0 +1,23 @@
+[x]:Send Login information store the response (token, sessionId,
+and userId) inside the context.
+[x]: Use state management to keep track of the state of these values
+[x]: Use the graph logic and incorporate it into the authContext
+[x]: Onclick functionality to navigate user to the edit profile form
+[x]: Add Username to backend field
+[x]: Complete Form
+[x]: Add condition that lets user customise their profile if they have missing values.
+[x]: Add Images in react native.
+[x]: Update state of new info after put request.
+[x]: Intergate front and backend image upload
+[x]: Is Merchant bug
+[x]: Fix authority to check if user is merchant or customer
+[x]: Create Store Form
+[x]: Create Collection Form
+[x]: Create Gallery Form
+[x]: Create Product Upload
+[x]: Create User Collections
+[x]: Fix User Registration for Customers
+[x]: Fix User Registration for Merchants
+[x]: Add Session and token permission classes
+[]: Fix the hook refetching bug
+[]: Finish the logic and secure it using Secure.

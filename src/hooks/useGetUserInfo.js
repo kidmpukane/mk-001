@@ -8,12 +8,12 @@ const useStoreInfo = (storeInfoUrl) => {
     return response.data;
   };
 
-  const { isLoading, data, isError, error } = useQuery(
+  const { isLoading, data, isError, error, refetch } = useQuery(
     ["store-info", storeInfoUrl],
     fetchStoreInfo
   );
 
-  return { isLoading, data, isError, error };
+  return { isLoading, data, isError, error, refetch };
 };
 
 //----------------------------------------------------------//

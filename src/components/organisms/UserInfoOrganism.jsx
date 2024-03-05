@@ -21,7 +21,13 @@ const UserInfoOrganism = (props) => {
         </View>
 
         <View style={styles.userCardContainer}>
-          <UserCardButtons />
+          <UserCardButtons
+            customButtonTitle={props.customButtonTitle}
+            customButtonTitleTwo={props.customButtonTitleTwo}
+            customButtonOnPress={props.customButtonOnPress}
+            customButtonTwoOnPress={props.customButtonTwoOnPress}
+            smallButtonOnPress={props.smallButtonOnPress}
+          />
         </View>
       </View>
     </View>
@@ -85,9 +91,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 15,
     paddingBottom: 15,
-    marginTop: 280,
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
     borderRadius: 35,
     backgroundColor: "#3D3D3D",
   },

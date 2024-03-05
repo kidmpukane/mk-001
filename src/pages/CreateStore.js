@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useContext } from "react";
 import {
   Image,
   TouchableOpacity,
@@ -13,36 +14,58 @@ import { useForm, Controller } from "react-hook-form";
 import { Headings, Texts } from "../components/atoms/headings";
 import { CustomOpacity, CustomButton2 } from "../components/atoms/buttons";
 import { useNavigation } from "@react-navigation/native";
+import { useLocalSearchParams } from "expo-router";
+import { AuthenticationContext } from "../authProviders/AuthenticationContext";
 
-
-export default function CreateStore() {
-
- const navigation = useNavigation(); 
-
+const CreateStore = () => {
+  const { item } = useLocalSearchParams();
+  const navigation = useNavigation();
   const [image, setImage] = useState(null);
+  const { authInfo } = useContext(AuthenticationContext);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-
   } = useForm({
-
     defaultValues: {
-      title: "",
-      description: "",
-      image: "",
-
+      store_name: null,
+      store_description: null,
+      store_image: null,
+      merchant_id: item.id,
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const formData = new FormData();
 
+      // Add your form data fields to the formData object
+      formData.append("store_name", data.store_name);
+      formData.append("store_description", data.store_description);
+      formData.append("store_image", data.store_image);
 
-  
+      // Add any other fields as needed
+
+      const response = await axios.post(
+        "http://10.0.2.2:8000/api/register-new-store/",
+        formData,
+        {
+          headers: {
+            "X-CSRFToken": authInfo.authCookie,
+            sessionId: authInfo.sessionId,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Success:", response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const imageUploader = async (data) => {
- 
-        try {
-
+    try {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: false,
@@ -56,10 +79,8 @@ export default function CreateStore() {
         uri: result.uri,
       };
 
-      
       const data = new FormData();
       data.append("image", imageData);
-      
 
       console.log(imageData);
 
@@ -68,18 +89,16 @@ export default function CreateStore() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <ScrollView style={styles.layout}>
       <View>
-
         {image && <Image source={{ uri: image }} style={styles.coverImage} />}
         <CustomOpacity
-        
           style={styles.imageButton}
           title="+ Add Your Stores Cover Image"
-          onPress={()=>{
+          onPress={() => {
             imageUploader();
           }}
         />
@@ -90,7 +109,7 @@ export default function CreateStore() {
         style={styles.body}
         texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
       />
-      
+
       <Controller
         control={control}
         rules={{
@@ -98,7 +117,7 @@ export default function CreateStore() {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            placeholder="Title"
+            placeholder="enter store name"
             placeholderTextColor="white"
             style={styles.input}
             onBlur={onBlur}
@@ -106,7 +125,7 @@ export default function CreateStore() {
             value={value}
           />
         )}
-        name="title"
+        name="store_name"
       />
 
       <Controller
@@ -116,7 +135,7 @@ export default function CreateStore() {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            placeholder="Description"
+            placeholder="enter store description"
             placeholderTextColor="white"
             style={styles.input}
             onBlur={onBlur}
@@ -124,56 +143,52 @@ export default function CreateStore() {
             value={value}
           />
         )}
-        name="description"
+        name="store_description"
       />
 
-<Headings style={styles.title} texts="Fill In Information" />
+      <Headings style={styles.title} texts="Fill In Information" />
 
-<Texts
-  style={styles.body}
-  texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
-/>
+      <Texts
+        style={styles.body}
+        texts="Select the images you wish to upload one at a time, they will appear on the carousel below. You can select and delete the ones you no longer wish to upload. Bare in mind that this is a temporary feature and will be addressed in the Beta release."
+      />
 
+      <CustomButton2
+        title="SKIP"
+        style={styles.customSubmitButton}
+        onPress={() => navigation.navigate("ProfileScreen")}
+      />
 
       <CustomButton2
         title="Submit"
         style={styles.customSubmitButton}
         onPress={handleSubmit(onSubmit)}
       />
-
-      <CustomButton2
-        title="Navigation For Testing"
-        style={styles.customSubmitButton}
-        onPress={() =>  navigation.navigate("CreateCollection")}
-      />
     </ScrollView>
   );
-}
+};
+
+export default CreateStore;
 
 const styles = StyleSheet.create({
   layout: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
+    padding: 15,
   },
   imageButton: {
-    padding: 100,
+    padding: 10,
     alignItems: "center",
-    backgroundColor: "#3D3D3D",
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
     borderRadius: 30,
     marginTop: 30,
     marginHorizontal: 8,
     paddingHorizontal: 6,
   },
-  customButton: {
-    padding: 18,
-    alignItems: "center",
-    backgroundColor: "#D9D9D9",
-    borderRadius: 30,
 
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
-  },
   input: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
     borderWidth: 3,
     borderColor: "#777575",
     borderRadius: 150,
@@ -182,8 +197,9 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 12,
     color: "white",
-    fontSize: 15,
+    fontSize: 18,
   },
+
   customSubmitButton: {
     marginTop: 20,
     marginBottom: 20,
@@ -196,25 +212,22 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: 24,
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#D9D9D9",
   },
   body: {
-    margin: 24,
-    fontSize: 12,
+    margin: 15,
+    fontSize: 15,
     color: "#D9D9D9",
   },
   coverImage: {
-
-    width: "98%",
-    height: 350,
+    width: "100%",
+    height: 250,
     resizeMode: "cover",
     overflow: "hidden",
     marginBottom: 20,
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
-    borderRadius: 50,
+    borderRadius: 20,
     justifyContent: "center",
   },
 });

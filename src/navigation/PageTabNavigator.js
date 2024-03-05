@@ -30,7 +30,7 @@ const PageTabNavigator = () => {
       screenOptions={{ headerShown: false }}
       style={{ backgroundColor: "#1B2631" }}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         name={homeName}
         component={Home}
         options={{
@@ -43,9 +43,9 @@ const PageTabNavigator = () => {
             />
           ),
         }}
-      />
+      /> */}
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name={testMolecule}
         component={Testmol}
         options={{
@@ -58,7 +58,7 @@ const PageTabNavigator = () => {
             />
           ),
         }}
-      />
+      /> */}
 
       <Tab.Screen
         name={profileName}
