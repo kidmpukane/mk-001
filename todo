@@ -11,13 +11,13 @@ and userId) inside the context.
 [x]: Intergate front and backend image upload
 [x]: Is Merchant bug
 [x]: Fix authority to check if user is merchant or customer
-[]: Create Store Form
-[]: Create Collection Form
-[]: Create Gallery Form
-[]: Create Product Upload
-[]: Create User Collections
-[]: Fix User Registration for Customers
-[]: Fix User Registration for Merchants
-[]: Add Session and token permission classes
+[x]: Create Store Form
+[x]: Create Collection Form
+[x]: Create Gallery Form
+[x]: Create Product Upload
+[x]: Create User Collections
+[x]: Fix User Registration for Customers
+[x]: Fix User Registration for Merchants
+[x]: Add Session and token permission classes
 []: Fix the hook refetching bug
 []: Finish the logic and secure it using Secure.

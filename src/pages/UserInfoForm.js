@@ -113,7 +113,7 @@ const UserInfoForm = () => {
 
           const response = await axios.put(
             `http://10.0.2.2:8000/api/${
-              item.is_merchant == true ? "merchant" : "customer"
+              authInfo.isMerchant == true ? "merchant" : "customer"
             }-profile-update/${values.id}/`,
             formData,
             {
@@ -126,7 +126,7 @@ const UserInfoForm = () => {
           );
 
           console.log("Success:", response.data);
-          navigation.navigate("Profile");
+          navigation.navigate("ProfileScreen");
         } catch (error) {
           console.error("Error:", error);
         }
@@ -143,7 +143,6 @@ const UserInfoForm = () => {
       }) => (
         <ScrollView style={styles.layout}>
           <Headings style={styles.title} texts="Fill In Information" />
-          <Texts style={styles.body} texts={JSON.stringify(errors, null, 2)} />
 
           <View>
             {coverImage && (
@@ -151,7 +150,7 @@ const UserInfoForm = () => {
             )}
             <CustomOpacity
               style={styles.imageButton}
-              title="+ Add Cover Image"
+              title="+ Edit Cover Image"
               onPress={() => pickCoverImage(setFieldValue)}
             />
           </View>
@@ -161,26 +160,25 @@ const UserInfoForm = () => {
             )}
             <CustomOpacity
               style={styles.imageButton2}
-              title="+ Add Profile Image"
+              title="+ Edit Profile Image"
               onPress={() => pickProfileImage(setFieldValue)}
             />
           </View>
-          <Texts style={styles.body} texts="USER NAME" />
           <TextInput
             style={styles.input}
             onBlur={handleBlur("user_name")}
             value={values.user_name}
-            placeholder="User Name"
+            placeholder="user name"
             placeholderTextColor="white"
             onChangeText={handleChange("user_name")}
           />
-          <Texts style={styles.body} texts="BIO" />
+
           <TextInput
             multiline
             style={styles.bioInput}
             onBlur={handleBlur("user_bio")}
             value={values.user_bio}
-            placeholder="User Bio"
+            placeholder="user bio"
             placeholderTextColor="white"
             onChangeText={handleChange("user_bio")}
           />
@@ -200,26 +198,36 @@ export { UserInfoForm };
 
 const styles = StyleSheet.create({
   layout: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
+    padding: 15,
   },
   imageButton: {
-    padding: 100,
+    padding: 150,
     alignItems: "center",
-    backgroundColor: "#3D3D3D",
-    borderRadius: 30,
-    marginTop: 30,
-    marginHorizontal: 8,
-    paddingHorizontal: 6,
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
+    borderRadius: 150,
+    marginHorizontal: 6,
+    paddingHorizontal: 25,
+    margin: 10,
+    padding: 12,
+    color: "white",
+    fontSize: 18,
   },
   imageButton2: {
-    width: 80,
-    height: 80,
+    padding: 150,
     alignItems: "center",
-    backgroundColor: "#3D3D3D",
-    borderRadius: 10,
-    marginTop: -20,
-    marginHorizontal: 8,
-    paddingHorizontal: 6,
+    backgroundColor: "#0C0404",
+    borderWidth: 3,
+    borderColor: "#777575",
+    borderRadius: 150,
+    marginHorizontal: 6,
+    paddingHorizontal: 25,
+    margin: 10,
+    padding: 12,
+    color: "white",
+    fontSize: 18,
   },
 
   customButton: {
@@ -227,12 +235,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#D9D9D9",
     borderRadius: 30,
-
     marginHorizontal: 4,
     paddingHorizontal: 4,
   },
   input: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
     borderWidth: 3,
     borderColor: "#777575",
     borderRadius: 150,
@@ -245,7 +252,7 @@ const styles = StyleSheet.create({
   },
   bioInput: {
     textAlignVertical: "top",
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
     borderColor: "#777575",
     color: "white",
     borderWidth: 3,
@@ -270,7 +277,7 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: 24,
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#D9D9D9",
   },
@@ -280,22 +287,27 @@ const styles = StyleSheet.create({
     color: "#D9D9D9",
   },
   coverImage: {
-    width: "98%",
-    height: 350,
+    width: "100%",
+    height: 250,
     resizeMode: "cover",
     overflow: "hidden",
     marginBottom: 20,
-    marginHorizontal: 4,
-    paddingHorizontal: 4,
-    borderRadius: 50,
+    borderRadius: 20,
     justifyContent: "center",
   },
-  customButton2: {
-    height: 50,
-    width: 350,
-    padding: 12,
+  profileImage: {
+    width: 80,
+    height: 80,
     alignItems: "center",
-    backgroundColor: "#D9D9D9",
-    borderRadius: 40,
+    borderRadius: 15,
+    marginTop: -120,
+    marginHorizontal: 8,
+    paddingHorizontal: 6,
+    resizeMode: "cover",
+    overflow: "hidden",
+    marginBottom: 20,
+    justifyContent: "center",
+    borderWidth: 4,
+    borderColor: "#0C0404",
   },
 });
