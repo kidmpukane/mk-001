@@ -20,6 +20,7 @@ function StoreDivider() {
   }
 
   console.log(item?.id);
+  console.log(data ? data : "???");
 
   return (
     <View style={styles.container}>
