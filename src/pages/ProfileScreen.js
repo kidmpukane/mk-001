@@ -45,6 +45,7 @@ function ProfileScreen() {
   if (isError) {
     return <Text>{error.message}</Text>;
   }
+  console.log(userInfo);
 
   return (
     <View>

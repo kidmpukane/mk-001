@@ -7,8 +7,9 @@ import { useLocalSearchParams } from "expo-router";
 
 function StoreDivider() {
   const { item } = useLocalSearchParams();
-  const storeInfoUrl = `http://192.168.18.8:3000/api/get-store/${item?.id}`;
+  const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${item?.id}`;
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
+  console.log(item[0]);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
