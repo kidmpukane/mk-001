@@ -127,7 +127,7 @@ const UserInfoForm = () => {
           );
 
           console.log("Success:", response.data);
-          navigation.navigate("ProfileScreen");
+          navigation.navigate("Home");
         } catch (error) {
           console.error("Error:", error);
         }

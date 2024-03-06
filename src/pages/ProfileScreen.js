@@ -112,7 +112,7 @@ function ProfileScreen() {
                 style={styles.customButton}
                 title="Start Shopping"
                 onPress={() =>
-                  navigation.navigate("StoreDivider", { item: data })
+                  navigation.navigate("StoreDivider", { item: userInfo })
                 }
               />
             </View>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     justifyContent: "center",
     borderWidth: 2,
-    borderColor: "#0C0404",
+    borderColor: "#D9D9D9",
   },
   profileScreenContainer: {
     width: "100%",

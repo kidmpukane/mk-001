@@ -9,7 +9,7 @@ function StoreDivider() {
   const { item } = useLocalSearchParams();
   const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${item?.id}`;
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
-  console.log(item[0]);
+  console.log(`Store divider: ${item}`);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
