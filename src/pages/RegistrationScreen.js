@@ -79,9 +79,14 @@ const RegistrationScreen = (props) => {
 
             // Uncomment the following line when you have a working API endpoint
             console.log("Registration Response:", registrationResponse.data);
-            navigation.navigate("UserProfileFormScreen", {
-              item: registrationResponse.data,
-            });
+            navigation.navigate(
+              registrationResponse.id == null
+                ? "LogInScreen"
+                : "UserProfileFormScreen",
+              {
+                item: registrationResponse.data,
+              }
+            );
           } catch (error) {
             console.error(error);
 

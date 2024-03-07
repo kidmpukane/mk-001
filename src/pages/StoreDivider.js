@@ -9,7 +9,7 @@ function StoreDivider() {
   const { item } = useLocalSearchParams();
   const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${item?.id}`;
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
-  console.log(`Store divider: ${item}`);
+  console.log(data ? data.id : "nothing to display...");
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -18,9 +18,6 @@ function StoreDivider() {
   if (isError) {
     return <Text>{error.message}</Text>;
   }
-
-  console.log(item?.id);
-  console.log(data ? data : "???");
 
   return (
     <View style={styles.container}>
@@ -31,9 +28,13 @@ function StoreDivider() {
             nestedScrollEnabled={true}
             style={styles.scrollViewContainer}
           >
-            <View>
+            <View style={styles.topPageContainer}>
               <StorePageTop
-                storeDisplayImage={item.store_cover_image}
+                storeDisplayImage={
+                  item
+                    ? `http://10.0.2.2:8000/${item.store_image}`
+                    : "Loading..."
+                }
                 storeNameHeading={item.store_name}
                 storeDescription={item.store_description}
               />
@@ -55,7 +56,7 @@ function StoreDivider() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
   },
   scrollViewContainer: {
     flexGrow: 1,
@@ -63,6 +64,9 @@ const styles = StyleSheet.create({
   subContainer: {
     flex: 1,
     height: 600,
+  },
+  topPageContainer: {
+    padding: 2,
   },
 });
 
