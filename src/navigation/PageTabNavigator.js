@@ -7,14 +7,14 @@ import { Testmol } from "../components/molecules/testmol";
 import Home from "../pages/HomeScreen";
 import LibraryScreen from "../pages/LibraryScreen";
 import SearchScreen from "../pages/SearchScreen";
-import ProfileScreen from "../pages/ProfileScreen";
+import { ProfileScreen } from "../pages/ProfileScreen";
 import { StoreGallery } from "../pages/StoreGallery";
 import CreateStore from "../pages/CreateStore";
 
 //Screen names
 const homeName = "Home";
 const libraryName = "Library";
-const profileName = "Profile";
+const profileName = "ProfileScreen";
 const searchName = "Search";
 const createStore = "Create-Store";
 const testMolecule = "Test-Molecule";
@@ -30,7 +30,7 @@ const PageTabNavigator = () => {
       screenOptions={{ headerShown: false }}
       style={{ backgroundColor: "#1B2631" }}
     >
-      {/* <Tab.Screen
+      <Tab.Screen
         name={homeName}
         component={Home}
         options={{
@@ -43,7 +43,7 @@ const PageTabNavigator = () => {
             />
           ),
         }}
-      /> */}
+      />
 
       {/* <Tab.Screen
         name={testMolecule}
@@ -64,7 +64,7 @@ const PageTabNavigator = () => {
         name={profileName}
         component={ProfileScreen}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: "ProfileScreen",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),

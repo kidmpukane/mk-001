@@ -9,7 +9,7 @@ import { useLocalSearchParams } from "expo-router";
 const MaleStoreGallery = (props) => {
   const { item } = useLocalSearchParams();
   const navigation = useNavigation();
-  const storeInfoUrl = `http://192.168.0.106:3000/male_divider/${item.id}/?_embed=collections`;
+  const storeInfoUrl = `http://10.0.2.2:8000/get-primary-collections/${item.merchant_id}/?_embed=collections`;
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {

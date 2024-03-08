@@ -39,12 +39,13 @@ function ProfileScreen() {
   );
 
   if (isLoading) {
-    return <Text>Loading....</Text>;
+    return <Text>Loading Please Be Patient...</Text>;
   }
 
   if (isError) {
     return <Text>{error.message}</Text>;
   }
+  console.log(userInfo);
 
   return (
     <View>
@@ -111,7 +112,7 @@ function ProfileScreen() {
                 style={styles.customButton}
                 title="Start Shopping"
                 onPress={() =>
-                  navigation.navigate("StoreDivider", { item: data })
+                  navigation.navigate("StoreDivider", { item: userInfo })
                 }
               />
             </View>
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     justifyContent: "center",
     borderWidth: 2,
-    borderColor: "#0C0404",
+    borderColor: "#D9D9D9",
   },
   profileScreenContainer: {
     width: "100%",

@@ -29,8 +29,8 @@ const CreateStore = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      store_name: null,
-      store_description: null,
+      store_name: "Please Enter Store Name",
+      store_description: "Please Enter Store Description",
       store_image: null,
       merchant_id: item.id,
     },

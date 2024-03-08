@@ -48,19 +48,22 @@ export { StorePageTop, GalleryPageTop };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#0C0404",
   },
 
   subContainer: {
-    padding: 20,
+    padding: 2,
+    paddingTop: 10,
     width: "100%",
-    height: 350,
+    height: 450,
+    backgroundColor: "#0C0404",
   },
 
   productImages: {
     height: "100%",
     width: "100%",
     borderRadius: 20,
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
   },
 
   bottomSubContainer: {
@@ -71,23 +74,15 @@ const styles = StyleSheet.create({
 
   textStyles: {
     color: "#D9D9D9",
-    fontSize: 12,
-    fontWeight: "bold",
+    fontSize: 15,
+    fontWeight: "light",
   },
 
   headingStyles: {
-    fontSize: 40,
-    width: "100%",
+    fontSize: 24,
   },
 
   galleryTopContainer: {
     flex: 1,
-  },
-
-  productImages: {
-    height: "100%",
-    width: "100%",
-    borderRadius: 20,
-    backgroundColor: "#292929",
   },
 });
