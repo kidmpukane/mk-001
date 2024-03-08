@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
-
+import { CustomOpacity } from "../components/atoms/buttons";
 //Organisms
 import { CollectionLink } from "../components/organisms/CollectionLink";
 
@@ -38,6 +38,15 @@ const StorePage = ({ route }) => {
                   : "Nothing To Display...",
               }}
             />
+            <View>
+              <CustomOpacity
+                style={styles.customButton}
+                title="Edit Collection"
+                onPress={() =>
+                  navigation.navigate("EditStoreCollectionForm", { item: item })
+                }
+              />
+            </View>
           </View>
         ))
       ) : (
@@ -79,6 +88,15 @@ const MenPage = ({ route }) => {
                   : "Nothing To Display...",
               }}
             />
+            <View>
+              <CustomOpacity
+                style={styles.customButton}
+                title="Edit Collection"
+                onPress={() =>
+                  navigation.navigate("EditStoreCollectionForm", { item: item })
+                }
+              />
+            </View>
           </View>
         ))
       ) : (
@@ -119,6 +137,15 @@ const WomenPage = ({ route }) => {
                   : "Nothing To Display...",
               }}
             />
+            <View>
+              <CustomOpacity
+                style={styles.customButton}
+                title="Edit Collection"
+                onPress={() =>
+                  navigation.navigate("EditStoreCollectionForm", { item: item })
+                }
+              />
+            </View>
           </View>
         ))
       ) : (
@@ -137,6 +164,16 @@ const styles = StyleSheet.create({
   subContainer: {
     paddingTop: 10,
     paddingBottom: 10,
+  },
+  customButton: {
+    padding: 5,
+    alignItems: "center",
+    backgroundColor: "#0C0404",
+    borderWidth: 2,
+    borderColor: "#777575",
+    borderRadius: 50,
+    color: "white",
+    fontSize: 8,
   },
 });
 
