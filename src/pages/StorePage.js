@@ -10,8 +10,9 @@ import { useNavigation } from "@react-navigation/native";
 //Data fetching Hooks
 import { useStoreInfo } from "../hooks/useGetUserInfo";
 
-const StorePage = () => {
-  const storeInfoUrl = "http://192.168.0.106:3000/explore_divider";
+const StorePage = ({ route }) => {
+  const { id } = route.params;
+  const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-tertiary-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
@@ -32,7 +33,9 @@ const StorePage = () => {
               subTexts={item.collection_subtitle}
               onPress={() => console.log("pressed")}
               source={{
-                uri: item.collection_cover_image,
+                uri: item
+                  ? `http//10.0.2.2:8000/${item.collection_image}`
+                  : "Nothing To Display...",
               }}
             />
           </View>
@@ -46,8 +49,9 @@ const StorePage = () => {
   );
 };
 
-const MenPage = () => {
-  const storeInfoUrl = "http://192.168.0.106:3000/male_divider";
+const MenPage = ({ route }) => {
+  const { id } = route.params;
+  const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-secondary-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
@@ -70,7 +74,9 @@ const MenPage = () => {
                 navigation.navigate("MaleStoreGallery", { item: item })
               }
               source={{
-                uri: item.collection_cover_image,
+                uri: item
+                  ? `http//10.0.2.2:8000/${item.collection_image}`
+                  : "Nothing To Display...",
               }}
             />
           </View>
@@ -84,8 +90,9 @@ const MenPage = () => {
   );
 };
 
-const WomenPage = () => {
-  const storeInfoUrl = "http://192.168.0.106:3000/women's_divider";
+const WomenPage = ({ route }) => {
+  const { id } = route.params;
+  const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-primary-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
   if (isLoading) {
@@ -106,7 +113,9 @@ const WomenPage = () => {
               subTexts={item.collection_subtitle}
               onPress={() => navigation.navigate("FemaleStoreGallery")}
               source={{
-                uri: item.collection_cover_image,
+                uri: item
+                  ? `http//10.0.2.2:8000/${item.collection_image}`
+                  : "Nothing To Display...",
               }}
             />
           </View>

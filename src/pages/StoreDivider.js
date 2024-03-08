@@ -40,7 +40,7 @@ function StoreDivider() {
               />
             </View>
             <View style={styles.subContainer}>
-              <StoreDividerBottom />
+              <StoreDividerBottom id={item?.id} />
             </View>
           </ScrollView>
         ))
