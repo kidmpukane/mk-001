@@ -75,7 +75,7 @@ const MenPage = ({ route }) => {
               }
               source={{
                 uri: item
-                  ? `http//10.0.2.2:8000/${item.collection_image}`
+                  ? `http://10.0.2.2:8000/${item.collection_image}`
                   : "Nothing To Display...",
               }}
             />
@@ -103,6 +103,7 @@ const WomenPage = ({ route }) => {
     return <Text>{error.message}</Text>;
   }
 
+  console.log(data ? data[0] : "none");
   return (
     <ScrollView style={styles.container} nestedScrollEnabled={true}>
       {data ? (
@@ -114,7 +115,7 @@ const WomenPage = ({ route }) => {
               onPress={() => navigation.navigate("FemaleStoreGallery")}
               source={{
                 uri: item
-                  ? `http//10.0.2.2:8000/${item.collection_image}`
+                  ? `http://10.0.2.2:8000/${item.collection_image}`
                   : "Nothing To Display...",
               }}
             />
