@@ -12,8 +12,12 @@ function StoreDivider() {
   const navigation = useNavigation();
   const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${item?.id}`;
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
-  console.log(data ? data.id : "nothing to display...");
-
+  console.log(data ? `Store data:${data[0]}` : "nothing to display...");
+  console.log(
+    data && data.length > 0
+      ? `Store data: ${JSON.stringify(data[0], null, 2)}`
+      : "nothing to display..."
+  );
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
@@ -44,7 +48,9 @@ function StoreDivider() {
               <View style={styles.editStoreContainer}>
                 <CustomButton2
                   style={styles.customSubmitButton}
-                  onPress={() => navigation.navigate("EditStoreForm")}
+                  onPress={() =>
+                    navigation.navigate("EditStoreForm", { item: item })
+                  }
                   title="EDIT STORE"
                 />
               </View>
