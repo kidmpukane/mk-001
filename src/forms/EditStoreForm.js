@@ -24,20 +24,36 @@ const EditStoreForm = () => {
   const { authInfo } = useContext(AuthenticationContext);
 
   const initialValues = {
-    store_name: "",
-    store_description: "",
-    store_image: null,
-    merchant_id: item.id,
+    store_name: item?.store_name,
+    store_description: item?.store_description,
+    store_image: item?.store_image,
+    merchant_id: item?.merchant_id,
   };
 
-  const onSubmit = async (values, { resetForm }) => {
+  const onSubmit = async (values) => {
+    console.log("Values:", JSON.stringify(values));
     try {
       const formData = new FormData();
 
       // Add your form data fields to the formData object
       formData.append("store_name", values.store_name);
       formData.append("store_description", values.store_description);
-      formData.append("store_image", values.store_image);
+      if (values.store_image && values.store_image.uri) {
+        const storeImageUri = values.store_image.uri;
+        const storeImageName = storeImageUri.split("/").pop();
+        const storeImageType = "image/jpeg"; // Adjust the type based on your requirements
+
+        console.log("storeImageUri:", storeImageUri);
+        console.log("storeImageName:", storeImageName);
+        console.log("storeImageType:", storeImageType);
+
+        formData.append("store_image", {
+          uri: storeImageUri,
+          name: storeImageName,
+          type: storeImageType,
+        });
+      }
+      formData.append("merchant_id", values.merchant_id);
 
       // Add any other fields as needed
 
@@ -52,9 +68,9 @@ const EditStoreForm = () => {
           },
         }
       );
-
+      console.log(`Form Data: ${formData}`);
       console.log("Success:", response.data);
-      resetForm(); // Reset the form after successful submission
+      navigation.navigate("Home");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -70,17 +86,13 @@ const EditStoreForm = () => {
         quality: 1,
       });
 
-      if (!result.cancelled) {
-        let imageData = {
-          name: "image",
-          type: result.type,
-          uri: result.uri,
-        };
-
-        console.log(imageData);
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
+        // Check if setFieldValue is defined and call it with the correct arguments
+        if (setFieldValue) {
+          setFieldValue("store_image", result.assets[0]); // Note: Pass the entire result.assets[0] object
+        }
         console.log(result);
-        setImage(result.uri);
-        setFieldValue("store_image", imageData); // Set the image data in the form
       }
     } catch (error) {
       console.log(error);
@@ -99,7 +111,7 @@ const EditStoreForm = () => {
               style={styles.imageButton}
               title="+ Add Your Stores Cover Image"
               onPress={() => {
-                imageUploader();
+                imageUploader(setFieldValue); // Pass setFieldValue as a parameter
               }}
             />
           </View>
