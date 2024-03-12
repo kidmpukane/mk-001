@@ -32,6 +32,30 @@ const EditStoreCollectionForm = ({ route }) => {
     id: item?.id,
   };
 
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `http://10.0.2.2:8000/api/store/delete-${collectionStatus}-collections/${item?.id}/`,
+        {
+          headers: {
+            "X-CSRFToken": authInfo.authCookie || "",
+            sessionId: authInfo.sessionId || "",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+
+      console.log(`${item?.id} had been deleted`);
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
+  };
+
   const onSubmit = async (values) => {
     console.log("Values:", JSON.stringify(values));
     try {
@@ -142,6 +166,11 @@ const EditStoreCollectionForm = ({ route }) => {
             style={styles.customSubmitButton}
             onPress={handleSubmit}
           />
+          <CustomButton2
+            title="DELETE"
+            style={styles.customDeleteButton}
+            onPress={handleDelete}
+          />
         </ScrollView>
       )}
     </Formik>
@@ -185,6 +214,16 @@ const styles = StyleSheet.create({
     padding: 18,
     alignItems: "center",
     backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
+  customDeleteButton: {
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "red",
     borderRadius: 30,
     marginHorizontal: 4,
     paddingHorizontal: 4,
