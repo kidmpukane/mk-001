@@ -58,22 +58,20 @@ const StorePage = ({ route }) => {
           <Text>{error.message}</Text>
         </View>
       )}
-      {data
-        ? data.map((item, index) => (
-            <View key={index}>
-              <CustomButton2
-                style={styles.customButton2}
-                title="Create Collection"
-                onPress={() =>
-                  navigation.navigate("CreateStoreCollectionForm", {
-                    item: item,
-                    collectionStatus: collectionStatus,
-                  })
-                }
-              />
-            </View>
-          ))
-        : null}
+      {data ? (
+        <View>
+          <CustomButton2
+            style={styles.customButton2}
+            title="Create Collection"
+            onPress={() =>
+              navigation.navigate("CreateStoreCollectionForm", {
+                item: data[0], // Access the first item in the data array
+                collectionStatus: collectionStatus,
+              })
+            }
+          />
+        </View>
+      ) : null}
     </ScrollView>
   );
 };
@@ -128,22 +126,20 @@ const MenPage = ({ route }) => {
           <Text>{error.message}</Text>
         </View>
       )}
-      {data
-        ? data.map((item, index) => (
-            <View key={index}>
-              <CustomButton2
-                style={styles.customButton2}
-                title="Create Collection"
-                onPress={() =>
-                  navigation.navigate("CreateStoreCollectionForm", {
-                    item: item,
-                    collectionStatus: collectionStatus,
-                  })
-                }
-              />
-            </View>
-          ))
-        : null}
+      {data ? (
+        <View>
+          <CustomButton2
+            style={styles.customButton2}
+            title="Create Collection"
+            onPress={() =>
+              navigation.navigate("CreateStoreCollectionForm", {
+                item: data[0], // Access the first item in the data array
+                collectionStatus: collectionStatus,
+              })
+            }
+          />
+        </View>
+      ) : null}
     </ScrollView>
   );
 };
@@ -200,22 +196,20 @@ const WomenPage = ({ route }) => {
         </View>
       )}
 
-      {data
-        ? data.map((item, index) => (
-            <View key={index}>
-              <CustomButton2
-                style={styles.customButton2}
-                title="Create Collection"
-                onPress={() =>
-                  navigation.navigate("CreateStoreCollectionForm", {
-                    item: item,
-                    collectionStatus: collectionStatus,
-                  })
-                }
-              />
-            </View>
-          ))
-        : null}
+      {data ? (
+        <View>
+          <CustomButton2
+            style={styles.customButton2}
+            title="Create Collection"
+            onPress={() =>
+              navigation.navigate("CreateStoreCollectionForm", {
+                item: data[0], // Access the first item in the data array
+                collectionStatus: collectionStatus,
+              })
+            }
+          />
+        </View>
+      ) : null}
     </ScrollView>
   );
 };
