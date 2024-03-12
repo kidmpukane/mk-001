@@ -12,6 +12,7 @@ import { useStoreInfo } from "../hooks/useGetUserInfo";
 
 const StorePage = ({ route }) => {
   const { id } = route.params;
+  const collectionStatus = "tertiary";
   const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-tertiary-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
@@ -43,7 +44,10 @@ const StorePage = ({ route }) => {
                 style={styles.customButton}
                 title="Edit Collection"
                 onPress={() =>
-                  navigation.navigate("EditStoreCollectionForm", { item: item })
+                  navigation.navigate("EditStoreCollectionForm", {
+                    item: item,
+                    collectionStatus: collectionStatus,
+                  })
                 }
               />
             </View>
@@ -60,6 +64,7 @@ const StorePage = ({ route }) => {
 
 const MenPage = ({ route }) => {
   const { id } = route.params;
+  const collectionStatus = "secondary";
   const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-secondary-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
@@ -93,7 +98,10 @@ const MenPage = ({ route }) => {
                 style={styles.customButton}
                 title="Edit Collection"
                 onPress={() =>
-                  navigation.navigate("EditStoreCollectionForm", { item: item })
+                  navigation.navigate("EditStoreCollectionForm", {
+                    item: item,
+                    collectionStatus: collectionStatus,
+                  })
                 }
               />
             </View>
@@ -110,6 +118,7 @@ const MenPage = ({ route }) => {
 
 const WomenPage = ({ route }) => {
   const { id } = route.params;
+  const collectionStatus = "primary";
   const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-primary-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
@@ -142,7 +151,10 @@ const WomenPage = ({ route }) => {
                 style={styles.customButton}
                 title="Edit Collection"
                 onPress={() =>
-                  navigation.navigate("EditStoreCollectionForm", { item: item })
+                  navigation.navigate("EditStoreCollectionForm", {
+                    item: item,
+                    collectionStatus: collectionStatus,
+                  })
                 }
               />
             </View>
