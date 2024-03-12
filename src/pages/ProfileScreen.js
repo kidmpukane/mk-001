@@ -27,8 +27,30 @@ function ProfileScreen() {
     useStoreInfo(storeInfoUrl);
 
   useEffect(() => {
-    if (data && data.length > 0) {
+    console.log("Data fetched:", data); // Debugging line
+    if (Array.isArray(data) && data.length > 0) {
+      // If data is an array, set userInfo to the first element
       setUserInfo(data[0]);
+    } else if (data && typeof data === "object") {
+      // If data is an object, destructure it directly
+      const {
+        id,
+        user_name,
+        email,
+        user_bio,
+        background_picture,
+        profile_picture,
+      } = data;
+      setUserInfo({
+        id,
+        user_name,
+        email,
+        user_bio,
+        background_picture,
+        profile_picture,
+      });
+    } else {
+      console.log("Data does not meet the expected condition"); // Debugging line
     }
   }, [data]);
 
@@ -101,7 +123,9 @@ function ProfileScreen() {
             <CustomButton2
               style={styles.customSubmitButton}
               onPress={() =>
-                navigation.navigate("UserInfoForm", { item: userInfo })
+                navigation.navigate("UserInfoForm", {
+                  item: JSON.stringify(userInfo),
+                })
               }
               title="EDIT INFO"
             />
@@ -112,11 +136,25 @@ function ProfileScreen() {
                 style={styles.customButton}
                 title="Start Shopping"
                 onPress={() =>
-                  navigation.navigate("StoreDivider", { item: userInfo })
+                  navigation.navigate("StoreDivider", {
+                    item: JSON.stringify(userInfo),
+                  })
                 }
               />
             </View>
-          ) : null}
+          ) : (
+            <View style={styles.merchCustomButtonContainer}>
+              <CustomOpacity
+                style={styles.customButton}
+                title="View Collection"
+                onPress={() =>
+                  navigation.navigate("CustomerCollections", {
+                    item: JSON.stringify(userInfo),
+                  })
+                }
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>

@@ -7,7 +7,12 @@ import CreateStore from "../pages/CreateStore";
 import { UserProfileForm } from "../forms/UserProfileForm";
 import { PageTabNavigator } from "./PageTabNavigator";
 import { StoreDivider } from "../pages/StoreDivider";
-
+import { EditStoreForm } from "../forms/EditStoreForm";
+import { EditStoreCollectionForm } from "../forms/EditStoreCollectionForm";
+import { CreateStoreCollectionForm } from "../forms/CreateStoreCollectionForm";
+import { CustomerCollections } from "../pages/CustomerCollections";
+import { EditCustomerCollectionForm } from "../forms/EditCustomerCollectionForm";
+import { CreateCustomerCollectionForm } from "../forms/CreateCustomerCollectionForm";
 const Stack = createStackNavigator();
 
 const ApplicationStack = () => {
@@ -20,6 +25,27 @@ const ApplicationStack = () => {
       <Stack.Screen name="CreateStore" component={CreateStore} />
       <Stack.Screen name="CreateGallery" component={CreateGallery} />
       <Stack.Screen name="StoreDivider" component={StoreDivider} />
+      <Stack.Screen name="EditStoreForm" component={EditStoreForm} />
+      <Stack.Screen
+        name="EditStoreCollectionForm"
+        component={EditStoreCollectionForm}
+      />
+      <Stack.Screen
+        name="CreateStoreCollectionForm"
+        component={CreateStoreCollectionForm}
+      />
+      <Stack.Screen
+        name="CustomerCollections"
+        component={CustomerCollections}
+      />
+      <Stack.Screen
+        name="EditCustomerCollectionForm"
+        component={EditCustomerCollectionForm}
+      />
+      <Stack.Screen
+        name="CreateCustomerCollectionForm"
+        component={CreateCustomerCollectionForm}
+      />
     </Stack.Navigator>
   );
 };

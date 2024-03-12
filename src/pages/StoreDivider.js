@@ -4,12 +4,19 @@ import { StorePageTop } from "../components/organisms/StorePageTop";
 import { StoreDividerBottom } from "../components/organisms/StoreDividerBottom";
 import { useStoreInfo } from "../hooks/useGetUserInfo";
 import { useLocalSearchParams } from "expo-router";
+import { CustomButton2 } from "../components/atoms/buttons";
+import { useNavigation } from "@react-navigation/native";
 
 function StoreDivider() {
   const { item } = useLocalSearchParams();
-  const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${item?.id}`;
+  const parsedItem = JSON.parse(item);
+  console.log("Data fetched:", JSON.stringify(parsedItem, null, 2));
+  const { id } = parsedItem;
+  const navigation = useNavigation();
+  const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${id}`;
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
-  console.log(data ? data.id : "nothing to display...");
+
+  console.log(id);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -38,6 +45,17 @@ function StoreDivider() {
                 storeNameHeading={item.store_name}
                 storeDescription={item.store_description}
               />
+              <View style={styles.editStoreContainer}>
+                <CustomButton2
+                  style={styles.customSubmitButton}
+                  onPress={() =>
+                    navigation.navigate("EditStoreForm", {
+                      item: JSON.stringify(item),
+                    })
+                  }
+                  title="EDIT STORE"
+                />
+              </View>
             </View>
             <View style={styles.subContainer}>
               <StoreDividerBottom id={item?.id} />
@@ -67,6 +85,15 @@ const styles = StyleSheet.create({
   },
   topPageContainer: {
     padding: 2,
+  },
+  customSubmitButton: {
+    width: "100%",
+    marginTop: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+    marginRight: 80,
   },
 });
 
