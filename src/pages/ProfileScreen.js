@@ -27,8 +27,15 @@ function ProfileScreen() {
     useStoreInfo(storeInfoUrl);
 
   useEffect(() => {
-    if (data && data.length > 0) {
+    console.log("Data fetched:", data); // Debugging line
+    if (Array.isArray(data) && data.length > 0) {
+      // If data is an array, set userInfo to the first element
       setUserInfo(data[0]);
+    } else if (data) {
+      // If data is not an array but exists, set userInfo directly to data
+      setUserInfo(data);
+    } else {
+      console.log("Data does not meet the expected condition"); // Debugging line
     }
   }, [data]);
 
@@ -116,7 +123,17 @@ function ProfileScreen() {
                 }
               />
             </View>
-          ) : null}
+          ) : (
+            <View style={styles.merchCustomButtonContainer}>
+              <CustomOpacity
+                style={styles.customButton}
+                title="View Collection"
+                onPress={() =>
+                  navigation.navigate("CustomerCollections", { item: userInfo })
+                }
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>

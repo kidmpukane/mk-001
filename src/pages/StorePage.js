@@ -216,7 +216,7 @@ const WomenPage = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#292929",
+    backgroundColor: "#0C0404",
   },
   subContainer: {
     paddingTop: 10,

@@ -10,6 +10,7 @@ import { StoreDivider } from "../pages/StoreDivider";
 import { EditStoreForm } from "../forms/EditStoreForm";
 import { EditStoreCollectionForm } from "../forms/EditStoreCollectionForm";
 import { CreateStoreCollectionForm } from "../forms/CreateStoreCollectionForm";
+import { CustomerCollections } from "../pages/CustomerCollections";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,10 @@ const ApplicationStack = () => {
       <Stack.Screen
         name="CreateStoreCollectionForm"
         component={CreateStoreCollectionForm}
+      />
+      <Stack.Screen
+        name="CustomerCollections"
+        component={CustomerCollections}
       />
     </Stack.Navigator>
   );

@@ -7,6 +7,8 @@ export const AuthenticationProvider = ({ children }) => {
     authCookie: null,
     sessionId: null,
     userId: null,
+    storeOwnerId: null,
+    profileId: null,
     isMerchant: false,
   });
 
