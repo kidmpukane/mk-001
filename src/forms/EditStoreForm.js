@@ -19,15 +19,21 @@ import { AuthenticationContext } from "../authProviders/AuthenticationContext";
 
 const EditStoreForm = () => {
   const { item } = useLocalSearchParams();
+  const parsedItem = JSON.parse(item);
+  console.log("Data fetched:", JSON.stringify(parsedItem, null, 2));
+
   const navigation = useNavigation();
   const [image, setImage] = useState(null);
   const { authInfo } = useContext(AuthenticationContext);
 
+  const { id, store_name, store_description, store_image, merchant_id } =
+    parsedItem;
+
   const initialValues = {
-    store_name: item?.store_name,
-    store_description: item?.store_description,
-    store_image: item?.store_image,
-    merchant_id: item?.merchant_id,
+    store_name: store_name,
+    store_description: store_description,
+    store_image: store_image,
+    merchant_id: merchant_id,
   };
 
   const onSubmit = async (values) => {
@@ -58,7 +64,7 @@ const EditStoreForm = () => {
       // Add any other fields as needed
 
       const response = await axios.put(
-        `http://10.0.2.2:8000/api/update-store/${item?.id}/`,
+        `http://10.0.2.2:8000/api/update-store/${id}/`,
         formData,
         {
           headers: {
