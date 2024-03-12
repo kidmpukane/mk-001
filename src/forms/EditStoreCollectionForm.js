@@ -24,18 +24,32 @@ const EditStoreCollectionForm = ({ route }) => {
   const { authInfo } = useContext(AuthenticationContext);
   const { collectionStatus } = route.params;
   console.log(collectionStatus);
+  const parsedItem = JSON.parse(item);
+  console.log(
+    "Data fetched for edit collection:",
+    JSON.stringify(parsedItem, null, 2)
+  );
+
+  const {
+    id,
+    collection_title,
+    collection_subtitle,
+    store_id,
+    collection_image,
+  } = parsedItem;
+
   const initialValues = {
-    collection_title: item?.collection_title,
-    collection_subtitle: item?.collection_subtitle,
-    collection_image: item?.collection_image,
-    store_id: item?.store_id,
-    id: item?.id,
+    collection_title: collection_title,
+    collection_subtitle: collection_subtitle,
+    collection_image: collection_image,
+    store_id: store_id,
+    id: id,
   };
 
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://10.0.2.2:8000/api/store/delete-${collectionStatus}-collections/${item?.id}/`,
+        `http://10.0.2.2:8000/api/store/delete-${collectionStatus}-collections/${id}/`,
         {
           headers: {
             "X-CSRFToken": authInfo.authCookie || "",
@@ -49,7 +63,7 @@ const EditStoreCollectionForm = ({ route }) => {
         throw new Error("Network response was not ok");
       }
 
-      console.log(`${item?.id} had been deleted`);
+      console.log(`${id} had been deleted`);
       navigation.navigate("Home");
     } catch (error) {
       console.error("There was an error!", error);
@@ -85,7 +99,7 @@ const EditStoreCollectionForm = ({ route }) => {
       // Add any other fields as needed
 
       const response = await axios.put(
-        `http://10.0.2.2:8000/api/store/edit-${collectionStatus}-collections/${item?.id}/`,
+        `http://10.0.2.2:8000/api/store/edit-${collectionStatus}-collections/${id}/`,
         formData,
         {
           headers: {

@@ -24,11 +24,19 @@ const CreateStoreCollectionForm = ({ route }) => {
   const { authInfo } = useContext(AuthenticationContext);
   const { collectionStatus } = route.params;
   console.log(collectionStatus);
+  const parsedItem = JSON.parse(item);
+  console.log(
+    "Data fetched for edit collection:",
+    JSON.stringify(parsedItem, null, 2)
+  );
+
+  const { store_id } = parsedItem[0] || {};
+
   const initialValues = {
     collection_title: "",
     collection_subtitle: "",
     collection_image: "",
-    store_id: item?.store_id,
+    store_id: store_id || "",
     id: 2,
   };
 
@@ -55,7 +63,7 @@ const CreateStoreCollectionForm = ({ route }) => {
           type: collectionImageType,
         });
       }
-      formData.append("store_id", values.store_id);
+      formData.append("store_id", store_id);
       formData.append("id", values.id);
 
       // Add any other fields as needed

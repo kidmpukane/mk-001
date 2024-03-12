@@ -9,15 +9,15 @@ import { useNavigation } from "@react-navigation/native";
 
 function StoreDivider() {
   const { item } = useLocalSearchParams();
+  const parsedItem = JSON.parse(item);
+  console.log("Data fetched:", JSON.stringify(parsedItem, null, 2));
+  const { id } = parsedItem;
   const navigation = useNavigation();
-  const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${item?.id}`;
+  const storeInfoUrl = `http://10.0.2.2:8000/api/get-store/${id}`;
   const { isLoading, data, isError, error } = useStoreInfo(storeInfoUrl);
-  console.log(data ? `Store data:${data[0]}` : "nothing to display...");
-  console.log(
-    data && data.length > 0
-      ? `Store data: ${JSON.stringify(data[0], null, 2)}`
-      : "nothing to display..."
-  );
+
+  console.log(id);
+
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
@@ -49,7 +49,9 @@ function StoreDivider() {
                 <CustomButton2
                   style={styles.customSubmitButton}
                   onPress={() =>
-                    navigation.navigate("EditStoreForm", { item: item })
+                    navigation.navigate("EditStoreForm", {
+                      item: JSON.stringify(item),
+                    })
                   }
                   title="EDIT STORE"
                 />

@@ -45,7 +45,7 @@ const StorePage = ({ route }) => {
                 title="Edit Collection"
                 onPress={() =>
                   navigation.navigate("EditStoreCollectionForm", {
-                    item: item,
+                    item: JSON.stringify(item),
                     collectionStatus: collectionStatus,
                   })
                 }
@@ -99,7 +99,9 @@ const MenPage = ({ route }) => {
               headingTexts={item.collection_title}
               subTexts={item.collection_subtitle}
               onPress={() =>
-                navigation.navigate("MaleStoreGallery", { item: item })
+                navigation.navigate("MaleStoreGallery", {
+                  item: JSON.stringify(item),
+                })
               }
               source={{
                 uri: item
@@ -113,7 +115,7 @@ const MenPage = ({ route }) => {
                 title="Edit Collection"
                 onPress={() =>
                   navigation.navigate("EditStoreCollectionForm", {
-                    item: item,
+                    item: JSON.stringify(item),
                     collectionStatus: collectionStatus,
                   })
                 }
@@ -182,7 +184,7 @@ const WomenPage = ({ route }) => {
                 title="Edit Collection"
                 onPress={() =>
                   navigation.navigate("EditStoreCollectionForm", {
-                    item: item,
+                    item: JSON.stringify(item),
                     collectionStatus: collectionStatus,
                   })
                 }
@@ -203,7 +205,7 @@ const WomenPage = ({ route }) => {
             title="Create Collection"
             onPress={() =>
               navigation.navigate("CreateStoreCollectionForm", {
-                item: data[0], // Access the first item in the data array
+                item: JSON.stringify(data), // Access the first item in the data array
                 collectionStatus: collectionStatus,
               })
             }
