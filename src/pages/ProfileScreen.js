@@ -31,9 +31,24 @@ function ProfileScreen() {
     if (Array.isArray(data) && data.length > 0) {
       // If data is an array, set userInfo to the first element
       setUserInfo(data[0]);
-    } else if (data) {
-      // If data is not an array but exists, set userInfo directly to data
-      setUserInfo(data);
+    } else if (data && typeof data === "object") {
+      // If data is an object, destructure it directly
+      const {
+        id,
+        user_name,
+        email,
+        user_bio,
+        background_picture,
+        profile_picture,
+      } = data;
+      setUserInfo({
+        id,
+        user_name,
+        email,
+        user_bio,
+        background_picture,
+        profile_picture,
+      });
     } else {
       console.log("Data does not meet the expected condition"); // Debugging line
     }
@@ -108,7 +123,9 @@ function ProfileScreen() {
             <CustomButton2
               style={styles.customSubmitButton}
               onPress={() =>
-                navigation.navigate("UserInfoForm", { item: userInfo })
+                navigation.navigate("UserInfoForm", {
+                  item: JSON.stringify(userInfo),
+                })
               }
               title="EDIT INFO"
             />
@@ -119,7 +136,9 @@ function ProfileScreen() {
                 style={styles.customButton}
                 title="Start Shopping"
                 onPress={() =>
-                  navigation.navigate("StoreDivider", { item: userInfo })
+                  navigation.navigate("StoreDivider", {
+                    item: JSON.stringify(userInfo),
+                  })
                 }
               />
             </View>
@@ -129,7 +148,9 @@ function ProfileScreen() {
                 style={styles.customButton}
                 title="View Collection"
                 onPress={() =>
-                  navigation.navigate("CustomerCollections", { item: userInfo })
+                  navigation.navigate("CustomerCollections", {
+                    item: JSON.stringify(userInfo),
+                  })
                 }
               />
             </View>

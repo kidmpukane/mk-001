@@ -34,7 +34,16 @@ const UserInfoForm = () => {
   const navigation = useNavigation();
   const [coverImage, setCoverImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
-  console.log(item ? item : "nothing to log...");
+  const parsedItem = JSON.parse(item);
+  console.log("Data fetched:", JSON.stringify(parsedItem, null, 2));
+  const {
+    id,
+    user_name,
+    email,
+    user_bio,
+    background_picture,
+    profile_picture,
+  } = parsedItem;
 
   const pickCoverImage = async (setFieldValue) => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -70,10 +79,9 @@ const UserInfoForm = () => {
     <Formik
       validationSchema={userInfoFormSchema}
       initialValues={{
-        id: item?.id,
-        at_user: item?.at_user,
-        user_name: item?.user_name || "",
-        user_bio: item?.user_bio || "",
+        id: id,
+        user_name: user_name || "",
+        user_bio: user_bio || "",
         profile_picture: null,
         background_picture: null,
       }}
@@ -115,7 +123,7 @@ const UserInfoForm = () => {
           const response = await axios.put(
             `http://10.0.2.2:8000/api/${
               authInfo.isMerchant == true ? "merchant" : "customer"
-            }-profile-update/${item.id}/`,
+            }-profile-update/${id}/`,
             formData,
             {
               headers: {

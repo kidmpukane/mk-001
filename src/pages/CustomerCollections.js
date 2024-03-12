@@ -8,7 +8,18 @@ import React from "react";
 
 const CustomerCollections = () => {
   const { item } = useLocalSearchParams();
-  const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-customer-collections/${item?.id}/`;
+  const parsedItem = JSON.parse(item);
+  console.log("Data fetched:", JSON.stringify(parsedItem, null, 2));
+
+  const {
+    id,
+    user_name,
+    email,
+    user_bio,
+    background_picture,
+    profile_picture,
+  } = parsedItem;
+  const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-customer-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
 
