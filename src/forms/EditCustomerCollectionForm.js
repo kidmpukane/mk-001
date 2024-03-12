@@ -17,19 +17,42 @@ import { useNavigation } from "@react-navigation/native";
 import { useLocalSearchParams } from "expo-router";
 import { AuthenticationContext } from "../authProviders/AuthenticationContext";
 
-const EditCustomerCollectionForm = ({ route }) => {
+const EditCustomerCollectionForm = () => {
   const { item } = useLocalSearchParams();
   const navigation = useNavigation();
   const [image, setImage] = useState(null);
   const { authInfo } = useContext(AuthenticationContext);
-  const { collectionStatus } = route.params;
-  console.log(collectionStatus);
+
   const initialValues = {
     collection_title: item?.collection_title,
     collection_subtitle: item?.collection_subtitle,
     collection_image: item?.collection_image,
     customer_id: item?.customer_id,
     id: item?.id,
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `http://10.0.2.2:8000/api/store/delete-customer-collections/${item?.id}/`,
+        {
+          headers: {
+            "X-CSRFToken": authInfo.authCookie || "",
+            sessionId: authInfo.sessionId || "",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+
+      console.log(`${item?.id} had been deleted`);
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
   };
 
   const onSubmit = async (values) => {
@@ -142,6 +165,11 @@ const EditCustomerCollectionForm = ({ route }) => {
             style={styles.customSubmitButton}
             onPress={handleSubmit}
           />
+          <CustomButton2
+            title="DELETE"
+            style={styles.customDeleteButton}
+            onPress={handleDelete}
+          />
         </ScrollView>
       )}
     </Formik>
@@ -185,6 +213,16 @@ const styles = StyleSheet.create({
     padding: 18,
     alignItems: "center",
     backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+    marginHorizontal: 4,
+    paddingHorizontal: 4,
+  },
+  customDeleteButton: {
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "red",
     borderRadius: 30,
     marginHorizontal: 4,
     paddingHorizontal: 4,
