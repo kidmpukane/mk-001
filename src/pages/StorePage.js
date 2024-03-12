@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
-import { CustomOpacity } from "../components/atoms/buttons";
+import { CustomOpacity, CustomButton2 } from "../components/atoms/buttons";
 //Organisms
 import { CollectionLink } from "../components/organisms/CollectionLink";
 
@@ -58,6 +58,22 @@ const StorePage = ({ route }) => {
           <Text>{error.message}</Text>
         </View>
       )}
+      {data
+        ? data.map((item, index) => (
+            <View key={index}>
+              <CustomButton2
+                style={styles.customButton2}
+                title="Create Collection"
+                onPress={() =>
+                  navigation.navigate("CreateStoreCollectionForm", {
+                    item: item,
+                    collectionStatus: collectionStatus,
+                  })
+                }
+              />
+            </View>
+          ))
+        : null}
     </ScrollView>
   );
 };
@@ -112,6 +128,22 @@ const MenPage = ({ route }) => {
           <Text>{error.message}</Text>
         </View>
       )}
+      {data
+        ? data.map((item, index) => (
+            <View key={index}>
+              <CustomButton2
+                style={styles.customButton2}
+                title="Create Collection"
+                onPress={() =>
+                  navigation.navigate("CreateStoreCollectionForm", {
+                    item: item,
+                    collectionStatus: collectionStatus,
+                  })
+                }
+              />
+            </View>
+          ))
+        : null}
     </ScrollView>
   );
 };
@@ -122,6 +154,7 @@ const WomenPage = ({ route }) => {
   const storeInfoUrl = `http://10.0.2.2:8000/api/store/get-primary-collections/${id}/`;
   const { isLoading, isError, error, data } = useStoreInfo(storeInfoUrl);
   const navigation = useNavigation();
+
   if (isLoading) {
     return <Text>Loading</Text>;
   }
@@ -131,10 +164,11 @@ const WomenPage = ({ route }) => {
   }
 
   console.log(data ? data[0] : "none");
+
   return (
     <ScrollView style={styles.container} nestedScrollEnabled={true}>
       {data ? (
-        data?.map((item, index) => (
+        data.map((item, index) => (
           <View key={index} style={styles.subContainer}>
             <CollectionLink
               headingTexts={item.collection_title}
@@ -165,6 +199,23 @@ const WomenPage = ({ route }) => {
           <Text>{error.message}</Text>
         </View>
       )}
+
+      {data
+        ? data.map((item, index) => (
+            <View key={index}>
+              <CustomButton2
+                style={styles.customButton2}
+                title="Create Collection"
+                onPress={() =>
+                  navigation.navigate("CreateStoreCollectionForm", {
+                    item: item,
+                    collectionStatus: collectionStatus,
+                  })
+                }
+              />
+            </View>
+          ))
+        : null}
     </ScrollView>
   );
 };
@@ -186,6 +237,16 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     color: "white",
     fontSize: 8,
+  },
+  customButton2: {
+    width: "100%",
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 18,
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    borderRadius: 30,
+    marginRight: 80,
   },
 });
 
