@@ -62,7 +62,7 @@ const CustomerCollections = () => {
             style={styles.customButton2}
             title="Create Collection"
             onPress={() =>
-              navigation.navigate("CreateStoreCollectionForm", {
+              navigation.navigate("CreateCustomerCollectionForm", {
                 item: data[0],
               })
             }

@@ -12,7 +12,7 @@ import { EditStoreCollectionForm } from "../forms/EditStoreCollectionForm";
 import { CreateStoreCollectionForm } from "../forms/CreateStoreCollectionForm";
 import { CustomerCollections } from "../pages/CustomerCollections";
 import { EditCustomerCollectionForm } from "../forms/EditCustomerCollectionForm";
-
+import { CreateCustomerCollectionForm } from "../forms/CreateCustomerCollectionForm";
 const Stack = createStackNavigator();
 
 const ApplicationStack = () => {
@@ -41,6 +41,10 @@ const ApplicationStack = () => {
       <Stack.Screen
         name="EditCustomerCollectionForm"
         component={EditCustomerCollectionForm}
+      />
+      <Stack.Screen
+        name="CreateCustomerCollectionForm"
+        component={CreateCustomerCollectionForm}
       />
     </Stack.Navigator>
   );
