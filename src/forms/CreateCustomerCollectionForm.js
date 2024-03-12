@@ -23,13 +23,24 @@ const CreateCustomerCollectionForm = () => {
   const [image, setImage] = useState(null);
   const { authInfo } = useContext(AuthenticationContext);
 
+  const parsedItem = JSON.parse(item);
+  console.log(
+    "Data fetched for create collection:",
+    JSON.stringify(parsedItem, null, 2)
+  );
+
+  const { customer_id } = parsedItem[0] || {}; // Access the first element or provide a default empty object
+  console.log("Customer ID:", customer_id);
+
   const initialValues = {
-    collection_title: item?.collection_title,
-    collection_subtitle: item?.collection_subtitle,
-    collection_image: item?.collection_image,
-    customer_id: item?.customer_id,
-    id: item?.id,
+    collection_title: "",
+    collection_subtitle: "",
+    collection_image: "",
+    customer_id: customer_id || "",
+    id: "",
   };
+
+  console.log(customer_id);
 
   const onSubmit = async (values) => {
     console.log("Values:", JSON.stringify(values));
@@ -54,7 +65,8 @@ const CreateCustomerCollectionForm = () => {
           type: collectionImageType,
         });
       }
-      formData.append("customer_id", values.customer_id);
+      formData.append("customer_id", customer_id);
+
       formData.append("id", values.id);
 
       // Add any other fields as needed

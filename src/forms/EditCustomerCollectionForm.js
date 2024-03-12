@@ -22,19 +22,32 @@ const EditCustomerCollectionForm = () => {
   const navigation = useNavigation();
   const [image, setImage] = useState(null);
   const { authInfo } = useContext(AuthenticationContext);
+  const parsedItem = JSON.parse(item);
+  console.log(
+    "Data fetched for edit collection:",
+    JSON.stringify(parsedItem, null, 2)
+  );
+
+  const {
+    id,
+    collection_title,
+    collection_subtitle,
+    customer_id,
+    collection_image,
+  } = parsedItem;
 
   const initialValues = {
-    collection_title: item?.collection_title,
-    collection_subtitle: item?.collection_subtitle,
-    collection_image: item?.collection_image,
-    customer_id: item?.customer_id,
-    id: item?.id,
+    collection_title: collection_title,
+    collection_subtitle: collection_subtitle,
+    collection_image: collection_image,
+    customer_id: customer_id,
+    id: id,
   };
 
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://10.0.2.2:8000/api/store/delete-customer-collections/${item?.id}/`,
+        `http://10.0.2.2:8000/api/store/delete-customer-collections/${id}/`,
         {
           headers: {
             "X-CSRFToken": authInfo.authCookie || "",
@@ -84,7 +97,7 @@ const EditCustomerCollectionForm = () => {
       // Add any other fields as needed
 
       const response = await axios.put(
-        `http://10.0.2.2:8000/api/store/edit-customer-collections/${item?.id}/`,
+        `http://10.0.2.2:8000/api/store/edit-customer-collections/${id}/`,
         formData,
         {
           headers: {

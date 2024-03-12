@@ -54,7 +54,7 @@ const CustomerCollections = () => {
                 title="Edit Collection"
                 onPress={() =>
                   navigation.navigate("EditCustomerCollectionForm", {
-                    item: item,
+                    item: JSON.stringify(item),
                   })
                 }
               />
@@ -74,7 +74,7 @@ const CustomerCollections = () => {
             title="Create Collection"
             onPress={() =>
               navigation.navigate("CreateCustomerCollectionForm", {
-                item: data[0],
+                item: JSON.stringify(data),
               })
             }
           />
