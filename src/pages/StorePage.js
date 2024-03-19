@@ -171,7 +171,11 @@ const WomenPage = ({ route }) => {
             <CollectionLink
               headingTexts={item.collection_title}
               subTexts={item.collection_subtitle}
-              onPress={() => navigation.navigate("FemaleStoreGallery")}
+              onPress={() =>
+                navigation.navigate("FemaleStoreGallery", {
+                  item: JSON.stringify(item),
+                })
+              }
               source={{
                 uri: item
                   ? `http://10.0.2.2:8000/${item.collection_image}`
