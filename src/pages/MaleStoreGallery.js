@@ -29,7 +29,7 @@ const MaleStoreGallery = (props) => {
     <View
       style={{
         flex: 1,
-        backgroundColor: "#292929",
+        backgroundColor: "#0C0404",
       }}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
