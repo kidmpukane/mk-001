@@ -13,6 +13,14 @@ import { CreateStoreCollectionForm } from "../forms/CreateStoreCollectionForm";
 import { CustomerCollections } from "../pages/CustomerCollections";
 import { EditCustomerCollectionForm } from "../forms/EditCustomerCollectionForm";
 import { CreateCustomerCollectionForm } from "../forms/CreateCustomerCollectionForm";
+import { FemaleStoreGallery } from "../pages/FemaleStoreGallery";
+import { StorePage } from "../pages/StorePage";
+import { StoreGallery } from "../pages/StoreGallery";
+import { MaleStoreGallery } from "../pages/MaleStoreGallery";
+import ProductUpload from "../pages/ProductUpload";
+import { ProductViewScreen } from "../pages/ProductViewScreen";
+import { ProductPage } from "../pages/ProductPage";
+
 const Stack = createStackNavigator();
 
 const ApplicationStack = () => {
@@ -26,6 +34,13 @@ const ApplicationStack = () => {
       <Stack.Screen name="CreateGallery" component={CreateGallery} />
       <Stack.Screen name="StoreDivider" component={StoreDivider} />
       <Stack.Screen name="EditStoreForm" component={EditStoreForm} />
+      <Stack.Screen name="ProductPage" component={ProductPage} />
+      <Stack.Screen name="StorePage" component={StorePage} />
+      <Stack.Screen name="FemaleStoreGallery" component={FemaleStoreGallery} />
+      <Stack.Screen name="MaleStoreGallery" component={MaleStoreGallery} />
+      <Stack.Screen name="StoreGallery" component={StoreGallery} />
+      <Stack.Screen name="ProductUpload" component={ProductUpload} />
+      <Stack.Screen name="ProductViewScreen" component={ProductViewScreen} />
       <Stack.Screen
         name="EditStoreCollectionForm"
         component={EditStoreCollectionForm}
@@ -57,13 +72,8 @@ export { ApplicationStack };
           <Stack.Screen name="CreateStore" component={CreateStore} />
           <Stack.Screen name="CreateCollection" component={CreateCollection} />
 
-          <Stack.Screen name="ProductUpload" component={ProductUpload} />
-          <Stack.Screen name="ProductViewScreen" component={ProductViewScreen}/>
+
           <Stack.Screen name="Testmol" component={Testmol} />
-          <Stack.Screen name="ProductPage" component={ProductPage} />
-          <Stack.Screen name="StorePage" component={StorePage} />
-          <Stack.Screen name="FemaleStoreGallery" component={FemaleStoreGallery}/>
-          <Stack.Screen name="MaleStoreGallery" component={MaleStoreGallery} />
-          <Stack.Screen name="StoreGallery" component={StoreGallery} />
+
            */
 }

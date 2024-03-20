@@ -7,9 +7,10 @@ import { useNavigation } from "@react-navigation/native";
 import { useLocalSearchParams } from "expo-router";
 
 const MaleStoreGallery = (props) => {
-  const { item } = useLocalSearchParams();
+  const { item } = props.route.params;
+  const parsedItem = JSON.parse(item); // Parse the item here
   const navigation = useNavigation();
-  const storeInfoUrl = `http://10.0.2.2:8000/get-primary-collections/${item.merchant_id}/?_embed=collections`;
+  const storeInfoUrl = `http://10.0.2.2:8000/api/products/secondary-products-for-collections/${parsedItem?.id}/`;
   const { isLoading, isError, data, error } = useStoreInfo(storeInfoUrl);
 
   if (isLoading) {
@@ -22,25 +23,30 @@ const MaleStoreGallery = (props) => {
   }
 
   console.log(data ? data?.collections : "loading...");
+  console.log(parsedItem ? parsedItem.id : "Oh my...");
 
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: "#292929",
+        backgroundColor: "#0C0404",
       }}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
         {data ? (
-          data?.collections.map((item) => (
+          data?.map((item) => (
             <View key={item.id}>
               <CategoryCard
                 onPress={() => {
                   navigation.navigate("ProductViewScreen", { item: item });
                 }}
-                productImage={item.product_image}
+                productImage={
+                  item
+                    ? `http://10.0.2.2:8000/${item.product_image} `
+                    : "darn..."
+                }
                 productPrimaryHeading={item.product_name}
-                productSubHeading={item.colours}
+                productSubHeading={item.product_colours}
               />
             </View>
           ))

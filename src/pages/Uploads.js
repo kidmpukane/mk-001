@@ -50,14 +50,20 @@ const Uploads = ({ item }) => {
 
     setStoreInfoUrl("http://10.0.2.2:8000/api/products/find-nearest-neighbors");
   };
-
+  // console.log(
+  //   data ? data.all_products[0].product_image : "Nothing to display..."
+  // );
   return (
     <>
       {data &&
-        data.all_products?.map((item) => (
+        data.all_products?.map((item, index) => (
           <ImageBackground
-            key={item.id}
-            source={{ uri: item.product_image }}
+            key={index}
+            source={{
+              uri: item
+                ? `http://10.0.2.2:8000/${item.product_image}`
+                : "Loading...",
+            }}
             style={styles.imageBackground}
           >
             <View style={styles.mainContainer}>
