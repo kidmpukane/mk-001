@@ -8,7 +8,8 @@ import { useGetItemById } from "../hooks/useGetUserInfo";
 import { useLocalSearchParams } from "expo-router";
 
 const ProductViewScreen = (props) => {
-  const { item } = useLocalSearchParams();
+  const { item } = props.route.params;
+  const parsedItem = JSON.parse(item);
   const hyperLinkUrl = `http://192.168.0.106:3000/collections/${item.id}`;
   const { isLoading, isError, data, error } = useGetItemById(hyperLinkUrl);
 
