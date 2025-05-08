@@ -53,7 +53,7 @@ Currently in alpha, polishing the front-end, feedback loops, and clustering cali
 ## 🧰 Tech Stack
 
 * React / Expo (Frontend)
-* Python / Flask (Backend APIs)
+* Python / Django (Backend APIs)
 * TensorFlow / PyTorch (Feature extraction)
 * Scikit-learn (Clustering)
 * MySQL (Storage)
