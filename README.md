@@ -58,3 +58,5 @@ Currently in alpha, polishing the front-end, feedback loops, and clustering cali
 * Scikit-learn (Clustering)
 * MySQL (Storage)
 
+##🔗 Related Repositories
+mk-001 – Backend API (Django) https://github.com/kidmpukane/mk-001-backend-practice
